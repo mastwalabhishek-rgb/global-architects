@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="morning">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Global Architects | Start a Project | Dehradun</title>
+  <meta name="description" content="Contact Global Architects — Start your project with Ar. Shailesh Kumar in Dehradun. Residential, commercial & interior design inquiries welcome. hello@globalarchitects.in" />
+  <link rel="canonical" href="https://www.globalarchitects.in/contact.html" />
+
+  <meta property="og:title"       content="Contact — Global Architects" />
+  <meta property="og:description" content="Start your project. hello@globalarchitects.in · Dehradun, Uttarakhand" />
+  <meta property="og:image"       content="assets/images/og-contact.webp" />
+  <meta property="og:type"        content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <style>
+    /* ══════════════════════════════════════════
+       CONTACT PAGE STYLES
+    ══════════════════════════════════════════ */
+
+    /* ── Page layout ── */
+    .contact-page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* ── Left Panel — Info ── */
+    .contact-info {
+      background-color: var(--bg-inverse);
+      padding: calc(var(--space-32) + 60px) var(--space-16) var(--space-20);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    /* Architectural bg lines */
+    .contact-info__bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+    }
+
+    .contact-info__content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-info__heading {
+      font-size: var(--text-h1);
+      color: var(--text-inverse);
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-tight);
+      margin-top: var(--space-6);
+      overflow: hidden;
+    }
+
+    .contact-info__heading-inner {
+      display: block;
+      transform: translateY(110%);
+      transition: transform 1s cubic-bezier(0.16,1,0.3,1) 0.2s;
+    }
+
+    .contact-info__heading.is-visible .contact-info__heading-inner {
+      transform: translateY(0);
+    }
+
+    .contact-info__sub {
+      font-size: var(--text-body);
+      color: rgba(255,255,255,0.55);
+      line-height: var(--lh-relaxed);
+      max-width: 380px;
+      margin-top: var(--space-6);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.8s ease 0.45s, transform 0.8s ease 0.45s;
+    }
+
+    .contact-info__sub.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Contact details */
+    .contact-details {
+      margin-top: var(--space-16);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-detail {
+      padding: var(--space-6) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .contact-detail.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .contact-detail:nth-child(1) { transition-delay: 0.1s; }
+    .contact-detail:nth-child(2) { transition-delay: 0.2s; }
+    .contact-detail:nth-child(3) { transition-delay: 0.3s; }
+    .contact-detail:nth-child(4) { transition-delay: 0.4s; }
+
+    .contact-detail__label {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .contact-detail__value {
+      font-size: var(--text-body);
+      color: var(--text-inverse);
+      font-weight: 400;
+      transition: color var(--duration-base) ease;
+    }
+
+    .contact-detail__value a {
+      color: inherit;
+      transition: color var(--duration-base) ease;
+    }
+
+    .contact-detail__value a:hover {
+      color: var(--accent-primary);
+    }
+
+    /* Office hours */
+    .contact-hours {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.4);
+      margin-top: var(--space-2);
+    }
+
+    /* Social links */
+    .contact-social {
+      margin-top: var(--space-6);
+      display: flex;
+      gap: var(--space-6);
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.6s ease 0.6s;
+    }
+
+    .contact-social.is-visible {
+      opacity: 1;
+    }
+
+    .contact-social__link {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: color var(--duration-base) ease, border-color var(--duration-base) ease;
+    }
+
+    .contact-social__link:hover {
+      color: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    /* Map concept */
+    .contact-map {
+      margin-top: var(--space-8);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background-color: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      height: 200px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-map__svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .contact-map__pin {
+      animation: mapPinPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes mapPinPulse {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-4px); }
+    }
+
+    /* WhatsApp button */
+    .contact-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: #25D366;
+      padding: var(--space-3) var(--space-5);
+      border: 1px solid rgba(37,211,102,0.3);
+      border-radius: var(--radius-full);
+      margin-top: var(--space-4);
+      transition: all var(--duration-base) ease;
+      position: relative;
+      z-index: 1;
+      width: fit-content;
+    }
+
+    .contact-whatsapp:hover {
+      background-color: rgba(37,211,102,0.1);
+      border-color: #25D366;
+    }
+
+    .contact-whatsapp__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #25D366;
+      animation: waDot 2s ease-in-out infinite;
+    }
+
+    @keyframes waDot {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    /* ── Right Panel — Form ── */
+    .contact-form-panel {
+      background-color: var(--bg-primary);
+      padding: calc(var(--space-32) + 60px) var(--space-16) var(--space-20);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-form-panel__inner {
+      max-width: 520px;
+      width: 100%;
+    }
+
+    .form-heading {
+      font-size: var(--text-h2);
+      letter-spacing: var(--ls-tight);
+      margin-top: var(--space-4);
+      margin-bottom: var(--space-10);
+    }
+
+    /* Inquiry type selector */
+    .inquiry-types {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-8);
+    }
+
+    .inquiry-type {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid var(--border-secondary);
+      border-radius: var(--radius-full);
+      background: transparent;
+      cursor: pointer;
+      transition: all var(--duration-base) ease;
+      min-height: 36px;
+    }
+
+    .inquiry-type:hover {
+      color: var(--text-primary);
+      border-color: var(--border-primary);
+    }
+
+    .inquiry-type.is-selected {
+      color: var(--bg-primary);
+      background-color: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    /* Form fields */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-label span {
+      color: var(--accent-primary);
+      margin-left: 2px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-secondary);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5);
+      outline: none;
+      transition:
+        border-color     var(--duration-base) ease,
+        background-color var(--duration-base) ease,
+        box-shadow       var(--duration-base) ease;
+      width: 100%;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--accent-primary);
+      background-color: var(--bg-primary);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+    }
+
+    /* Valid state */
+    .form-input.is-valid,
+    .form-textarea.is-valid {
+      border-color: var(--success);
+    }
+
+    /* Error state */
+    .form-input.is-error,
+    .form-textarea.is-error {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 3px rgba(143,107,107,0.15);
+    }
+
+    .form-error-msg {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      color: var(--danger);
+      letter-spacing: var(--ls-wide);
+      display: none;
+    }
+
+    .form-field.has-error .form-error-msg {
+      display: block;
+    }
+
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239A9890' stroke-width='1.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right var(--space-4) center;
+      padding-right: var(--space-10);
+      cursor: pointer;
+    }
+
+    .form-select option {
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 140px;
+      line-height: var(--lh-relaxed);
+    }
+
+    /* Budget range slider */
+    .form-range-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .form-range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      color: var(--text-muted);
+      letter-spacing: var(--ls-wide);
+    }
+
+    .form-range-value {
+      font-weight: 500;
+      color: var(--accent-primary);
+      text-align: center;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 2px;
+      appearance: none;
+      background: var(--border-primary);
+      border-radius: 1px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: var(--accent-primary);
+      cursor: pointer;
+      border: 3px solid var(--bg-primary);
+      box-shadow: 0 0 0 1px var(--accent-primary);
+      transition: transform var(--duration-base) ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    /* Timeline picker */
+    .timeline-options {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: var(--space-2);
+    }
+
+    .timeline-option {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wide);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: var(--space-3) var(--space-2);
+      border: 1px solid var(--border-secondary);
+      border-radius: var(--radius-md);
+      background: transparent;
+      cursor: pointer;
+      text-align: center;
+      line-height: 1.4;
+      transition: all var(--duration-base) ease;
+      min-height: 44px;
+    }
+
+    .timeline-option:hover {
+      border-color: var(--border-primary);
+      color: var(--text-primary);
+    }
+
+    .timeline-option.is-selected {
+      background-color: var(--accent-subtle);
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    /* Checkbox */
+    .form-checkbox-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    .form-checkbox {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border-primary);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      appearance: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: all var(--duration-base) ease;
+    }
+
+    .form-checkbox:checked {
+      background-color: var(--accent-primary);
+      border-color: var(--accent-primary);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .form-checkbox-label {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+      cursor: pointer;
+    }
+
+    .form-checkbox-label a {
+      color: var(--accent-primary);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--duration-base) ease;
+    }
+
+    .form-checkbox-label a:hover {
+      border-color: var(--accent-primary);
+    }
+
+    /* Submit button */
+    .form-submit {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      margin-top: var(--space-4);
+    }
+
+    .form-submit__btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      letter-spacing: var(--ls-wide);
+      text-transform: uppercase;
+      color: var(--bg-primary);
+      background-color: var(--accent-primary);
+      border: none;
+      border-radius: var(--radius-md);
+      padding: var(--space-5) var(--space-8);
+      min-height: 56px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition:
+        background-color var(--duration-base) ease,
+        transform        var(--duration-base) ease,
+        box-shadow       var(--duration-base) ease;
+    }
+
+    .form-submit__btn:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .form-submit__btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Loading spinner inside btn */
+    .form-submit__spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+
+    .form-submit__btn.is-loading .form-submit__spinner { display: block; }
+    .form-submit__btn.is-loading .form-submit__text    { display: none; }
+    .form-submit__btn.is-loading .form-submit__arrow   { display: none; }
+
+    .form-submit__note {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wide);
+      color: var(--text-muted);
+      text-align: right;
+      max-width: 140px;
+      line-height: 1.5;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-6);
+      padding: var(--space-16) 0;
+    }
+
+    .form-success.is-visible {
+      display: flex;
+    }
+
+    .form-success__icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background-color: var(--accent-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+    }
+
+    .form-success__heading {
+      font-size: var(--text-h2);
+      letter-spacing: var(--ls-tight);
+    }
+
+    .form-success__body {
+      font-size: var(--text-body);
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+      max-width: 380px;
+    }
+
+    .form-success__time {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--accent-primary);
+    }
+
+    /* ── FAQ strip ── */
+    .contact-faq {
+      background-color: var(--bg-secondary);
+      padding: var(--space-20) 0;
+    }
+
+    .contact-faq__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: var(--space-8);
+      margin-top: var(--space-10);
+    }
+
+    .faq-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .faq-q {
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 600;
+      letter-spacing: var(--ls-tight);
+      color: var(--text-primary);
+    }
+
+    .faq-a {
+      font-size: var(--text-sm);
+      line-height: var(--lh-relaxed);
+      color: var(--text-secondary);
+    }
+
+    /* ── Responsive ── */
+    @media screen and (max-width: 1024px) {
+      .contact-page { grid-template-columns: 1fr; }
+      .contact-info {
+        min-height: auto;
+        padding: calc(var(--space-20) + 60px) var(--container-pad) var(--space-16);
+      }
+      .contact-form-panel {
+        padding: var(--space-16) var(--container-pad) var(--space-20);
+        justify-content: flex-start;
+      }
+      .contact-form-panel__inner { max-width: 100%; }
+      .faq-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media screen and (max-width: 768px) {
+      .form-row { grid-template-columns: 1fr; }
+      .timeline-options { grid-template-columns: repeat(2,1fr); }
+      .faq-grid { grid-template-columns: 1fr; }
+      .contact-map { height: 160px; }
+    }
+
+    @media screen and (max-width: 480px) {
+      .inquiry-types { gap: var(--space-2); }
+      .form-submit { flex-direction: column; }
+      .form-submit__note { text-align: center; max-width: none; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Global Architects",
+    "url": "https://www.globalarchitects.in/contact.html",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Global Architects",
+      "telephone": "+91-XXXXXXXXXX",
+      "email": "hello@globalarchitects.in",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Clement Town",
+        "addressLocality": "Dehradun",
+        "addressRegion": "Uttarakhand",
+        "postalCode": "248002",
+        "addressCountry": "IN"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    }
+  }
+  </script>
+</head>
+
+<body class="js-loading">
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__crosshair"><span class="cursor__h"></span><span class="cursor__v"></span></div>
+    <div class="cursor__circle"><span class="cursor__label">View</span></div>
+    <div class="cursor__dot"></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="nav is-visible is-scrolled" id="mainNav" role="banner">
+    <nav class="nav__inner" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo" aria-label="Global Architects — Home">
+        <svg class="nav__logo-svg" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 16 A8 8 0 1 1 16 8 L16 16 L10 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="24" y="21" font-family="'DM Sans Variable', sans-serif" font-size="13" font-weight="500" fill="currentColor" letter-spacing="0.05em">GLOBAL</text>
+          <text x="24" y="30" font-family="'DM Mono', monospace" font-size="7" font-weight="300" fill="currentColor" letter-spacing="0.15em" opacity="0.7">ARCHITECTS</text>
+        </svg>
+      </a>
+      <ul class="nav__links" role="list">
+        <li class="nav__item"><a href="index.html"    class="nav__link">Home</a></li>
+        <li class="nav__item"><a href="projects.html" class="nav__link">Projects</a></li>
+        <li class="nav__item"><a href="about.html"    class="nav__link">About</a></li>
+        <li class="nav__item nav__item--active"><a href="contact.html" class="nav__link" aria-current="page">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="nav__theme-toggle" id="themeToggle" aria-label="Toggle time mode" type="button">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="18" height="18">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="12" y1="2" x2="12" y2="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="12" y1="20" x2="12" y2="22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="2" y1="12" x2="4" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="20" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button class="nav__hamburger" id="navHamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu" type="button">
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="mobile-menu__lines" aria-hidden="true">
+      <span class="mobile-menu__line"></span>
+      <span class="mobile-menu__line"></span>
+      <span class="mobile-menu__line"></span>
+    </div>
+    <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close navigation menu" type="button"><span aria-hidden="true">✕</span></button>
+    <nav aria-label="Mobile navigation">
+      <ul class="mobile-menu__links" role="list">
+        <li class="mobile-menu__item"><a href="index.html"    class="mobile-menu__link"><span class="mobile-menu__num">01</span>Home</a></li>
+        <li class="mobile-menu__item"><a href="projects.html" class="mobile-menu__link"><span class="mobile-menu__num">02</span>Projects</a></li>
+        <li class="mobile-menu__item"><a href="about.html"    class="mobile-menu__link"><span class="mobile-menu__num">03</span>About</a></li>
+        <li class="mobile-menu__item"><a href="contact.html"  class="mobile-menu__link" aria-current="page"><span class="mobile-menu__num">04</span>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu__footer">
+      <p class="mobile-menu__location">Dehradun, Uttarakhand</p>
+      <a href="mailto:hello@globalarchitects.in" class="mobile-menu__email">hello@globalarchitects.in</a>
+    </div>
+  </div>
+
+  <main id="mainContent" role="main">
+
+    <!-- ══════════════════════════════════
+         CONTACT — Split Layout
+    ══════════════════════════════════ -->
+    <div class="contact-page">
+
+      <!-- LEFT PANEL — Info -->
+      <aside class="contact-info" aria-label="Contact information">
+
+        <!-- Architectural bg lines -->
+        <svg class="contact-info__bg" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="0" y1="200" x2="600" y2="200" stroke="white" stroke-width="0.5"/>
+          <line x1="0" y1="400" x2="600" y2="400" stroke="white" stroke-width="0.5"/>
+          <line x1="0" y1="600" x2="600" y2="600" stroke="white" stroke-width="0.5"/>
+          <line x1="150" y1="0" x2="150" y2="800" stroke="white" stroke-width="0.5"/>
+          <line x1="300" y1="0" x2="300" y2="800" stroke="white" stroke-width="0.5"/>
+          <line x1="450" y1="0" x2="450" y2="800" stroke="white" stroke-width="0.5"/>
+          <circle cx="300" cy="400" r="150" stroke="white" stroke-width="0.5" fill="none"/>
+          <circle cx="300" cy="400" r="80"  stroke="white" stroke-width="0.5" fill="none"/>
+        </svg>
+
+        <div class="contact-info__content">
+          <p class="section-label" style="color:rgba(255,255,255,0.35);" id="contactLabel">
+            <span class="section-label__line"></span>
+            Let's Talk
+          </p>
+
+          <h1 class="contact-info__heading" id="contactHeading">
+            <span class="contact-info__heading-inner">
+              Start Your<br />Project Here
+            </span>
+          </h1>
+
+          <p class="contact-info__sub" id="contactSub">
+            Every great building begins with a conversation.
+            Tell us about your project — we respond within 24 hours.
+          </p>
+
+          <!-- Contact details -->
+          <address class="contact-details">
+
+            <div class="contact-detail" id="detail1">
+              <span class="contact-detail__label">Email</span>
+              <span class="contact-detail__value">
+                <a href="mailto:hello@globalarchitects.in">hello@globalarchitects.in</a>
+              </span>
+            </div>
+
+            <div class="contact-detail" id="detail2">
+              <span class="contact-detail__label">Phone</span>
+              <span class="contact-detail__value">
+                <a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a>
+              </span>
+              <span class="contact-hours">Mon–Sat · 9:00am – 6:00pm IST</span>
+            </div>
+
+            <div class="contact-detail" id="detail3">
+              <span class="contact-detail__label">Studio</span>
+              <span class="contact-detail__value">
+                Clement Town, Dehradun<br/>
+                Uttarakhand — 248 002, India
+              </span>
+            </div>
+
+            <div class="contact-detail" id="detail4">
+              <span class="contact-detail__label">Delhi Office</span>
+              <span class="contact-detail__value">
+                South Delhi, India<br/>
+                By appointment only
+              </span>
+            </div>
+
+          </address>
+
+          <!-- WhatsApp -->
+          <a
+            href="https://wa.me/91XXXXXXXXXX?text=Hello%20Global%20Architects%2C%20I%20would%20like%20to%20discuss%20a%20project."
+            class="contact-whatsapp"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat on WhatsApp with Global Architects (opens in new tab)"
+            id="waBtn"
+          >
+            <span class="contact-whatsapp__dot" aria-hidden="true"></span>
+            Chat on WhatsApp
+          </a>
+
+          <!-- Social -->
+          <div class="contact-social" id="contactSocial">
+            <a href="https://www.instagram.com/globalarchitects.in" class="contact-social__link" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in new tab)">Instagram</a>
+            <a href="https://www.linkedin.com/company/global-architects-dehradun" class="contact-social__link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
+          </div>
+
+          <!-- Architectural map concept -->
+          <div class="contact-map" aria-label="Map showing Dehradun studio location">
+            <svg class="contact-map__svg" viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
+              <!-- Grid -->
+              <line x1="0" y1="50"  x2="560" y2="50"  stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="0" y1="100" x2="560" y2="100" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="0" y1="150" x2="560" y2="150" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="112" y1="0" x2="112" y2="200" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="224" y1="0" x2="224" y2="200" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="336" y1="0" x2="336" y2="200" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+              <line x1="448" y1="0" x2="448" y2="200" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+
+              <!-- Roads -->
+              <line x1="0"   y1="100" x2="560" y2="100" stroke="rgba(255,255,255,.12)" stroke-width="2"/>
+              <line x1="280" y1="0"   x2="280" y2="200" stroke="rgba(255,255,255,.12)" stroke-width="2"/>
+              <line x1="80"  y1="0"   x2="200" y2="200" stroke="rgba(255,255,255,.08)" stroke-width="1.5"/>
+              <line x1="360" y1="0"   x2="480" y2="200" stroke="rgba(255,255,255,.08)" stroke-width="1.5"/>
+
+              <!-- Blocks -->
+              <rect x="130" y="60"  width="60" height="30" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.1)" stroke-width="0.5"/>
+              <rect x="200" y="110" width="70" height="40" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.1)" stroke-width="0.5"/>
+              <rect x="310" y="55"  width="50" height="35" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.1)" stroke-width="0.5"/>
+              <rect x="370" y="110" width="80" height="45" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.1)" stroke-width="0.5"/>
+
+              <!-- Pin -->
+              <g class="contact-map__pin" transform="translate(280, 92)">
+                <circle cx="0" cy="0" r="20" fill="rgba(200,168,130,.15)" stroke="none"/>
+                <circle cx="0" cy="0" r="6"  fill="var(--accent-primary)" stroke="none"/>
+                <circle cx="0" cy="0" r="10" fill="none" stroke="var(--accent-primary)" stroke-width="1" opacity="0.4"/>
+              </g>
+
+              <!-- Label -->
+              <text x="280" y="170" text-anchor="middle" font-family="'DM Mono', monospace" font-size="9" fill="rgba(255,255,255,.3)" letter-spacing="0.1em">DEHRADUN · CLEMENT TOWN</text>
+            </svg>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- RIGHT PANEL — Form -->
+      <section class="contact-form-panel" aria-labelledby="formHeading">
+        <div class="contact-form-panel__inner">
+
+          <p class="section-label reveal reveal--up">
+            <span class="section-label__line"></span>
+            Project Inquiry
+          </p>
+
+          <h2 class="form-heading reveal reveal--up reveal--delay-1" id="formHeading">
+            Tell Us About<br />Your Project
+          </h2>
+
+          <!-- Inquiry type -->
+          <div class="inquiry-types reveal reveal--up reveal--delay-2" role="group" aria-label="Select project type">
+            <button class="inquiry-type is-selected" data-type="residential"  type="button" aria-pressed="true">Residential</button>
+            <button class="inquiry-type"              data-type="commercial"   type="button" aria-pressed="false">Commercial</button>
+            <button class="inquiry-type"              data-type="interior"     type="button" aria-pressed="false">Interior</button>
+            <button class="inquiry-type"              data-type="mixed"        type="button" aria-pressed="false">Mixed-Use</button>
+            <button class="inquiry-type"              data-type="consultation" type="button" aria-pressed="false">Consultation</button>
+          </div>
+
+          <!-- Form -->
+          <form
+            class="contact-form reveal reveal--up reveal--delay-3"
+            id="contactForm"
+            novalidate
+            aria-label="Project inquiry form"
+          >
+
+            <!-- Name + Email -->
+            <div class="form-row">
+              <div class="form-field" id="fieldName">
+                <label class="form-label" for="inputName">
+                  Full Name <span aria-label="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="inputName"
+                  name="name"
+                  class="form-input"
+                  placeholder="Ar. Your Name"
+                  required
+                  autocomplete="name"
+                  aria-required="true"
+                />
+                <span class="form-error-msg" role="alert">Please enter your name</span>
+              </div>
+
+              <div class="form-field" id="fieldEmail">
+                <label class="form-label" for="inputEmail">
+                  Email <span aria-label="required">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="inputEmail"
+                  name="email"
+                  class="form-input"
+                  placeholder="you@email.com"
+                  required
+                  autocomplete="email"
+                  aria-required="true"
+                />
+                <span class="form-error-msg" role="alert">Please enter a valid email</span>
+              </div>
+            </div>
+
+            <!-- Phone + City -->
+            <div class="form-row">
+              <div class="form-field" id="fieldPhone">
+                <label class="form-label" for="inputPhone">Phone</label>
+                <input
+                  type="tel"
+                  id="inputPhone"
+                  name="phone"
+                  class="form-input"
+                  placeholder="+91 XXXXX XXXXX"
+                  autocomplete="tel"
+                />
+              </div>
+
+              <div class="form-field" id="fieldCity">
+                <label class="form-label" for="inputCity">
+                  Project City <span aria-label="required">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="inputCity"
+                  name="city"
+                  class="form-input"
+                  placeholder="Dehradun, Delhi..."
+                  required
+                  aria-required="true"
+                />
+                <span class="form-error-msg" role="alert">Please enter project city</span>
+              </div>
+            </div>
+
+            <!-- Area -->
+            <div class="form-field" id="fieldArea">
+              <label class="form-label" for="selectArea">Approximate Project Area</label>
+              <select id="selectArea" name="area" class="form-select">
+                <option value=""         selected disabled>Select area range</option>
+                <option value="under500" >Under 500 sq ft</option>
+                <option value="500-1500" >500 – 1,500 sq ft</option>
+                <option value="1500-3000">1,500 – 3,000 sq ft</option>
+                <option value="3000-6000">3,000 – 6,000 sq ft</option>
+                <option value="6000plus" >6,000+ sq ft</option>
+                <option value="unsure"   >Not sure yet</option>
+              </select>
+            </div>
+
+            <!-- Budget range -->
+            <div class="form-field">
+              <label class="form-label" for="budgetRange">Approximate Budget</label>
+              <div class="form-range-wrap">
+                <div class="form-range-labels">
+                  <span>₹20L</span>
+                  <span class="form-range-value" id="budgetDisplay">₹75L</span>
+                  <span>₹5Cr+</span>
+                </div>
+                <input
+                  type="range"
+                  id="budgetRange"
+                  name="budget"
+                  min="20"
+                  max="500"
+                  value="75"
+                  step="5"
+                  aria-label="Budget range in lakhs"
+                />
+              </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="form-field">
+              <p class="form-label" id="timelineLabel">When do you want to start?</p>
+              <div class="timeline-options" role="group" aria-labelledby="timelineLabel">
+                <button class="timeline-option" data-timeline="asap"    type="button" aria-pressed="false">As soon<br/>as possible</button>
+                <button class="timeline-option" data-timeline="3months" type="button" aria-pressed="false">Within<br/>3 months</button>
+                <button class="timeline-option" data-timeline="6months" type="button" aria-pressed="false">Within<br/>6 months</button>
+                <button class="timeline-option" data-timeline="year"    type="button" aria-pressed="false">Within<br/>a year</button>
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div class="form-field" id="fieldMessage">
+              <label class="form-label" for="inputMessage">
+                Tell us about your project <span aria-label="required">*</span>
+              </label>
+              <textarea
+                id="inputMessage"
+                name="message"
+                class="form-textarea"
+                placeholder="Describe your vision — the building type, site conditions, must-haves, inspiration, or anything that helps us understand what you're dreaming of..."
+                required
+                aria-required="true"
+                rows="5"
+              ></textarea>
+              <span class="form-error-msg" role="alert">Please tell us about your project</span>
+            </div>
+
+            <!-- How did you hear -->
+            <div class="form-field">
+              <label class="form-label" for="selectSource">How did you find us?</label>
+              <select id="selectSource" name="source" class="form-select">
+                <option value=""          selected disabled>Select an option</option>
+                <option value="google"   >Google Search</option>
+                <option value="instagram">Instagram</option>
+                <option value="referral" >Friend / Colleague Referral</option>
+                <option value="ad"       >Ad</option>
+                <option value="press"    >Magazine / Press</option>
+                <option value="other"    >Other</option>
+              </select>
+            </div>
+
+            <!-- Consent -->
+            <div class="form-field">
+              <div class="form-checkbox-wrap">
+                <input
+                  type="checkbox"
+                  id="consentCheck"
+                  name="consent"
+                  class="form-checkbox"
+                  required
+                  aria-required="true"
+                />
+                <label class="form-checkbox-label" for="consentCheck">
+                  I agree to Global Architects storing my information to respond
+                  to this inquiry. We never share your data with third parties.
+                  View our <a href="#" aria-label="Privacy policy">Privacy Policy</a>.
+                </label>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-submit">
+              <button
+                type="submit"
+                class="form-submit__btn"
+                id="submitBtn"
+                aria-label="Send project inquiry"
+              >
+                <span class="form-submit__spinner" aria-hidden="true"></span>
+                <span class="form-submit__text">Send Inquiry</span>
+                <span class="form-submit__arrow" aria-hidden="true">→</span>
+              </button>
+              <p class="form-submit__note">
+                We reply within 24 hours
+              </p>
+            </div>
+
+          </form>
+
+          <!-- Success message -->
+          <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+            <div class="form-success__icon" aria-hidden="true">✓</div>
+            <h3 class="form-success__heading">Inquiry Received</h3>
+            <p class="form-success__body">
+              Thank you for reaching out. Ar. Shailesh Kumar or a senior member
+              of the team will respond personally within 24 hours.
+            </p>
+            <p class="form-success__time">Expected response: Within 24 hours</p>
+            <div style="display:flex;gap:var(--space-4);flex-wrap:wrap;justify-content:center;">
+              <a href="projects.html" class="btn btn--outline">Browse Our Projects</a>
+              <a href="about.html"    class="btn btn--ghost"   style="border-color:var(--border-primary);color:var(--text-secondary);">Meet the Team</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+    <!-- /contact-page -->
+
+
+    <!-- ══════════════════════════════════
+         FAQ
+    ══════════════════════════════════ -->
+    <section class="contact-faq" aria-labelledby="faqHeading">
+      <div class="contact-faq__container">
+
+        <p class="section-label reveal reveal--up">
+          <span class="section-label__line"></span>
+          Common Questions
+        </p>
+
+        <h2 class="reveal reveal--up reveal--delay-1" id="faqHeading"
+            style="font-size:var(--text-h2);margin-top:var(--space-4);">
+          Before You Reach Out
+        </h2>
+
+        <div class="faq-grid">
+
+          <div class="faq-item reveal reveal--up reveal--delay-1">
+            <h3 class="faq-q">How long does a project take?</h3>
+            <p class="faq-a">A typical residential project takes 18–24 months from first meeting to handover, including design (4–6 months), approvals (2–4 months), and construction (12–18 months). Commercial projects vary by scale.</p>
+          </div>
+
+          <div class="faq-item reveal reveal--up reveal--delay-2">
+            <h3 class="faq-q">What is your minimum project size?</h3>
+            <p class="faq-a">We work on projects from 500 sq ft interior renovations to large-scale commercial developments. We do not have a minimum area — we have a minimum of commitment to design quality.</p>
+          </div>
+
+          <div class="faq-item reveal reveal--up reveal--delay-3">
+            <h3 class="faq-q">Do you work outside Dehradun?</h3>
+            <p class="faq-a">Yes. We have completed projects in Delhi NCR, Mumbai, Jaipur, Chandigarh, Bengaluru, and across Uttarakhand. Distance is not a barrier — quality is our constant.</p>
+          </div>
+
+          <div class="faq-item reveal reveal--up reveal--delay-1">
+            <h3 class="faq-q">What does an architect fee look like?</h3>
+            <p class="faq-a">Our fees are typically a percentage of construction cost, ranging from 8–12% depending on project type and complexity. We provide a detailed fee proposal after the first consultation.</p>
+          </div>
+
+          <div class="faq-item reveal reveal--up reveal--delay-2">
+            <h3 class="faq-q">Do you handle MDDA approvals?</h3>
+            <p class="faq-a">Yes. We handle all MDDA, municipal, structural, and fire NOC approvals as part of our full service. We know the Dehradun regulatory landscape thoroughly.</p>
+          </div>
+
+          <div class="faq-item reveal reveal--up reveal--delay-3">
+            <h3 class="faq-q">Can I see completed projects in person?</h3>
+            <p class="faq-a">With client permission, we occasionally arrange site visits to completed projects for serious prospective clients. Ask us during your initial consultation.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__container">
+      <div class="footer__top">
+        <a href="index.html" class="footer__logo" aria-label="Global Architects — Home">
+          <svg class="footer__logo-svg" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M8 16 A8 8 0 1 1 16 8 L16 16 L10 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <text x="24" y="21" font-family="'DM Sans Variable', sans-serif" font-size="13" font-weight="500" fill="currentColor" letter-spacing="0.05em">GLOBAL</text>
+            <text x="24" y="30" font-family="'DM Mono', monospace" font-size="7" font-weight="300" fill="currentColor" letter-spacing="0.15em" opacity="0.7">ARCHITECTS</text>
+          </svg>
+        </a>
+        <p class="footer__philosophy">Architecture rooted in place, crafted for people.</p>
+        <div class="footer__social">
+          <a href="https://www.instagram.com/globalarchitects.in" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+          <a href="https://www.linkedin.com/company/global-architects-dehradun" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer__divider" role="separator"></div>
+      <div class="footer__bottom">
+        <address class="footer__address">
+          <span class="footer__firm">Global Architects</span>
+          <span class="footer__sep" aria-hidden="true">·</span>
+          <span class="footer__location">Dehradun, Uttarakhand, India</span>
+          <span class="footer__sep" aria-hidden="true">·</span>
+          <a href="mailto:hello@globalarchitects.in" class="footer__email">hello@globalarchitects.in</a>
+        </address>
+        <p class="footer__copy"><small>© <span id="currentYear"></span> Global Architects. All rights reserved.</small></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/theme.js"      defer></script>
+  <script src="js/cursor.js"     defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js"       defer></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.remove('js-loading');
+
+    /* ── Hero animations ── */
+    setTimeout(() => {
+      document.querySelector('.contact-info__heading')?.classList.add('is-visible');
+      document.getElementById('contactSub')?.classList.add('is-visible');
+      ['detail1','detail2','detail3','detail4'].forEach(id => {
+        document.getElementById(id)?.classList.add('is-visible');
+      });
+      document.getElementById('waBtn')?.classList.add('is-visible');
+      document.getElementById('contactSocial')?.classList.add('is-visible');
+    }, 300);
+
+    /* ── Inquiry type selector ── */
+    const types = document.querySelectorAll('.inquiry-type');
+    types.forEach(btn => {
+      btn.addEventListener('click', () => {
+        types.forEach(b => { b.classList.remove('is-selected'); b.setAttribute('aria-pressed','false'); });
+        btn.classList.add('is-selected');
+        btn.setAttribute('aria-pressed','true');
+      });
+    });
+
+    /* ── Timeline selector ── */
+    const tlBtns = document.querySelectorAll('.timeline-option');
+    tlBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tlBtns.forEach(b => { b.classList.remove('is-selected'); b.setAttribute('aria-pressed','false'); });
+        btn.classList.add('is-selected');
+        btn.setAttribute('aria-pressed','true');
+      });
+    });
+
+    /* ── Budget range ── */
+    const budgetRange   = document.getElementById('budgetRange');
+    const budgetDisplay = document.getElementById('budgetDisplay');
+
+    function formatBudget(val) {
+      const v = parseInt(val);
+      if(v >= 100) return `₹${(v/100).toFixed(1)}Cr`;
+      return `₹${v}L`;
+    }
+
+    budgetRange?.addEventListener('input', () => {
+      budgetDisplay.textContent = formatBudget(budgetRange.value);
+    });
+
+    /* ── Form validation ── */
+    const form      = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const success   = document.getElementById('formSuccess');
+
+    function validateField(input) {
+      const field = input.closest('.form-field');
+      if(!field) return true;
+
+      let valid = true;
+
+      if(input.required && !input.value.trim()) {
+        valid = false;
+      }
+      if(input.type === 'email' && input.value) {
+        valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+      }
+      if(input.type === 'checkbox' && input.required) {
+        valid = input.checked;
+      }
+
+      field.classList.toggle('has-error', !valid);
+      input.classList.toggle('is-error', !valid);
+      input.classList.toggle('is-valid', valid && !!input.value);
+
+      return valid;
+    }
+
+    /* Live validation on blur */
+    form?.querySelectorAll('input, textarea').forEach(input => {
+      input.addEventListener('blur', () => validateField(input));
+      input.addEventListener('input', () => {
+        if(input.classList.contains('is-error')) validateField(input);
+      });
+    });
+
+    /* Submit */
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      /* Validate all required fields */
+      let allValid = true;
+      form.querySelectorAll('[required]').forEach(input => {
+        if(!validateField(input)) allValid = false;
+      });
+
+      if(!allValid) {
+        /* Focus first error */
+        form.querySelector('.is-error')?.focus();
+        return;
+      }
+
+      /* Show loading state */
+      submitBtn.classList.add('is-loading');
+      submitBtn.disabled = true;
+
+      /* Simulate submission (replace with real API) */
+      await new Promise(resolve => setTimeout(resolve, 1800));
+
+      /* Show success */
+      submitBtn.classList.remove('is-loading');
+      form.style.display = 'none';
+      success.classList.add('is-visible');
+      success.focus();
+
+      /* Scroll to success */
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    /* ── Scroll reveals ── */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* ── Year ── */
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  });
+  </script>
+
+</body>
+</html>

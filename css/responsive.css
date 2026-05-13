@@ -1,0 +1,704 @@
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL ARCHITECTS — responsive.css
+   Mobile-First Responsive Design System
+   Breakpoints: 480 | 768 | 1024 | 1280 | 1536
+   ═══════════════════════════════════════════════════════════════
+
+   TABLE OF CONTENTS
+   1.  Base Mobile Styles (< 480px)
+   2.  Small Mobile (480px+)
+   3.  Tablet (768px+)
+   4.  Laptop (1024px+)
+   5.  Desktop (1280px+)
+   6.  Large Desktop (1536px+)
+   7.  Touch Device Overrides
+   8.  High DPI / Retina
+   9.  Landscape Mobile
+   ═══════════════════════════════════════════════════════════════ */
+
+
+/* ═══════════════════════════════════════════════════════════════
+   1. BASE MOBILE STYLES — Default (applies to ALL screen sizes)
+   Mobile-first: write for mobile, override for larger screens
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Navigation ── */
+.nav__links { display: none; }
+.nav__cta   { display: none; }
+
+.nav__hamburger {
+  display: flex;
+}
+
+.nav__theme-toggle {
+  display: flex;
+}
+
+/* ── Mobile Menu ── */
+.mobile-menu {
+  display: flex;
+}
+
+/* ── Hero ── */
+.hero__content {
+  padding-top: clamp(7rem, 25vw, 10rem);
+  padding-bottom: var(--space-16);
+}
+
+.hero__badge {
+  display: none;
+}
+
+.hero__scroll-hint {
+  display: none;
+}
+
+.hero__ctas {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero__ctas .btn {
+  width: 100%;
+  max-width: 320px;
+  justify-content: center;
+}
+
+/* ── Philosophy ── */
+.philosophy__pillars {
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+}
+
+.philosophy__pillar {
+  padding-bottom: var(--space-10);
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.philosophy__pillar:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* ── Projects Preview ── */
+.projects-preview__header {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  gap: var(--space-4);
+}
+
+.projects-preview__heading {
+  grid-column: 1;
+  grid-row: 2;
+  text-align: left;
+}
+
+.projects-preview__view-all {
+  grid-column: 1;
+  grid-row: 3;
+  text-align: left;
+  align-self: start;
+}
+
+.projects-grid {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: var(--space-4);
+}
+
+.project-card--large {
+  grid-row: auto;
+}
+
+.project-card--large .project-card__media {
+  height: 420px;
+}
+
+.project-card__media {
+  aspect-ratio: 4/3;
+}
+
+/* ── Stats ── */
+.stats__grid {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: var(--space-8) var(--space-4);
+  padding: var(--space-10) 0;
+}
+
+.stats__divider {
+  display: none;
+}
+
+.stats__item {
+  text-align: center;
+  padding: var(--space-4);
+}
+
+/* ── About Teaser ── */
+.about-teaser__container {
+  grid-template-columns: 1fr;
+  gap: var(--space-16);
+}
+
+.about-teaser__card {
+  right: var(--space-4);
+  bottom: calc(-1 * var(--space-6));
+}
+
+/* ── Process ── */
+.process__steps {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.process__step {
+  padding: 0 0 var(--space-10) 0 !important;
+  border-right: none !important;
+  border-bottom: 1px solid var(--border-secondary);
+  margin-bottom: var(--space-10);
+}
+
+.process__step:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0 !important;
+}
+
+.process__step-line {
+  display: none;
+}
+
+/* ── CTA Section ── */
+.cta-section__actions {
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.cta-section__actions .btn {
+  width: 100%;
+  max-width: 320px;
+}
+
+/* ── Footer ── */
+.footer__top {
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.footer__social {
+  align-items: flex-start;
+  flex-direction: row;
+  gap: var(--space-6);
+}
+
+.footer__bottom {
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.footer__address {
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.footer__sep {
+  display: none;
+}
+
+/* ── Buttons ── */
+.btn {
+  min-height: 52px;
+  padding: var(--space-4) var(--space-6);
+}
+
+/* ── Section padding ── */
+.philosophy,
+.projects-preview,
+.about-teaser,
+.process,
+.cta-section {
+  padding: clamp(3rem, 10vw, 5rem) 0;
+}
+
+.stats {
+  padding-top: clamp(3rem, 10vw, 5rem);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   2. SMALL MOBILE — 480px and up
+   ═══════════════════════════════════════════════════════════════ */
+
+@media screen and (min-width: 480px) {
+
+  /* Hero */
+  .hero__ctas {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .hero__ctas .btn {
+    width: auto;
+  }
+
+  /* Projects */
+  .project-card--large .project-card__media {
+    height: 500px;
+  }
+
+  /* Stats — keep 2 col */
+  .stats__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Footer social — row */
+  .footer__social {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   3. TABLET — 768px and up
+   ═══════════════════════════════════════════════════════════════ */
+
+@media screen and (min-width: 768px) {
+
+  /* Nav — show CTA, hide hamburger */
+  .nav__cta { display: flex; }
+
+  /* Philosophy — 2 col on tablet */
+  .philosophy__pillars {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10) var(--space-8);
+  }
+
+  .philosophy__pillar {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .philosophy__pillar:nth-child(1),
+  .philosophy__pillar:nth-child(2) {
+    border-bottom: 1px solid var(--border-secondary);
+    padding-bottom: var(--space-10);
+  }
+
+  /* Projects — 2 col grid */
+  .projects-preview__header {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+  }
+
+  .projects-preview__heading {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    text-align: right;
+  }
+
+  .projects-preview__view-all {
+    grid-column: 2;
+    grid-row: 3;
+    text-align: right;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .project-card--large {
+    grid-row: 1 / 3;
+  }
+
+  .project-card--large .project-card__media {
+    height: 580px;
+  }
+
+  /* Stats — 4 col */
+  .stats__grid {
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    gap: 0;
+  }
+
+  .stats__divider { display: block; }
+
+  /* About teaser — still single col, larger spacing */
+  .about-teaser__container {
+    gap: var(--space-20);
+  }
+
+  /* Process — 2 col tablet */
+  .process__steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .process__step {
+    padding: 0 var(--space-8) var(--space-10) 0 !important;
+    border-right: 1px solid var(--border-secondary) !important;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .process__step:nth-child(2) {
+    padding-left: var(--space-8) !important;
+    border-right: none !important;
+  }
+
+  .process__step:nth-child(3) {
+    grid-column: 1 / -1;
+    padding: var(--space-10) 0 0 0 !important;
+    border-top: 1px solid var(--border-secondary);
+    border-right: none !important;
+  }
+
+  /* Hero badge show on tablet */
+  .hero__badge {
+    display: flex;
+  }
+
+  /* Scroll hint on tablet */
+  .hero__scroll-hint {
+    display: flex;
+  }
+
+  /* CTA actions row on tablet */
+  .cta-section__actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .cta-section__actions .btn {
+    width: auto;
+  }
+
+  /* Footer bottom row */
+  .footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer__address {
+    flex-direction: row;
+    gap: var(--space-3);
+  }
+
+  .footer__sep { display: inline; }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   4. LAPTOP — 1024px and up
+   ═══════════════════════════════════════════════════════════════ */
+
+@media screen and (min-width: 1024px) {
+
+  /* Nav — show links, hide hamburger */
+  .nav__links    { display: flex; }
+  .nav__hamburger { display: none; }
+
+  /* Mobile menu — should not show on desktop */
+  .mobile-menu { display: none !important; }
+
+  /* Philosophy — 3 col */
+  .philosophy__pillars {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+
+  .philosophy__pillar {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Projects — full asymmetric layout */
+  .project-card--large .project-card__media {
+    height: 680px;
+  }
+
+  /* About teaser — 2 col */
+  .about-teaser__container {
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(3rem, 6vw, 8rem);
+    align-items: center;
+  }
+
+  /* Process — 3 col */
+  .process__steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .process__step {
+    padding: 0 var(--space-10) 0 0 !important;
+    border-right: 1px solid var(--border-secondary) !important;
+    border-bottom: none;
+    border-top: none !important;
+  }
+
+  .process__step:first-child {
+    padding-left: 0 !important;
+  }
+
+  .process__step:nth-child(2) {
+    padding-left: var(--space-10) !important;
+    padding-right: var(--space-10) !important;
+    border-right: 1px solid var(--border-secondary) !important;
+  }
+
+  .process__step:last-child {
+    padding-left: var(--space-10) !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    grid-column: auto;
+    padding-top: 0 !important;
+    border-top: none;
+  }
+
+  .process__step-line { display: block; }
+
+  /* Hero content width constraint */
+  .hero__content {
+    max-width: 720px;
+  }
+
+  /* Section padding — increase on laptop */
+  .philosophy,
+  .projects-preview,
+  .about-teaser,
+  .process,
+  .cta-section {
+    padding: var(--section-pad) 0;
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   5. DESKTOP — 1280px and up
+   ═══════════════════════════════════════════════════════════════ */
+
+@media screen and (min-width: 1280px) {
+
+  /* Projects grid — larger card */
+  .project-card--large .project-card__media {
+    height: 720px;
+  }
+
+  /* About card positioning */
+  .about-teaser__card {
+    right: calc(-1 * var(--space-8));
+    bottom: calc(-1 * var(--space-8));
+  }
+
+  /* Hero — full content reveal */
+  .hero__content {
+    max-width: none;
+  }
+
+  /* Bigger hero badge */
+  .hero__badge {
+    bottom: var(--space-24);
+    right: var(--container-pad);
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   6. LARGE DESKTOP — 1536px and up
+   ═══════════════════════════════════════════════════════════════ */
+
+@media screen and (min-width: 1536px) {
+
+  .project-card--large .project-card__media {
+    height: 800px;
+  }
+
+  /* Larger stats numbers */
+  .stats__num {
+    font-size: 5rem;
+  }
+
+  /* Bigger project info padding */
+  .project-card__info {
+    padding: var(--space-8);
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   7. TOUCH DEVICE OVERRIDES
+   Disable hover effects & custom cursor on touch
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Touch devices — no custom cursor */
+@media (hover: none) or (pointer: coarse) {
+
+  /* Show default cursor */
+  body, a, button { cursor: auto; }
+
+  /* Hide custom cursor element */
+  .cursor { display: none !important; }
+
+  /* Re-enable pointer cursor for interactive elements */
+  a, button, [role="button"] { cursor: pointer; }
+
+  /* Remove hover-only effects */
+  .project-card:hover .project-card__img {
+    transform: none;
+  }
+
+  .project-card:hover .project-card__texture {
+    opacity: 0;
+  }
+
+  /* Show project info always on touch (no hover) */
+  .project-card__material {
+    opacity: 1;
+    transform: none;
+  }
+
+  .project-card__arrow {
+    opacity: 0.6;
+    transform: none;
+  }
+
+  .project-card__overlay {
+    opacity: 1;
+  }
+
+  /* Ensure touch targets are large enough — WCAG 2.5.5 */
+  .nav__hamburger,
+  .mobile-menu__close,
+  .nav__theme-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .mobile-menu__link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .btn {
+    min-height: 52px;
+    padding: var(--space-4) var(--space-6);
+  }
+
+  /* Simplify blueprint animation on touch */
+  .blueprint-overlay {
+    /* Reduce paths for performance on mobile GPU */
+  }
+
+  /* Remove magnetic button effect on touch */
+  .btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   8. HIGH DPI / RETINA DISPLAY
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+
+  /* Blueprint SVG lines — thinner on retina (looks crisp) */
+  .bp-line { stroke-width: 0.25; }
+  .bp-line--ground { stroke-width: 0.5; }
+  .bp-rect { stroke-width: 0.5; }
+
+  /* Nav logo — sharper */
+  .nav__logo-svg,
+  .footer__logo-svg {
+    image-rendering: crisp-edges;
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   9. LANDSCAPE MOBILE
+   Small screens in landscape orientation
+   ═══════════════════════════════════════════════════════════════ */
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+
+  /* Shorter hero — compensate for landscape height */
+  .hero {
+    min-height: 100svh;
+  }
+
+  .hero__content {
+    padding-top: 5rem;
+    padding-bottom: var(--space-12);
+  }
+
+  /* Compact blueprint on landscape mobile */
+  .blueprint-overlay .blueprint-label {
+    bottom: var(--space-6);
+  }
+
+  /* Smaller heading in landscape */
+  .hero__heading {
+    font-size: clamp(2.5rem, 7vw, 4rem);
+  }
+
+  /* Smaller section padding */
+  .philosophy,
+  .projects-preview,
+  .about-teaser,
+  .process,
+  .cta-section {
+    padding: clamp(2rem, 8vw, 4rem) 0;
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL — No horizontal overflow anywhere
+   ═══════════════════════════════════════════════════════════════ */
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Prevent any child from causing horizontal scroll */
+.hero,
+.philosophy,
+.projects-preview,
+.stats,
+.about-teaser,
+.process,
+.cta-section,
+.footer {
+  overflow-x: hidden;
+}
+
+/* Image safety net */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Table safety */
+table {
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+}

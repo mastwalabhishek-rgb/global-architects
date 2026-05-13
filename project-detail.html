@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="morning">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Light House — Global Architects | Dehradun</title>
+  <meta name="description" content="The Light House — A luxury residential project in Delhi by Global Architects. Concrete, glass and steel architecture rooted in natural light." />
+  <link rel="canonical" href="https://www.globalarchitects.in/project-detail.html" />
+
+  <meta property="og:title"       content="The Light House — Global Architects" />
+  <meta property="og:description" content="A luxury residence in Delhi where concrete meets light. Ar. Shailesh Kumar, Global Architects." />
+  <meta property="og:image"       content="assets/images/project-01.webp" />
+  <meta property="og:type"        content="article" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <style>
+    /* ══════════════════════════════════════════
+       PROJECT DETAIL — Scrollytelling Styles
+    ══════════════════════════════════════════ */
+
+    /* ── Chapter base ── */
+    .chapter {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Chapter 0: HERO ── */
+    .chapter-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .chapter-hero__media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .chapter-hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      transform: scale(1.06);
+      transition: transform 12s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .chapter-hero.is-loaded .chapter-hero__img {
+      transform: scale(1);
+    }
+
+    .chapter-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.82) 0%,
+        rgba(0,0,0,0.3) 50%,
+        rgba(0,0,0,0.1) 100%
+      );
+    }
+
+    .chapter-hero__content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding: var(--space-40) var(--container-pad) var(--space-20);
+    }
+
+    .chapter-hero__back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: var(--space-10);
+      transition: color var(--duration-base) ease;
+    }
+    .chapter-hero__back:hover { color: rgba(255,255,255,1); }
+
+    .chapter-hero__meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-bottom: var(--space-5);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .chapter-hero__meta.is-visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .chapter-hero__meta-sep { opacity: 0.4; }
+
+    .chapter-hero__title {
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      font-weight: 800;
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-tightest);
+      color: #fff;
+      overflow: hidden;
+      margin-bottom: var(--space-8);
+    }
+
+    .chapter-hero__title-inner {
+      display: block;
+      transform: translateY(110%);
+      transition: transform 1s cubic-bezier(0.16,1,0.3,1) .2s;
+    }
+    .chapter-hero__title.is-visible .chapter-hero__title-inner {
+      transform: translateY(0);
+    }
+
+    .chapter-hero__tagline {
+      font-size: clamp(1rem,1.4vw,1.2rem);
+      color: rgba(255,255,255,0.65);
+      max-width: 520px;
+      line-height: 1.7;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .8s ease .5s, transform .8s ease .5s;
+    }
+    .chapter-hero__tagline.is-visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* Scroll indicator */
+    .chapter-hero__scroll {
+      position: absolute;
+      bottom: var(--space-10);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      z-index: 2;
+    }
+    .chapter-hero__scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.4));
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    .chapter-hero__scroll-text {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ── Chapter Label ── */
+    .chapter-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+    .chapter-label__line {
+      width: 32px;
+      height: 1px;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* ── Chapter 1: THE BRIEF ── */
+    .chapter-brief {
+      background-color: var(--bg-secondary);
+      padding: var(--section-pad) 0;
+      min-height: auto;
+    }
+    .chapter-brief__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: clamp(3rem,8vw,10rem);
+      align-items: start;
+    }
+    .chapter-brief__specs {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: sticky;
+      top: 100px;
+    }
+    .spec-item {
+      padding: var(--space-5) 0;
+      border-bottom: 1px solid var(--border-secondary);
+    }
+    .spec-item:first-child { border-top: 1px solid var(--border-secondary); }
+    .spec-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--space-1);
+    }
+    .spec-value {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .chapter-brief__text { display: flex; flex-direction: column; gap: var(--space-6); }
+    .chapter-brief__heading {
+      font-family: var(--font-display);
+      font-size: var(--text-h2);
+      font-weight: 700;
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-tight);
+    }
+    .chapter-brief__body {
+      font-size: var(--text-body);
+      line-height: var(--lh-loose);
+      color: var(--text-secondary);
+    }
+
+    /* ── Chapter 2: THE SKETCH ── */
+    .chapter-sketch {
+      background-color: var(--bg-primary);
+      padding: var(--section-pad) 0;
+      min-height: auto;
+    }
+    .chapter-sketch__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+    .chapter-sketch__header {
+      margin-bottom: var(--space-12);
+      max-width: 600px;
+    }
+    .chapter-sketch__heading {
+      font-size: var(--text-h2);
+      margin-top: var(--space-4);
+    }
+    .chapter-sketch__canvas {
+      width: 100%;
+      background-color: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 16/7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .chapter-sketch__svg {
+      width: 90%;
+      max-width: 900px;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .chapter-sketch__svg.is-visible { opacity: 1; }
+    .sketch-line {
+      stroke: var(--accent-primary);
+      stroke-width: 1;
+      fill: none;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      transition: stroke-dashoffset 2s cubic-bezier(0.16,1,0.3,1);
+    }
+    .chapter-sketch__canvas.is-visible .sketch-line {
+      stroke-dashoffset: 0;
+    }
+    .sketch-text {
+      fill: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+    }
+
+    /* ── Chapter 3: MATERIALS ── */
+    .chapter-materials {
+      background-color: var(--bg-secondary);
+      padding: var(--section-pad) 0;
+      min-height: auto;
+    }
+    .chapter-materials__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+    .chapter-materials__heading {
+      font-size: var(--text-h2);
+      margin: var(--space-4) 0 var(--space-12);
+    }
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: var(--space-6);
+    }
+    .material-swatch {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .material-swatch:nth-child(2) { transition-delay: .12s; }
+    .material-swatch:nth-child(3) { transition-delay: .24s; }
+    .material-swatch.is-visible { opacity:1; transform:translateX(0); }
+    .material-swatch__color {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-4);
+      position: relative;
+      overflow: hidden;
+    }
+    .material-swatch__texture {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: .6;
+    }
+    .material-swatch__name {
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .material-swatch__desc {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+    }
+    .material-swatch__origin {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-top: var(--space-3);
+    }
+
+    /* ── Chapter 4: THE BUILD — Horizontal Scroll ── */
+    .chapter-build {
+      background-color: var(--bg-primary);
+      padding: var(--section-pad) 0;
+      min-height: auto;
+      overflow: hidden;
+    }
+    .chapter-build__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+      margin-bottom: var(--space-10);
+    }
+    .chapter-build__heading {
+      font-size: var(--text-h2);
+      margin-top: var(--space-4);
+    }
+    .build-scroll {
+      display: flex;
+      gap: var(--space-4);
+      overflow-x: auto;
+      padding: 0 var(--container-pad) var(--space-6);
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-primary) transparent;
+      cursor: grab;
+    }
+    .build-scroll:active { cursor: grabbing; }
+    .build-scroll::-webkit-scrollbar { height: 4px; }
+    .build-scroll::-webkit-scrollbar-track { background: transparent; }
+    .build-scroll::-webkit-scrollbar-thumb {
+      background: var(--border-primary);
+      border-radius: 2px;
+    }
+    .build-img-wrap {
+      flex: 0 0 auto;
+      width: clamp(280px,40vw,560px);
+      aspect-ratio: 4/3;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      scroll-snap-align: start;
+      background-color: var(--bg-elevated);
+      position: relative;
+    }
+    .build-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s ease;
+    }
+    .build-img-wrap:hover img { transform: scale(1.04); }
+    .build-img-wrap__caption {
+      position: absolute;
+      bottom: var(--space-4);
+      left: var(--space-4);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      background: rgba(0,0,0,.4);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(4px);
+    }
+    .build-scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 0 var(--container-pad);
+      margin-bottom: var(--space-4);
+    }
+    .build-scroll-hint__arrow { animation: bounceX 1.4s ease-in-out infinite; }
+
+    /* ── Chapter 5: THE SPACE — Curtain Wipe ── */
+    .chapter-space {
+      background-color: var(--bg-inverse);
+      padding: var(--section-pad) 0;
+      min-height: auto;
+    }
+    .chapter-space__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+    .chapter-space__heading {
+      font-size: var(--text-h2);
+      color: var(--text-inverse);
+      margin: var(--space-4) 0 var(--space-12);
+    }
+    .space-reveal {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background-color: var(--bg-elevated);
+    }
+    .space-reveal__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .space-reveal__curtain {
+      position: absolute;
+      inset: 0;
+      background-color: var(--bg-inverse);
+      transform-origin: right;
+      transform: scaleX(1);
+      transition: transform 1.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .space-reveal.is-visible .space-reveal__curtain {
+      transform: scaleX(0);
+    }
+    .chapter-space__quote {
+      margin-top: var(--space-10);
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem,2vw,1.75rem);
+      font-style: italic;
+      color: var(--text-inverse);
+      opacity: 0.7;
+      max-width: 700px;
+      line-height: var(--lh-relaxed);
+    }
+
+    /* ── Chapter 6: LIVING IN IT ── */
+    .chapter-living {
+      background-color: var(--bg-primary);
+      padding: var(--section-pad) 0;
+      min-height: auto;
+    }
+    .chapter-living__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+    .chapter-living__heading {
+      font-size: var(--text-h2);
+      margin: var(--space-4) 0 var(--space-12);
+    }
+    .living-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      grid-template-rows: auto auto;
+      gap: var(--space-4);
+    }
+    .living-img {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background-color: var(--bg-elevated);
+    }
+    .living-img--tall { grid-row: 1 / 3; aspect-ratio: 3/4; }
+    .living-img--wide { aspect-ratio: 4/3; }
+    .living-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s ease;
+    }
+    .living-img:hover img { transform: scale(1.04); }
+    .living-text {
+      align-self: end;
+      padding: var(--space-6) 0;
+    }
+    .living-text__body {
+      font-size: var(--text-body);
+      line-height: var(--lh-loose);
+      color: var(--text-secondary);
+    }
+
+    /* ── Chapter END: Related + CTA ── */
+    .chapter-end {
+      background-color: var(--bg-secondary);
+      padding: var(--section-pad) 0;
+    }
+    .chapter-end__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+    .chapter-end__cta {
+      text-align: center;
+      padding: var(--space-20) 0 var(--space-16);
+      border-top: 1px solid var(--border-secondary);
+      margin-top: var(--space-16);
+    }
+    .chapter-end__cta-q {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-bottom: var(--space-4);
+    }
+    .chapter-end__cta-heading {
+      font-size: var(--text-h2);
+      margin-bottom: var(--space-8);
+    }
+    .chapter-end__related-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--space-8);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: var(--space-4);
+    }
+
+    /* ── Progress Bar ── */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background-color: var(--accent-primary);
+      z-index: calc(var(--z-sticky) + 1);
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform .1s linear;
+    }
+
+    /* ── Responsive ── */
+    @media screen and (max-width: 768px) {
+      .chapter-brief__container { grid-template-columns: 1fr; }
+      .chapter-brief__specs { position: static; }
+      .materials-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+      .living-grid { grid-template-columns: 1fr; }
+      .living-img--tall { grid-row: auto; aspect-ratio: 4/3; }
+      .related-grid { grid-template-columns: 1fr; }
+    }
+
+    @media screen and (max-width: 1024px) {
+      .related-grid { grid-template-columns: repeat(2,1fr); }
+      .materials-grid { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Light House — Global Architects",
+    "description": "A luxury residential project in Delhi by Global Architects",
+    "author": { "@type": "Person", "name": "Ar. Shailesh Kumar" },
+    "publisher": { "@type": "Organization", "name": "Global Architects" },
+    "image": "https://www.globalarchitects.in/assets/images/project-01.webp",
+    "url": "https://www.globalarchitects.in/project-detail.html"
+  }
+  </script>
+</head>
+
+<body class="js-loading">
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__crosshair"><span class="cursor__h"></span><span class="cursor__v"></span></div>
+    <div class="cursor__circle"><span class="cursor__label">View</span></div>
+    <div class="cursor__dot"></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="nav is-visible is-scrolled" id="mainNav" role="banner">
+    <nav class="nav__inner" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo" aria-label="Global Architects — Home">
+        <svg class="nav__logo-svg" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 16 A8 8 0 1 1 16 8 L16 16 L10 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="24" y="21" font-family="'DM Sans Variable', sans-serif" font-size="13" font-weight="500" fill="currentColor" letter-spacing="0.05em">GLOBAL</text>
+          <text x="24" y="30" font-family="'DM Mono', monospace" font-size="7" font-weight="300" fill="currentColor" letter-spacing="0.15em" opacity="0.7">ARCHITECTS</text>
+        </svg>
+      </a>
+      <ul class="nav__links" role="list">
+        <li class="nav__item"><a href="index.html"    class="nav__link">Home</a></li>
+        <li class="nav__item nav__item--active"><a href="projects.html" class="nav__link">Projects</a></li>
+        <li class="nav__item"><a href="about.html"    class="nav__link">About</a></li>
+        <li class="nav__item"><a href="contact.html"  class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="nav__theme-toggle" id="themeToggle" aria-label="Toggle time mode" type="button">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="18" height="18">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="12" y1="2" x2="12" y2="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="12" y1="20" x2="12" y2="22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="2" y1="12" x2="4" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="20" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <a href="contact.html" class="nav__cta">Start a Project</a>
+        <button class="nav__hamburger" id="navHamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu" type="button">
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="mobile-menu__lines" aria-hidden="true">
+      <span class="mobile-menu__line"></span>
+      <span class="mobile-menu__line"></span>
+      <span class="mobile-menu__line"></span>
+    </div>
+    <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close navigation menu" type="button"><span aria-hidden="true">✕</span></button>
+    <nav aria-label="Mobile navigation">
+      <ul class="mobile-menu__links" role="list">
+        <li class="mobile-menu__item"><a href="index.html"    class="mobile-menu__link"><span class="mobile-menu__num">01</span>Home</a></li>
+        <li class="mobile-menu__item"><a href="projects.html" class="mobile-menu__link"><span class="mobile-menu__num">02</span>Projects</a></li>
+        <li class="mobile-menu__item"><a href="about.html"    class="mobile-menu__link"><span class="mobile-menu__num">03</span>About</a></li>
+        <li class="mobile-menu__item"><a href="contact.html"  class="mobile-menu__link"><span class="mobile-menu__num">04</span>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu__footer">
+      <p class="mobile-menu__location">Dehradun, Uttarakhand</p>
+      <a href="mailto:hello@globalarchitects.in" class="mobile-menu__email">hello@globalarchitects.in</a>
+    </div>
+  </div>
+
+  <main id="mainContent" role="main">
+
+    <!-- ══════════════════════════════════
+         CHAPTER 0 — HERO
+    ══════════════════════════════════ -->
+    <section class="chapter-hero" aria-labelledby="projectTitle">
+      <div class="chapter-hero__media">
+        <img src="assets/images/project-01.webp"
+             alt="The Light House — Luxury residence in Delhi by Global Architects"
+             class="chapter-hero__img"
+             loading="eager" decoding="async" fetchpriority="high"/>
+        <div class="chapter-hero__overlay"></div>
+      </div>
+
+      <div class="chapter-hero__content">
+        <a href="projects.html" class="chapter-hero__back" aria-label="Back to all projects">
+          ← All Projects
+        </a>
+
+        <p class="chapter-hero__meta" id="projectMeta">
+          <span>Residential</span>
+          <span class="chapter-hero__meta-sep" aria-hidden="true">·</span>
+          <span>Delhi, India</span>
+          <span class="chapter-hero__meta-sep" aria-hidden="true">·</span>
+          <span>2024</span>
+        </p>
+
+        <h1 class="chapter-hero__title" id="projectTitle">
+          <span class="chapter-hero__title-inner">The Light House</span>
+        </h1>
+
+        <p class="chapter-hero__tagline" id="projectTagline">
+          A home built around the sun's daily journey — where every room is a
+          different experience of light from dawn to dusk.
+        </p>
+      </div>
+
+      <div class="chapter-hero__scroll" aria-hidden="true">
+        <span class="chapter-hero__scroll-line"></span>
+        <span class="chapter-hero__scroll-text">Scroll to explore</span>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         CHAPTER 1 — THE BRIEF
+    ══════════════════════════════════ -->
+    <section class="chapter-brief" aria-labelledby="briefHeading">
+      <div class="chapter-brief__container">
+
+        <!-- Project specs -->
+        <aside class="chapter-brief__specs" aria-label="Project specifications">
+          <div class="chapter-label">
+            <span class="chapter-label__line"></span>
+            Chapter 01
+          </div>
+
+          <dl>
+            <div class="spec-item reveal reveal--left">
+              <dt class="spec-label">Project Type</dt>
+              <dd class="spec-value">Private Residence</dd>
+            </div>
+            <div class="spec-item reveal reveal--left reveal--delay-1">
+              <dt class="spec-label">Location</dt>
+              <dd class="spec-value">South Delhi, India</dd>
+            </div>
+            <div class="spec-item reveal reveal--left reveal--delay-2">
+              <dt class="spec-label">Area</dt>
+              <dd class="spec-value">6,200 sq ft</dd>
+            </div>
+            <div class="spec-item reveal reveal--left reveal--delay-3">
+              <dt class="spec-label">Year</dt>
+              <dd class="spec-value">2024</dd>
+            </div>
+            <div class="spec-item reveal reveal--left reveal--delay-4">
+              <dt class="spec-label">Materials</dt>
+              <dd class="spec-value">Concrete · Glass · Steel</dd>
+            </div>
+            <div class="spec-item reveal reveal--left reveal--delay-5">
+              <dt class="spec-label">Status</dt>
+              <dd class="spec-value">Completed</dd>
+            </div>
+            <div class="spec-item reveal reveal--left reveal--delay-6">
+              <dt class="spec-label">Principal</dt>
+              <dd class="spec-value">Ar. Shailesh Kumar</dd>
+            </div>
+          </dl>
+        </aside>
+
+        <!-- Brief text -->
+        <div class="chapter-brief__text">
+          <p class="chapter-label reveal reveal--up">
+            <span class="chapter-label__line"></span>
+            The Brief
+          </p>
+
+          <h2 class="chapter-brief__heading reveal reveal--up reveal--delay-1" id="briefHeading">
+            A Home That Moves<br />With the Sun
+          </h2>
+
+          <p class="chapter-brief__body reveal reveal--up reveal--delay-2">
+            The client came to us with a single, clear aspiration: to live in a home
+            that felt different at every hour of the day. Not through decoration or
+            furniture, but through architecture itself — through the way light entered,
+            moved, and changed.
+          </p>
+
+          <p class="chapter-brief__body reveal reveal--up reveal--delay-3">
+            The site in South Delhi presented both constraint and opportunity: a narrow
+            plot facing east-west, with a mature neem tree that the family refused to
+            remove. We accepted both as gifts. The neem became a courtyard anchor.
+            The east-west orientation became the engine of our design.
+          </p>
+
+          <p class="chapter-brief__body reveal reveal--up reveal--delay-4">
+            Our response was a 6,200 square foot residence built around a central
+            double-height void — a light well — that pulls morning sun deep into the
+            heart of the house, softens it through a brise-soleil through the day,
+            and releases it as warm amber through western glass at dusk.
+          </p>
+
+          <blockquote class="reveal reveal--up reveal--delay-5" style="
+            border-left: 3px solid var(--accent-primary);
+            padding-left: var(--space-6);
+            margin-top: var(--space-4);
+          ">
+            <p style="font-family:var(--font-display);font-size:clamp(1.1rem,1.8vw,1.4rem);font-style:italic;color:var(--text-primary);line-height:1.6;">
+              "We don't design rooms. We design the experience of being in a room
+              at 7am, at noon, and at sunset. Architecture is time made visible."
+            </p>
+            <footer style="margin-top:var(--space-4);font-family:var(--font-mono);font-size:var(--text-label);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-primary);">
+              — Ar. Shailesh Kumar
+            </footer>
+          </blockquote>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         CHAPTER 2 — THE SKETCH
+    ══════════════════════════════════ -->
+    <section class="chapter-sketch" aria-labelledby="sketchHeading">
+      <div class="chapter-sketch__container">
+
+        <div class="chapter-sketch__header">
+          <p class="chapter-label reveal reveal--up">
+            <span class="chapter-label__line"></span>
+            Chapter 02
+          </p>
+          <h2 class="chapter-sketch__heading reveal reveal--up reveal--delay-1" id="sketchHeading">
+            From First Sketch<br />to Final Form
+          </h2>
+          <p class="reveal reveal--up reveal--delay-2" style="color:var(--text-secondary);line-height:1.7;">
+            Every building at Global Architects begins as a hand drawing.
+            Before 3D models or renders, we draw — because drawing forces clarity of thought.
+          </p>
+        </div>
+
+        <!-- Architectural sketch SVG -->
+        <div class="chapter-sketch__canvas reveal reveal--scale" id="sketchCanvas">
+          <svg class="chapter-sketch__svg" id="sketchSvg" viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" aria-label="Architectural concept sketch of The Light House" role="img">
+
+            <!-- Ground -->
+            <line class="sketch-line" x1="50" y1="320" x2="850" y2="320"/>
+
+            <!-- Main building outline -->
+            <polyline class="sketch-line" points="150,320 150,120 750,120 750,320"/>
+
+            <!-- Left section lower -->
+            <polyline class="sketch-line" points="150,220 300,220 300,320"/>
+
+            <!-- Central void / light well -->
+            <rect class="sketch-line" x="350" y="120" width="200" height="200"/>
+
+            <!-- Right section -->
+            <polyline class="sketch-line" points="550,220 700,220 700,320"/>
+
+            <!-- Roof line left -->
+            <line class="sketch-line" x1="150" y1="120" x2="350" y2="80"/>
+            <line class="sketch-line" x1="350" y1="80" x2="350" y2="120"/>
+
+            <!-- Roof line right -->
+            <line class="sketch-line" x1="550" y1="120" x2="750" y2="80"/>
+            <line class="sketch-line" x1="750" y1="80" x2="750" y2="120"/>
+
+            <!-- Neem tree (circular) -->
+            <circle class="sketch-line" cx="100" cy="280" r="40"/>
+            <line class="sketch-line" x1="100" y1="320" x2="100" y2="290"/>
+
+            <!-- Windows left section -->
+            <rect class="sketch-line" x="180" y="155" width="60" height="50"/>
+            <rect class="sketch-line" x="260" y="155" width="60" height="50"/>
+
+            <!-- Windows right section -->
+            <rect class="sketch-line" x="580" y="155" width="60" height="50"/>
+            <rect class="sketch-line" x="660" y="155" width="60" height="50"/>
+
+            <!-- Light well glazing marks -->
+            <line class="sketch-line" x1="350" y1="130" x2="550" y2="130" style="opacity:.4"/>
+            <line class="sketch-line" x1="350" y1="150" x2="550" y2="150" style="opacity:.3"/>
+            <line class="sketch-line" x1="350" y1="170" x2="550" y2="170" style="opacity:.2"/>
+
+            <!-- Sun rays -->
+            <line class="sketch-line" x1="450" y1="30" x2="450" y2="80" style="opacity:.5"/>
+            <line class="sketch-line" x1="420" y1="40" x2="445" y2="80" style="opacity:.4"/>
+            <line class="sketch-line" x1="480" y1="40" x2="455" y2="80" style="opacity:.4"/>
+            <line class="sketch-line" x1="400" y1="55" x2="440" y2="85" style="opacity:.3"/>
+            <line class="sketch-line" x1="500" y1="55" x2="460" y2="85" style="opacity:.3"/>
+            <circle class="sketch-line" cx="450" cy="22" r="12" style="opacity:.5"/>
+
+            <!-- Dimension lines -->
+            <line class="sketch-line" x1="150" y1="340" x2="750" y2="340" style="opacity:.3"/>
+            <line class="sketch-line" x1="150" y1="335" x2="150" y2="345" style="opacity:.3"/>
+            <line class="sketch-line" x1="750" y1="335" x2="750" y2="345" style="opacity:.3"/>
+
+            <!-- Labels -->
+            <text class="sketch-text" x="450" y="358" text-anchor="middle">24.0 m — East Elevation</text>
+            <text class="sketch-text" x="450" y="14"  text-anchor="middle">Morning Sun ↓</text>
+            <text class="sketch-text" x="450" y="240" text-anchor="middle" font-size="9">Light Well</text>
+            <text class="sketch-text" x="95"  y="370" text-anchor="middle">Neem</text>
+          </svg>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         CHAPTER 3 — MATERIALS
+    ══════════════════════════════════ -->
+    <section class="chapter-materials" aria-labelledby="materialsHeading">
+      <div class="chapter-materials__container">
+
+        <p class="chapter-label reveal reveal--up">
+          <span class="chapter-label__line"></span>
+          Chapter 03
+        </p>
+
+        <h2 class="chapter-materials__heading reveal reveal--up reveal--delay-1" id="materialsHeading">
+          Materials Chosen<br />with Intention
+        </h2>
+
+        <div class="materials-grid">
+
+          <div class="material-swatch" id="swatch1">
+            <div class="material-swatch__color" style="background-color:#8C8C8C;">
+              <div class="material-swatch__texture" style="background-image:url('assets/textures/concrete.webp');"></div>
+            </div>
+            <p class="material-swatch__name">Board-Formed Concrete</p>
+            <p class="material-swatch__desc">
+              Cast in-situ with reclaimed timber formwork, leaving the wood grain
+              imprinted on every exposed surface. Raw, honest, permanent.
+            </p>
+            <p class="material-swatch__origin">Source: Local RMC, Delhi NCR</p>
+          </div>
+
+          <div class="material-swatch" id="swatch2">
+            <div class="material-swatch__color" style="background-color:#B8D4E8;">
+              <div class="material-swatch__texture" style="background-image:url('assets/textures/glass.webp');"></div>
+            </div>
+            <p class="material-swatch__name">Low-Iron Float Glass</p>
+            <p class="material-swatch__desc">
+              Ultra-clear glass with minimal green tint, allowing true colour
+              rendering of the landscape and sky beyond. Double-glazed for thermal performance.
+            </p>
+            <p class="material-swatch__origin">Source: Saint-Gobain, India</p>
+          </div>
+
+          <div class="material-swatch" id="swatch3">
+            <div class="material-swatch__color" style="background-color:#5A5A5A;">
+              <div class="material-swatch__texture" style="background-image:url('assets/textures/metal.webp');"></div>
+            </div>
+            <p class="material-swatch__name">Mild Steel (Patinated)</p>
+            <p class="material-swatch__desc">
+              Structural steel left to develop a natural rust patina over two seasons,
+              then sealed. The warm orange-brown creates dialogue with the concrete grey.
+            </p>
+            <p class="material-swatch__origin">Source: SAIL, Processed locally</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         CHAPTER 4 — THE BUILD
+    ══════════════════════════════════ -->
+    <section class="chapter-build" aria-labelledby="buildHeading">
+      <div class="chapter-build__container">
+        <p class="chapter-label reveal reveal--up">
+          <span class="chapter-label__line"></span>
+          Chapter 04
+        </p>
+        <h2 class="chapter-build__heading reveal reveal--up reveal--delay-1" id="buildHeading">
+          18 Months of Construction
+        </h2>
+        <p class="reveal reveal--up reveal--delay-2" style="color:var(--text-secondary);line-height:1.7;max-width:600px;margin-bottom:var(--space-8);">
+          We were on site every week. Architecture is not just what you design —
+          it is what you insist on when the contractor proposes a shortcut.
+        </p>
+      </div>
+
+      <p class="build-scroll-hint" aria-hidden="true">
+        <span class="build-scroll-hint__arrow">→</span>
+        Drag to explore construction sequence
+      </p>
+
+      <!-- Horizontal scroll gallery -->
+      <div class="build-scroll" id="buildScroll" role="region" aria-label="Construction sequence photos">
+
+        <div class="build-img-wrap">
+          <img src="assets/images/build-01.webp" alt="Foundation and basement excavation — Month 1" loading="lazy" decoding="async"/>
+          <span class="build-img-wrap__caption">Month 01 — Foundation</span>
+        </div>
+
+        <div class="build-img-wrap">
+          <img src="assets/images/build-02.webp" alt="Concrete formwork and first pour — Month 4" loading="lazy" decoding="async"/>
+          <span class="build-img-wrap__caption">Month 04 — First Pour</span>
+        </div>
+
+        <div class="build-img-wrap">
+          <img src="assets/images/build-03.webp" alt="Steel structure installation — Month 7" loading="lazy" decoding="async"/>
+          <span class="build-img-wrap__caption">Month 07 — Steel Frame</span>
+        </div>
+
+        <div class="build-img-wrap">
+          <img src="assets/images/build-04.webp" alt="Glass installation in central light well — Month 12" loading="lazy" decoding="async"/>
+          <span class="build-img-wrap__caption">Month 12 — Glass Install</span>
+        </div>
+
+        <div class="build-img-wrap">
+          <img src="assets/images/build-05.webp" alt="Interior finishing and flooring — Month 16" loading="lazy" decoding="async"/>
+          <span class="build-img-wrap__caption">Month 16 — Interiors</span>
+        </div>
+
+        <div class="build-img-wrap">
+          <img src="assets/images/build-06.webp" alt="Landscape and neem tree integration — Month 18" loading="lazy" decoding="async"/>
+          <span class="build-img-wrap__caption">Month 18 — Handover</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         CHAPTER 5 — THE SPACE
+    ══════════════════════════════════ -->
+    <section class="chapter-space" aria-labelledby="spaceHeading">
+      <div class="chapter-space__container">
+
+        <p class="chapter-label" style="color:rgba(255,255,255,0.4);">
+          <span class="chapter-label__line"></span>
+          Chapter 05
+        </p>
+
+        <h2 class="chapter-space__heading reveal reveal--up reveal--delay-1" id="spaceHeading">
+          The Space, Complete
+        </h2>
+
+        <!-- Curtain wipe reveal -->
+        <div class="space-reveal reveal" id="spaceReveal">
+          <img
+            src="assets/images/project-01-full.webp"
+            alt="The Light House completed — exterior view from street showing concrete facade and light well"
+            class="space-reveal__img"
+            loading="lazy" decoding="async"
+          />
+          <div class="space-reveal__curtain" aria-hidden="true"></div>
+        </div>
+
+        <p class="chapter-space__quote reveal reveal--up reveal--delay-2">
+          "When the client moved in, they called to say the light at 7am through the
+          east window hit the concrete wall exactly the way we had drawn it two years before.
+          That phone call is why we do this work."
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         CHAPTER 6 — LIVING IN IT
+    ══════════════════════════════════ -->
+    <section class="chapter-living" aria-labelledby="livingHeading">
+      <div class="chapter-living__container">
+
+        <p class="chapter-label reveal reveal--up">
+          <span class="chapter-label__line"></span>
+          Chapter 06
+        </p>
+
+        <h2 class="chapter-living__heading reveal reveal--up reveal--delay-1" id="livingHeading">
+          Life Inside the Light House
+        </h2>
+
+        <div class="living-grid">
+
+          <div class="living-img living-img--tall reveal reveal--left">
+            <img src="assets/images/living-01.webp" alt="Living room of The Light House — morning light through east glass wall" loading="lazy" decoding="async"/>
+          </div>
+
+          <div class="living-img living-img--wide reveal reveal--right">
+            <img src="assets/images/living-02.webp" alt="Kitchen of The Light House — concrete countertop and light well above" loading="lazy" decoding="async"/>
+          </div>
+
+          <div class="living-text reveal reveal--up reveal--delay-2">
+            <p class="living-text__body">
+              The family of four reports that they no longer need clocks to know the
+              time of day. The light tells them. Morning is east and blue. Noon is
+              vertical and sharp. Evening is amber and long-shadowed.
+            </p>
+            <p class="living-text__body" style="margin-top:var(--space-5);">
+              Architecture, at its best, is not decoration. It is orientation.
+              It is the daily reminder that you are a creature of this Earth,
+              moving through light and time.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         CHAPTER END — Related + CTA
+    ══════════════════════════════════ -->
+    <section class="chapter-end" aria-labelledby="relatedHeading">
+      <div class="chapter-end__container">
+
+        <p class="chapter-end__related-label reveal reveal--up" id="relatedHeading">
+          Continue Exploring
+        </p>
+
+        <div class="related-grid">
+
+          <article class="project-card reveal reveal--up reveal--delay-1" data-material="wood">
+            <a href="project-detail.html" class="project-card__link" aria-label="View Forest Retreat project">
+              <div class="project-card__media" style="aspect-ratio:4/3;">
+                <img src="assets/images/project-04.webp" alt="Forest Retreat — hill home in Dehradun" class="project-card__img" loading="lazy" decoding="async"/>
+                <div class="project-card__texture"></div>
+                <div class="project-card__overlay"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Residential</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Dehradun</span>
+                </div>
+                <h3 class="project-card__title">Forest Retreat</h3>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="project-card reveal reveal--up reveal--delay-2" data-material="stone">
+            <a href="project-detail.html" class="project-card__link" aria-label="View The Ground Pavilion project">
+              <div class="project-card__media" style="aspect-ratio:4/3;">
+                <img src="assets/images/project-03.webp" alt="The Ground Pavilion — cultural space in Jaipur" class="project-card__img" loading="lazy" decoding="async"/>
+                <div class="project-card__texture"></div>
+                <div class="project-card__overlay"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Cultural</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Jaipur</span>
+                </div>
+                <h3 class="project-card__title">The Ground Pavilion</h3>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <article class="project-card reveal reveal--up reveal--delay-3" data-material="glass">
+            <a href="project-detail.html" class="project-card__link" aria-label="View Vertex Tower project">
+              <div class="project-card__media" style="aspect-ratio:4/3;">
+                <img src="assets/images/project-02.webp" alt="Vertex Tower — commercial high-rise Mumbai" class="project-card__img" loading="lazy" decoding="async"/>
+                <div class="project-card__texture"></div>
+                <div class="project-card__overlay"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Commercial</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Mumbai</span>
+                </div>
+                <h3 class="project-card__title">Vertex Tower</h3>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+        </div>
+
+        <!-- Final CTA -->
+        <div class="chapter-end__cta">
+          <p class="chapter-end__cta-q">Have a project in mind?</p>
+          <h2 class="chapter-end__cta-heading">Let's Build Something<br />Extraordinary</h2>
+          <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+            <a href="contact.html" class="btn btn--primary btn--large">Start a Project →</a>
+            <a href="projects.html" class="btn btn--outline btn--large">View All Projects</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__container">
+      <div class="footer__top">
+        <a href="index.html" class="footer__logo" aria-label="Global Architects — Home">
+          <svg class="footer__logo-svg" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M8 16 A8 8 0 1 1 16 8 L16 16 L10 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <text x="24" y="21" font-family="'DM Sans Variable', sans-serif" font-size="13" font-weight="500" fill="currentColor" letter-spacing="0.05em">GLOBAL</text>
+            <text x="24" y="30" font-family="'DM Mono', monospace" font-size="7" font-weight="300" fill="currentColor" letter-spacing="0.15em" opacity="0.7">ARCHITECTS</text>
+          </svg>
+        </a>
+        <p class="footer__philosophy">Architecture rooted in place, crafted for people.</p>
+        <div class="footer__social">
+          <a href="https://www.instagram.com/globalarchitects.in" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+          <a href="https://www.linkedin.com/company/global-architects-dehradun" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer__divider" role="separator"></div>
+      <div class="footer__bottom">
+        <address class="footer__address">
+          <span class="footer__firm">Global Architects</span>
+          <span class="footer__sep" aria-hidden="true">·</span>
+          <span class="footer__location">Dehradun, Uttarakhand, India</span>
+          <span class="footer__sep" aria-hidden="true">·</span>
+          <a href="mailto:hello@globalarchitects.in" class="footer__email">hello@globalarchitects.in</a>
+        </address>
+        <p class="footer__copy"><small>© <span id="currentYear"></span> Global Architects. All rights reserved.</small></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/theme.js"      defer></script>
+  <script src="js/cursor.js"     defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js"       defer></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    document.body.classList.remove('js-loading');
+
+    /* ── Hero animations ── */
+    setTimeout(() => {
+      const hero = document.querySelector('.chapter-hero');
+      if(hero) hero.classList.add('is-loaded');
+      document.getElementById('projectMeta')?.classList.add('is-visible');
+      document.getElementById('projectTitle')?.classList.add('is-visible');
+      document.getElementById('projectTagline')?.classList.add('is-visible');
+    }, 200);
+
+    /* ── Reading progress bar ── */
+    const progressBar = document.getElementById('readingProgress');
+    if(progressBar) {
+      window.addEventListener('scroll', () => {
+        const doc      = document.documentElement;
+        const scrolled = doc.scrollTop || document.body.scrollTop;
+        const total    = doc.scrollHeight - doc.clientHeight;
+        const progress = total > 0 ? scrolled / total : 0;
+        progressBar.style.transform = `scaleX(${progress})`;
+      }, { passive: true });
+    }
+
+    /* ── IntersectionObserver for chapter reveals ── */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) return;
+        const el = entry.target;
+
+        el.classList.add('is-revealed', 'is-visible');
+
+        /* Sketch canvas — trigger SVG draw */
+        if(el.id === 'sketchCanvas') {
+          el.classList.add('is-visible');
+          el.querySelector('.chapter-sketch__svg')?.classList.add('is-visible');
+        }
+
+        /* Space reveal — curtain wipe */
+        if(el.id === 'spaceReveal') {
+          el.classList.add('is-visible');
+        }
+
+        /* Material swatches */
+        ['swatch1','swatch2','swatch3'].forEach((id,i) => {
+          const sw = document.getElementById(id);
+          if(sw) setTimeout(() => sw.classList.add('is-visible'), i * 120);
+        });
+
+        io.unobserve(el);
+      });
+    }, { rootMargin: '0px 0px -100px 0px', threshold: 0.15 });
+
+    document.querySelectorAll('.reveal, #sketchCanvas, #spaceReveal').forEach(el => io.observe(el));
+
+    /* ── Drag to scroll build gallery ── */
+    const scroll = document.getElementById('buildScroll');
+    if(scroll) {
+      let isDown = false, startX, scrollLeft;
+      scroll.addEventListener('mousedown', e => {
+        isDown = true;
+        scroll.style.userSelect = 'none';
+        startX     = e.pageX - scroll.offsetLeft;
+        scrollLeft = scroll.scrollLeft;
+      });
+      scroll.addEventListener('mouseleave', () => { isDown = false; });
+      scroll.addEventListener('mouseup',    () => { isDown = false; scroll.style.userSelect = ''; });
+      scroll.addEventListener('mousemove', e => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x    = e.pageX - scroll.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        scroll.scrollLeft = scrollLeft - walk;
+      });
+    }
+
+    /* ── Year ── */
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  });
+  </script>
+
+</body>
+</html>

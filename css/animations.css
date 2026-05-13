@@ -1,0 +1,610 @@
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL ARCHITECTS — animations.css
+   All Keyframes, Transitions & Animation States
+   ═══════════════════════════════════════════════════════════════ */
+
+
+/* ═══════════════════════════════════════════════════════════════
+   1. REDUCED MOTION — Accessibility First
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .blueprint-overlay { display: none !important; }
+  .hero__img { transform: none !important; }
+  .stats__marquee-track { animation: none !important; }
+  body.js-loading .hero__content,
+  body.js-loading .nav { opacity: 1 !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   2. BLUEPRINT SVG DRAW ANIMATION
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  .bp-line--h {
+    animation: drawLineH 1.2s var(--ease-out) forwards;
+    animation-play-state: paused;
+  }
+  .bp-line--h:nth-child(1) { animation-delay: 0.0s; }
+  .bp-line--h:nth-child(2) { animation-delay: 0.1s; }
+  .bp-line--h:nth-child(3) { animation-delay: 0.2s; }
+  .bp-line--h:nth-child(4) { animation-delay: 0.3s; }
+  .bp-line--h:nth-child(5) { animation-delay: 0.4s; }
+
+  @keyframes drawLineH { to { stroke-dashoffset: 0; } }
+
+  .bp-line--v {
+    animation: drawLineV 1s var(--ease-out) forwards;
+    animation-play-state: paused;
+  }
+  .bp-line--v:nth-child(6)  { animation-delay: 0.15s; }
+  .bp-line--v:nth-child(7)  { animation-delay: 0.25s; }
+  .bp-line--v:nth-child(8)  { animation-delay: 0.20s; }
+  .bp-line--v:nth-child(9)  { animation-delay: 0.30s; }
+  .bp-line--v:nth-child(10) { animation-delay: 0.10s; }
+
+  @keyframes drawLineV { to { stroke-dashoffset: 0; } }
+
+  .bp-rect {
+    animation: drawRect 1.8s var(--ease-out) 0.5s forwards;
+    animation-play-state: paused;
+  }
+  .bp-rect--detail {
+    animation: drawRectDetail 0.6s var(--ease-out) forwards;
+    animation-play-state: paused;
+  }
+
+  @keyframes drawRect       { to { stroke-dashoffset: 0; } }
+  @keyframes drawRectDetail { to { stroke-dashoffset: 0; } }
+
+  .bp-line--ground {
+    animation: drawLineH 0.8s var(--ease-out) 0.8s forwards;
+    animation-play-state: paused;
+  }
+  .bp-line--dim {
+    animation: drawLineH 0.5s var(--ease-out) 1.4s forwards;
+    animation-play-state: paused;
+  }
+  .bp-text {
+    animation: fadeInBpText 0.5s var(--ease-out) 1.6s forwards;
+    animation-play-state: paused;
+  }
+
+  @keyframes fadeInBpText { to { opacity: 1; } }
+
+  /* Play when JS adds .is-playing */
+  .blueprint-overlay.is-playing .bp-line--h,
+  .blueprint-overlay.is-playing .bp-line--v,
+  .blueprint-overlay.is-playing .bp-rect,
+  .blueprint-overlay.is-playing .bp-rect--detail,
+  .blueprint-overlay.is-playing .bp-line--ground,
+  .blueprint-overlay.is-playing .bp-line--dim,
+  .blueprint-overlay.is-playing .bp-text {
+    animation-play-state: running;
+  }
+
+  /* Label */
+  .blueprint-overlay.is-playing .blueprint-label {
+    animation: blueprintLabelIn 0.8s var(--ease-out) 1.2s forwards;
+  }
+
+  @keyframes blueprintLabelIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  /* Exit */
+  .blueprint-overlay.is-exiting {
+    animation: blueprintExit 0.9s var(--ease-in) forwards;
+  }
+
+  @keyframes blueprintExit {
+    0%   { opacity: 1; }
+    100% { opacity: 0; pointer-events: none; }
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   3. HERO ENTRY SEQUENCE
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  .hero__eyebrow.is-visible {
+    animation: heroEyebrowIn 0.8s var(--ease-out) forwards;
+  }
+  @keyframes heroEyebrowIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero__heading-line {
+    display: block;
+    overflow: hidden;
+  }
+  .hero__heading-line span {
+    display: block;
+    transform: translateY(110%);
+    transition: transform 1s var(--ease-out);
+  }
+  .hero__heading-line.is-visible span {
+    transform: translateY(0);
+  }
+  .hero__heading-line:nth-child(2) span {
+    transition-delay: 0.08s;
+  }
+
+  .hero__tagline.is-visible {
+    animation: fadeSlideUp 0.8s var(--ease-out) 0.3s forwards;
+    opacity: 0;
+  }
+  .hero__desc.is-visible {
+    animation: fadeSlideUp 0.8s var(--ease-out) 0.45s forwards;
+    opacity: 0;
+  }
+  .hero__ctas.is-visible {
+    animation: fadeSlideUp 0.8s var(--ease-out) 0.6s forwards;
+    opacity: 0;
+  }
+  .hero__badge.is-visible {
+    animation: heroBadgeIn 1s var(--ease-out) 0.75s forwards;
+    opacity: 0;
+  }
+  @keyframes heroBadgeIn {
+    from { opacity: 0; transform: translateY(20px) rotate(-3deg); }
+    to   { opacity: 1; transform: translateY(0) rotate(0deg); }
+  }
+
+  .hero__scroll-hint {
+    animation: heroScrollIn 1s var(--ease-out) 1.2s both;
+  }
+  @keyframes heroScrollIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   4. SCROLL REVEAL — Base States
+   ═══════════════════════════════════════════════════════════════ */
+
+.reveal {
+  opacity: 0;
+  transition:
+    opacity   0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
+}
+.reveal.is-revealed { opacity: 1; transform: none !important; }
+
+.reveal--delay-1 { transition-delay: 0.08s; }
+.reveal--delay-2 { transition-delay: 0.16s; }
+.reveal--delay-3 { transition-delay: 0.24s; }
+.reveal--delay-4 { transition-delay: 0.32s; }
+.reveal--delay-5 { transition-delay: 0.40s; }
+.reveal--delay-6 { transition-delay: 0.48s; }
+
+.reveal--up    { transform: translateY(48px); }
+.reveal--down  { transform: translateY(-32px); }
+.reveal--left  { transform: translateX(-48px); }
+.reveal--right { transform: translateX(48px); }
+.reveal--scale { transform: scale(0.92); }
+
+.reveal--clip {
+  clip-path: inset(0 100% 0 0);
+  opacity: 1;
+  transition: clip-path 1s var(--ease-out);
+}
+.reveal--clip.is-revealed { clip-path: inset(0 0% 0 0); }
+
+.reveal--clip-bottom {
+  clip-path: inset(100% 0 0 0);
+  opacity: 1;
+  transition: clip-path 1s var(--ease-out);
+}
+.reveal--clip-bottom.is-revealed { clip-path: inset(0% 0 0 0); }
+
+.reveal--line {
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 1;
+  transition: transform 1s var(--ease-out);
+}
+.reveal--line.is-revealed { transform: scaleX(1); }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   5. PROJECT CARD ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  .project-card {
+    opacity: 0;
+    transform: translateY(56px);
+    transition:
+      opacity   0.8s var(--ease-out),
+      transform 0.8s var(--ease-out);
+  }
+  .project-card.is-revealed { opacity: 1; transform: translateY(0); }
+
+  .project-card:nth-child(1) { transition-delay: 0.00s; }
+  .project-card:nth-child(2) { transition-delay: 0.10s; }
+  .project-card:nth-child(3) { transition-delay: 0.18s; }
+
+  @keyframes arrowFloat {
+    0%, 100% { transform: translate(0, 0); }
+    50%       { transform: translate(3px, -3px); }
+  }
+  .project-card:hover .project-card__arrow {
+    animation: arrowFloat 1.5s var(--ease-in-out) infinite;
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   6. STATS
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  .stats__item {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  }
+  .stats__item.is-revealed { opacity: 1; transform: translateY(0); }
+  .stats__item:nth-child(1) { transition-delay: 0.00s; }
+  .stats__item:nth-child(3) { transition-delay: 0.08s; }
+  .stats__item:nth-child(5) { transition-delay: 0.16s; }
+  .stats__item:nth-child(7) { transition-delay: 0.24s; }
+
+  .stats__num.is-counting { animation: numPop 0.3s var(--ease-spring); }
+  @keyframes numPop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
+
+  .stats__marquee-track {
+    animation: marqueeScroll 28s linear infinite;
+  }
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .stats__marquee:hover .stats__marquee-track {
+    animation-play-state: paused;
+  }
+  .stats__marquee {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   7. ABOUT TEASER
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  .about-teaser__img-wrap .about-teaser__img {
+    transform: scale(1.1);
+    transition: transform 1.2s var(--ease-out);
+  }
+  .about-teaser__img-wrap.is-revealed .about-teaser__img {
+    transform: scale(1);
+  }
+
+  .about-teaser__card {
+    opacity: 0;
+    transform: translateY(24px) rotate(-2deg);
+    transition: opacity 0.8s var(--ease-out) 0.5s, transform 0.8s var(--ease-spring) 0.5s;
+  }
+  .about-teaser__media.is-revealed .about-teaser__card {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+
+  .about-teaser__skill {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.5s var(--ease-out),
+      transform 0.5s var(--ease-out),
+      color var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out),
+      background-color var(--duration-base) var(--ease-out);
+  }
+  .about-teaser__skills.is-revealed .about-teaser__skill {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .about-teaser__skills.is-revealed .about-teaser__skill:nth-child(1) { transition-delay: 0.05s; }
+  .about-teaser__skills.is-revealed .about-teaser__skill:nth-child(2) { transition-delay: 0.10s; }
+  .about-teaser__skills.is-revealed .about-teaser__skill:nth-child(3) { transition-delay: 0.15s; }
+  .about-teaser__skills.is-revealed .about-teaser__skill:nth-child(4) { transition-delay: 0.20s; }
+  .about-teaser__skills.is-revealed .about-teaser__skill:nth-child(5) { transition-delay: 0.25s; }
+  .about-teaser__skills.is-revealed .about-teaser__skill:nth-child(6) { transition-delay: 0.30s; }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   8. PROCESS STEPS
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  .process__step {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+  }
+  .process__step.is-revealed { opacity: 1; transform: translateY(0); }
+  .process__step:nth-child(1) { transition-delay: 0.00s; }
+  .process__step:nth-child(2) { transition-delay: 0.12s; }
+  .process__step:nth-child(3) { transition-delay: 0.24s; }
+
+  .process__step-line {
+    position: absolute;
+    top: 0; right: 0;
+    width: 1px; height: 0;
+    background-color: var(--border-secondary);
+    transition: height 1s var(--ease-out) 0.3s;
+  }
+  .process__step.is-revealed .process__step-line { height: 100%; }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   9. PHILOSOPHY QUOTE
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  .philosophy__quote-text .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+  }
+  .philosophy__quote-text.is-revealing .word {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .philosophy__quote-footer {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s var(--ease-out) 0.6s, transform 0.7s var(--ease-out) 0.6s;
+  }
+  .philosophy__quote.is-revealed .philosophy__quote-footer {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .philosophy__pillar {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  }
+  .philosophy__pillars.is-revealed .philosophy__pillar { opacity: 1; transform: translateY(0); }
+  .philosophy__pillars.is-revealed .philosophy__pillar:nth-child(1) { transition-delay: 0.00s; }
+  .philosophy__pillars.is-revealed .philosophy__pillar:nth-child(2) { transition-delay: 0.12s; }
+  .philosophy__pillars.is-revealed .philosophy__pillar:nth-child(3) { transition-delay: 0.24s; }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   10. CTA SECTION
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  .cta-section__question {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  }
+  .cta-section__heading {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.8s var(--ease-out) 0.1s, transform 0.8s var(--ease-out) 0.1s;
+  }
+  .cta-section__sub {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.7s var(--ease-out) 0.2s, transform 0.7s var(--ease-out) 0.2s;
+  }
+  .cta-section__actions {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.7s var(--ease-out) 0.32s, transform 0.7s var(--ease-out) 0.32s;
+  }
+  .cta-section.is-revealed .cta-section__question,
+  .cta-section.is-revealed .cta-section__heading,
+  .cta-section.is-revealed .cta-section__sub,
+  .cta-section.is-revealed .cta-section__actions {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cta-section__bg-lines {
+    animation: ctaBgRotate 40s linear infinite;
+    transform-origin: center;
+  }
+  @keyframes ctaBgRotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   11. MOBILE MENU
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-menu {
+    clip-path: circle(0% at calc(100% - 48px) 48px);
+    transition: clip-path 0.6s var(--ease-out);
+  }
+  .mobile-menu.is-open {
+    clip-path: circle(150% at calc(100% - 48px) 48px);
+  }
+}
+
+@supports not (clip-path: circle(0%)) {
+  .mobile-menu { opacity: 0; transition: opacity 0.4s var(--ease-out); }
+  .mobile-menu.is-open { opacity: 1; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   12. PAGE TRANSITION
+   ═══════════════════════════════════════════════════════════════ */
+
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-blueprint) - 1);
+  background-color: var(--bg-inverse);
+  pointer-events: none;
+  transform: translateY(100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-transition.is-entering {
+    animation: pageTransEnter 0.5s var(--ease-out) forwards;
+  }
+  .page-transition.is-leaving {
+    animation: pageTransLeave 0.5s var(--ease-in) forwards;
+  }
+  @keyframes pageTransEnter {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0%); }
+  }
+  @keyframes pageTransLeave {
+    from { transform: translateY(0%); }
+    to   { transform: translateY(-100%); }
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   13. KINETIC TYPOGRAPHY
+   ═══════════════════════════════════════════════════════════════ */
+
+.hero__heading .char {
+  display: inline-block;
+  transition: font-variation-settings 0.3s var(--ease-out);
+}
+.hero__heading .char.is-repelling {
+  transition: transform 0.4s var(--ease-out), font-variation-settings 0.3s var(--ease-out);
+}
+.hero__heading {
+  font-variation-settings: 'wght' calc(800 - (var(--scroll-progress, 0) * 400));
+}
+.hero__tagline .char {
+  opacity: 0;
+  display: inline-block;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   14. CURSOR
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .cursor {
+    animation: cursorAppear 0.4s var(--ease-spring) forwards;
+    opacity: 0;
+  }
+  @keyframes cursorAppear {
+    from { opacity: 0; transform: scale(0.5); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .cursor--view .cursor__circle {
+    animation: circleRotate 8s linear infinite;
+  }
+  @keyframes circleRotate {
+    from { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) scale(1) rotate(360deg); }
+  }
+
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   15. UTILITY KEYFRAMES
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes fadeIn      { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp    { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInLeft  { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes fadeInRight { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes scaleIn     { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes blurIn      { from { opacity: 0; filter: blur(8px); } to { opacity: 1; filter: blur(0); } }
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 25%,
+    var(--bg-elevated)  50%,
+    var(--bg-secondary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes bounceX {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(5px); }
+}
+.animate-bounce-x { animation: bounceX 1.4s var(--ease-in-out) infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+.animate-float { animation: float 4s var(--ease-in-out) infinite; }
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spinSlow 20s linear infinite; }
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}

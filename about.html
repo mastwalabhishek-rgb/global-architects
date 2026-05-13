@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="morning">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Global Architects | Ar. Shailesh Kumar | Dehradun</title>
+  <meta name="description" content="Global Architects — Founded in 2017 by Ar. Shailesh Kumar in Dehradun. We design architecture rooted in place, crafted for people. Learn our story, philosophy, and process." />
+  <link rel="canonical" href="https://www.globalarchitects.in/about.html" />
+
+  <meta property="og:title"       content="About — Global Architects | Dehradun" />
+  <meta property="og:description" content="Architecture rooted in the Himalayas. Founded 2017 by Ar. Shailesh Kumar." />
+  <meta property="og:image"       content="assets/images/about-og.webp" />
+  <meta property="og:type"        content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <style>
+    /* ══════════════════════════════════════════
+       ABOUT PAGE STYLES
+    ══════════════════════════════════════════ */
+
+    /* ── Page Hero ── */
+    .about-hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      background-color: var(--bg-inverse);
+      padding: calc(var(--space-32) + 60px) 0 var(--space-20);
+    }
+
+    .about-hero__bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .about-hero__bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      opacity: 0.25;
+      filter: grayscale(0.4);
+      transform: scale(1.06);
+      transition: transform 12s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .about-hero.is-loaded .about-hero__bg-img {
+      transform: scale(1);
+    }
+
+    .about-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        var(--bg-inverse) 0%,
+        rgba(0,0,0,0.5) 50%,
+        rgba(0,0,0,0.2) 100%
+      );
+    }
+
+    .about-hero__container {
+      position: relative;
+      z-index: 2;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+      width: 100%;
+    }
+
+    .about-hero__heading {
+      font-size: var(--text-h1);
+      color: var(--text-inverse);
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-tight);
+      max-width: 800px;
+      margin-top: var(--space-6);
+      overflow: hidden;
+    }
+
+    .about-hero__heading-inner {
+      display: block;
+      transform: translateY(110%);
+      transition: transform 1s cubic-bezier(0.16,1,0.3,1) 0.2s;
+    }
+
+    .about-hero__heading.is-visible .about-hero__heading-inner {
+      transform: translateY(0);
+    }
+
+    .about-hero__sub {
+      font-size: var(--text-body);
+      color: rgba(255,255,255,0.6);
+      max-width: 560px;
+      line-height: var(--lh-relaxed);
+      margin-top: var(--space-6);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease 0.5s, transform 0.8s ease 0.5s;
+    }
+
+    .about-hero__sub.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Founder Section ── */
+    .founder {
+      padding: var(--section-pad) 0;
+      background-color: var(--bg-primary);
+    }
+
+    .founder__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(3rem, 7vw, 10rem);
+      align-items: center;
+    }
+
+    .founder__img-wrap {
+      position: relative;
+    }
+
+    .founder__img-frame {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background-color: var(--bg-elevated);
+    }
+
+    .founder__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .founder__img-frame:hover .founder__img {
+      transform: scale(1.03);
+    }
+
+    /* Floating quote card */
+    .founder__quote-card {
+      position: absolute;
+      bottom: calc(-1 * var(--space-8));
+      right: calc(-1 * var(--space-6));
+      background-color: var(--accent-primary);
+      color: var(--bg-primary);
+      padding: var(--space-6) var(--space-8);
+      border-radius: var(--radius-md);
+      max-width: 260px;
+      box-shadow: var(--shadow-xl);
+      opacity: 0;
+      transform: translateY(20px) rotate(2deg);
+      transition: opacity 0.8s ease 0.6s, transform 0.8s cubic-bezier(0.34,1.56,0.64,1) 0.6s;
+    }
+
+    .founder__img-wrap.is-revealed .founder__quote-card {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg);
+    }
+
+    .founder__quote-text {
+      font-family: var(--font-display);
+      font-size: var(--text-sm);
+      font-style: italic;
+      line-height: var(--lh-relaxed);
+      color: var(--bg-primary);
+      margin-bottom: var(--space-3);
+    }
+
+    .founder__quote-attr {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--bg-primary);
+      opacity: 0.7;
+    }
+
+    .founder__content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .founder__name {
+      font-size: var(--text-h2);
+      letter-spacing: var(--ls-tight);
+    }
+
+    .founder__role {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-top: calc(-1 * var(--space-4));
+    }
+
+    .founder__bio {
+      font-size: var(--text-body);
+      line-height: var(--lh-loose);
+      color: var(--text-secondary);
+    }
+
+    .founder__credentials {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--border-secondary);
+      padding-top: var(--space-6);
+    }
+
+    .credential-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--border-secondary);
+    }
+
+    .credential-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .credential-value {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--text-primary);
+      text-align: right;
+    }
+
+    /* ── Philosophy Section ── */
+    .about-philosophy {
+      padding: var(--section-pad) 0;
+      background-color: var(--bg-secondary);
+    }
+
+    .about-philosophy__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+
+    .about-philosophy__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: start;
+      margin-top: var(--space-12);
+    }
+
+    .philosophy-point {
+      padding: var(--space-8) 0;
+      border-top: 1px solid var(--border-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .philosophy-point__num {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      color: var(--accent-primary);
+      text-transform: uppercase;
+    }
+
+    .philosophy-point__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 600;
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-snug);
+    }
+
+    .philosophy-point__desc {
+      font-size: var(--text-sm);
+      line-height: var(--lh-relaxed);
+      color: var(--text-secondary);
+    }
+
+    /* Large pull quote */
+    .philosophy-pullquote {
+      grid-column: 1 / -1;
+      margin-top: var(--space-8);
+      padding: var(--space-16) 0;
+      border-top: 1px solid var(--border-secondary);
+      text-align: center;
+    }
+
+    .philosophy-pullquote__text {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 3rem);
+      font-weight: 500;
+      font-style: italic;
+      line-height: var(--lh-snug);
+      letter-spacing: var(--ls-tight);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ── Timeline / History ── */
+    .about-timeline {
+      padding: var(--section-pad) 0;
+      background-color: var(--bg-primary);
+    }
+
+    .about-timeline__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+
+    .timeline-list {
+      margin-top: var(--space-12);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      left: 90px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: var(--border-secondary);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: var(--space-8);
+      padding: var(--space-8) 0;
+      border-bottom: 1px solid var(--border-secondary);
+      position: relative;
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: calc(90px - 4px);
+      top: calc(var(--space-8) + 8px);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-primary);
+      border: 2px solid var(--bg-primary);
+      z-index: 1;
+    }
+
+    .timeline-year {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--accent-primary);
+      padding-top: var(--space-1);
+      letter-spacing: var(--ls-wide);
+    }
+
+    .timeline-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .timeline-title {
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 600;
+      letter-spacing: var(--ls-tight);
+      color: var(--text-primary);
+    }
+
+    .timeline-desc {
+      font-size: var(--text-sm);
+      line-height: var(--lh-relaxed);
+      color: var(--text-secondary);
+    }
+
+    .timeline-tag {
+      display: inline-flex;
+      align-self: flex-start;
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      padding: var(--space-1) var(--space-3);
+      border: 1px solid var(--accent-primary);
+      border-radius: var(--radius-full);
+      margin-top: var(--space-2);
+    }
+
+    /* ── Awards & Recognition ── */
+    .about-awards {
+      padding: var(--section-pad) 0;
+      background-color: var(--bg-secondary);
+    }
+
+    .about-awards__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: var(--space-4);
+      margin-top: var(--space-12);
+    }
+
+    .award-card {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-secondary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      transition:
+        border-color var(--duration-base) ease,
+        transform    var(--duration-base) ease,
+        box-shadow   var(--duration-base) ease;
+    }
+
+    .award-card:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .award-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background-color: var(--accent-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .award-year {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--accent-primary);
+    }
+
+    .award-title {
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 600;
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-snug);
+    }
+
+    .award-body {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+    }
+
+    .award-org {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: auto;
+    }
+
+    /* ── Team Section ── */
+    .about-team {
+      padding: var(--section-pad) 0;
+      background-color: var(--bg-primary);
+    }
+
+    .about-team__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: var(--space-6);
+      margin-top: var(--space-12);
+    }
+
+    .team-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .team-card__img-wrap {
+      aspect-ratio: 3/4;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background-color: var(--bg-elevated);
+      position: relative;
+    }
+
+    .team-card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+      filter: grayscale(0.2);
+    }
+
+    .team-card__img-wrap:hover .team-card__img {
+      transform: scale(1.05);
+      filter: grayscale(0);
+    }
+
+    .team-card__name {
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 600;
+      letter-spacing: var(--ls-tight);
+      color: var(--text-primary);
+    }
+
+    .team-card__role {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-top: calc(-1 * var(--space-2));
+    }
+
+    .team-card__bio {
+      font-size: var(--text-sm);
+      line-height: var(--lh-relaxed);
+      color: var(--text-secondary);
+    }
+
+    /* ── Values Strip ── */
+    .about-values {
+      padding: var(--space-20) 0;
+      background-color: var(--bg-inverse);
+      overflow: hidden;
+    }
+
+    .values-marquee {
+      display: flex;
+      gap: var(--space-12);
+      white-space: nowrap;
+      animation: marqueeScroll 20s linear infinite;
+    }
+
+    .values-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    .value-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--text-inverse);
+      opacity: 0.9;
+      flex-shrink: 0;
+    }
+
+    .value-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-primary);
+      flex-shrink: 0;
+    }
+
+    /* ── Process Deep Dive ── */
+    .about-process {
+      padding: var(--section-pad) 0;
+      background-color: var(--bg-secondary);
+    }
+
+    .about-process__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+
+    .process-deep-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-12);
+    }
+
+    .process-deep-card {
+      background-color: var(--bg-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-10);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      border: 1px solid var(--border-secondary);
+      transition: border-color var(--duration-base) ease, transform var(--duration-base) ease;
+    }
+
+    .process-deep-card:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-3px);
+    }
+
+    .process-deep-card--featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      align-items: center;
+    }
+
+    .process-step-num {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800;
+      color: var(--accent-subtle);
+      line-height: 1;
+      letter-spacing: var(--ls-tight);
+    }
+
+    .process-step-title {
+      font-family: var(--font-display);
+      font-size: var(--text-h2);
+      font-weight: 700;
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-snug);
+    }
+
+    .process-step-desc {
+      font-size: var(--text-body);
+      line-height: var(--lh-loose);
+      color: var(--text-secondary);
+    }
+
+    .process-step-duration {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .process-step-duration::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background-color: var(--accent-primary);
+      flex-shrink: 0;
+    }
+
+    /* ── Responsive ── */
+    @media screen and (max-width: 1024px) {
+      .founder__container     { grid-template-columns: 1fr; }
+      .founder__img-wrap      { max-width: 480px; }
+      .founder__quote-card    { right: var(--space-4); }
+      .team-grid              { grid-template-columns: repeat(2,1fr); }
+      .awards-grid            { grid-template-columns: repeat(2,1fr); }
+      .process-deep-card--featured { grid-column: 1; grid-template-columns: 1fr; }
+    }
+
+    @media screen and (max-width: 768px) {
+      .about-philosophy__grid  { grid-template-columns: 1fr; }
+      .philosophy-pullquote    { grid-column: 1; }
+      .timeline-list::before   { left: 60px; }
+      .timeline-item           { grid-template-columns: 60px 1fr; }
+      .timeline-item::before   { left: calc(60px - 4px); }
+      .awards-grid             { grid-template-columns: 1fr; }
+      .team-grid               { grid-template-columns: 1fr 1fr; }
+      .process-deep-grid       { grid-template-columns: 1fr; }
+      .process-deep-card--featured { grid-column: 1; }
+    }
+
+    @media screen and (max-width: 480px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Global Architects",
+    "description": "Global Architects — Architecture firm founded in Dehradun by Ar. Shailesh Kumar",
+    "url": "https://www.globalarchitects.in/about.html",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Global Architects",
+      "founder": { "@type": "Person", "name": "Ar. Shailesh Kumar" },
+      "foundingDate": "2017",
+      "address": { "@type": "PostalAddress", "addressLocality": "Dehradun", "addressCountry": "IN" }
+    }
+  }
+  </script>
+</head>
+
+<body class="js-loading">
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__crosshair"><span class="cursor__h"></span><span class="cursor__v"></span></div>
+    <div class="cursor__circle"><span class="cursor__label">View</span></div>
+    <div class="cursor__dot"></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="nav is-visible is-scrolled" id="mainNav" role="banner">
+    <nav class="nav__inner" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo" aria-label="Global Architects — Home">
+        <svg class="nav__logo-svg" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 16 A8 8 0 1 1 16 8 L16 16 L10 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="24" y="21" font-family="'DM Sans Variable', sans-serif" font-size="13" font-weight="500" fill="currentColor" letter-spacing="0.05em">GLOBAL</text>
+          <text x="24" y="30" font-family="'DM Mono', monospace" font-size="7" font-weight="300" fill="currentColor" letter-spacing="0.15em" opacity="0.7">ARCHITECTS</text>
+        </svg>
+      </a>
+      <ul class="nav__links" role="list">
+        <li class="nav__item"><a href="index.html"    class="nav__link">Home</a></li>
+        <li class="nav__item"><a href="projects.html" class="nav__link">Projects</a></li>
+        <li class="nav__item nav__item--active"><a href="about.html" class="nav__link" aria-current="page">About</a></li>
+        <li class="nav__item"><a href="contact.html"  class="nav__link">Contact</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="nav__theme-toggle" id="themeToggle" aria-label="Toggle time mode" type="button">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="18" height="18">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="12" y1="2" x2="12" y2="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="12" y1="20" x2="12" y2="22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="2" y1="12" x2="4" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="20" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <a href="contact.html" class="nav__cta">Start a Project</a>
+        <button class="nav__hamburger" id="navHamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu" type="button">
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="mobile-menu__lines" aria-hidden="true">
+      <span class="mobile-menu__line"></span>
+      <span class="mobile-menu__line"></span>
+      <span class="mobile-menu__line"></span>
+    </div>
+    <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close navigation menu" type="button"><span aria-hidden="true">✕</span></button>
+    <nav aria-label="Mobile navigation">
+      <ul class="mobile-menu__links" role="list">
+        <li class="mobile-menu__item"><a href="index.html"    class="mobile-menu__link"><span class="mobile-menu__num">01</span>Home</a></li>
+        <li class="mobile-menu__item"><a href="projects.html" class="mobile-menu__link"><span class="mobile-menu__num">02</span>Projects</a></li>
+        <li class="mobile-menu__item"><a href="about.html"    class="mobile-menu__link" aria-current="page"><span class="mobile-menu__num">03</span>About</a></li>
+        <li class="mobile-menu__item"><a href="contact.html"  class="mobile-menu__link"><span class="mobile-menu__num">04</span>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu__footer">
+      <p class="mobile-menu__location">Dehradun, Uttarakhand</p>
+      <a href="mailto:hello@globalarchitects.in" class="mobile-menu__email">hello@globalarchitects.in</a>
+    </div>
+  </div>
+
+  <main id="mainContent" role="main">
+
+    <!-- ══════════════════════════════════
+         HERO
+    ══════════════════════════════════ -->
+    <section class="about-hero" aria-labelledby="aboutHeroHeading">
+      <div class="about-hero__bg">
+        <img src="assets/images/about-hero.webp"
+             alt=""
+             class="about-hero__bg-img"
+             loading="eager" decoding="async"/>
+        <div class="about-hero__overlay"></div>
+      </div>
+
+      <div class="about-hero__container">
+        <p class="section-label" style="color:rgba(255,255,255,0.4);" id="aboutHeroLabel">
+          <span class="section-label__line"></span>
+          Est. 2017 · Dehradun
+        </p>
+        <h1 class="about-hero__heading" id="aboutHeroHeading">
+          <span class="about-hero__heading-inner">
+            We Do Not Design<br />Buildings. We Design<br />Experiences of Light.
+          </span>
+        </h1>
+        <p class="about-hero__sub" id="aboutHeroSub">
+          Global Architects is a Dehradun-based practice founded on the belief
+          that great architecture begins with a conversation — not a drawing board.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         FOUNDER
+    ══════════════════════════════════ -->
+    <section class="founder" aria-labelledby="founderHeading">
+      <div class="founder__container">
+
+        <!-- Image -->
+        <div class="founder__img-wrap reveal reveal--left" id="founderMedia">
+          <div class="founder__img-frame">
+            <img
+              src="assets/images/founder.webp"
+              alt="Ar. Shailesh Kumar — Principal Architect and Founder of Global Architects, Dehradun"
+              class="founder__img"
+              loading="lazy" decoding="async"
+              width="600" height="800"
+            />
+          </div>
+
+          <!-- Floating quote -->
+          <div class="founder__quote-card" aria-hidden="true">
+            <p class="founder__quote-text">
+              "The best building I have ever designed is the next one."
+            </p>
+            <p class="founder__quote-attr">— Ar. Shailesh Kumar</p>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="founder__content">
+          <p class="section-label reveal reveal--up">
+            <span class="section-label__line"></span>
+            The Founder
+          </p>
+
+          <h2 class="founder__name reveal reveal--up reveal--delay-1" id="founderHeading">
+            Ar. Shailesh Kumar
+          </h2>
+
+          <p class="founder__role reveal reveal--up reveal--delay-2">
+            Principal Architect & Founder
+          </p>
+
+          <p class="founder__bio reveal reveal--up reveal--delay-3">
+            Born and raised in Uttarakhand, Ar. Shailesh Kumar grew up surrounded
+            by some of the most powerful natural architecture on Earth — the Himalayas.
+            It gave him an instinct for scale, proportion, and the relationship between
+            built form and landscape that no school can teach.
+          </p>
+
+          <p class="founder__bio reveal reveal--up reveal--delay-4">
+            After graduating with honours in Architecture and completing his registration
+            with the Council of Architecture, he worked with leading firms in Delhi and
+            Mumbai before returning to Dehradun in 2017 with a clear mission: to build
+            an architecture practice that was rooted in this landscape, but capable of
+            delivering world-class design anywhere in India.
+          </p>
+
+          <p class="founder__bio reveal reveal--up reveal--delay-5">
+            In eight years, Global Architects has completed over 500 projects across
+            10+ cities — from intimate hill residences to large-scale commercial
+            developments — without once compromising on the belief that architecture
+            must serve the people who live inside it.
+          </p>
+
+          <!-- Credentials -->
+          <dl class="founder__credentials reveal reveal--up reveal--delay-6">
+            <div class="credential-item">
+              <dt class="credential-label">Qualification</dt>
+              <dd class="credential-value">B.Arch (Honours)</dd>
+            </div>
+            <div class="credential-item">
+              <dt class="credential-label">Registration</dt>
+              <dd class="credential-value">Council of Architecture, India</dd>
+            </div>
+            <div class="credential-item">
+              <dt class="credential-label">Specialisation</dt>
+              <dd class="credential-value">Residential & Commercial Architecture</dd>
+            </div>
+            <div class="credential-item">
+              <dt class="credential-label">Experience</dt>
+              <dd class="credential-value">10+ Years</dd>
+            </div>
+            <div class="credential-item">
+              <dt class="credential-label">Based in</dt>
+              <dd class="credential-value">Dehradun, Uttarakhand</dd>
+            </div>
+          </dl>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         VALUES MARQUEE
+    ══════════════════════════════════ -->
+    <div class="about-values" aria-hidden="true">
+      <div class="values-marquee">
+        <span class="value-item">Honesty<span class="value-dot"></span></span>
+        <span class="value-item">Precision<span class="value-dot"></span></span>
+        <span class="value-item">Empathy<span class="value-dot"></span></span>
+        <span class="value-item">Craft<span class="value-dot"></span></span>
+        <span class="value-item">Place<span class="value-dot"></span></span>
+        <span class="value-item">Light<span class="value-dot"></span></span>
+        <span class="value-item">Sustainability<span class="value-dot"></span></span>
+        <span class="value-item">Honesty<span class="value-dot"></span></span>
+        <span class="value-item">Precision<span class="value-dot"></span></span>
+        <span class="value-item">Empathy<span class="value-dot"></span></span>
+        <span class="value-item">Craft<span class="value-dot"></span></span>
+        <span class="value-item">Place<span class="value-dot"></span></span>
+        <span class="value-item">Light<span class="value-dot"></span></span>
+        <span class="value-item">Sustainability<span class="value-dot"></span></span>
+      </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════
+         PHILOSOPHY
+    ══════════════════════════════════ -->
+    <section class="about-philosophy" aria-labelledby="philosophyHeading">
+      <div class="about-philosophy__container">
+
+        <p class="section-label reveal reveal--up">
+          <span class="section-label__line"></span>
+          Our Philosophy
+        </p>
+
+        <h2 class="reveal reveal--up reveal--delay-1" id="philosophyHeading"
+            style="font-size:var(--text-h2);margin-top:var(--space-4);max-width:600px;">
+          Six Principles That<br />Guide Every Decision
+        </h2>
+
+        <div class="about-philosophy__grid">
+
+          <div class="philosophy-point reveal reveal--up">
+            <p class="philosophy-point__num">01 — Place</p>
+            <h3 class="philosophy-point__title">Architecture is geography made visible</h3>
+            <p class="philosophy-point__desc">
+              Every building we design begins with the land it will stand on.
+              The slope, the sun path, the prevailing breeze, the view —
+              these are not constraints, they are the design.
+            </p>
+          </div>
+
+          <div class="philosophy-point reveal reveal--up reveal--delay-1">
+            <p class="philosophy-point__num">02 — People</p>
+            <h3 class="philosophy-point__title">Buildings are for living, not looking</h3>
+            <p class="philosophy-point__desc">
+              We spend hours understanding how our clients live before we draw
+              a single line. Architecture that does not serve its inhabitants
+              is sculpture, not architecture.
+            </p>
+          </div>
+
+          <div class="philosophy-point reveal reveal--up reveal--delay-2">
+            <p class="philosophy-point__num">03 — Light</p>
+            <h3 class="philosophy-point__title">Light is the first material</h3>
+            <p class="philosophy-point__desc">
+              Before concrete, before glass, before timber — we design with light.
+              How does morning enter? Where does afternoon pool?
+              What does dusk do to this wall?
+            </p>
+          </div>
+
+          <div class="philosophy-point reveal reveal--up reveal--delay-3">
+            <p class="philosophy-point__num">04 — Honesty</p>
+            <h3 class="philosophy-point__title">Materials deserve to be themselves</h3>
+            <p class="philosophy-point__desc">
+              We do not paint concrete to look like marble or cover steel
+              in cladding. Every material we use is expressed honestly —
+              its texture, its grain, its age, its truth.
+            </p>
+          </div>
+
+          <div class="philosophy-point reveal reveal--up reveal--delay-4">
+            <p class="philosophy-point__num">05 — Craft</p>
+            <h3 class="philosophy-point__title">Details are not decoration — they are design</h3>
+            <p class="philosophy-point__desc">
+              The junction between a concrete wall and a timber floor.
+              The shadow gap beneath a cabinet. These are the moments
+              where architecture becomes craft, and craft becomes art.
+            </p>
+          </div>
+
+          <div class="philosophy-point reveal reveal--up reveal--delay-5">
+            <p class="philosophy-point__num">06 — Time</p>
+            <h3 class="philosophy-point__title">Great buildings age beautifully</h3>
+            <p class="philosophy-point__desc">
+              We choose materials and forms that improve with time —
+              that develop patina, character, and meaning as decades pass.
+              Architecture should outlive its architects.
+            </p>
+          </div>
+
+          <div class="philosophy-pullquote reveal reveal--up">
+            <p class="philosophy-pullquote__text">
+              "We have never built a building we are not proud of.
+              We never will."
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         TIMELINE
+    ══════════════════════════════════ -->
+    <section class="about-timeline" aria-labelledby="timelineHeading">
+      <div class="about-timeline__container">
+
+        <p class="section-label reveal reveal--up">
+          <span class="section-label__line"></span>
+          Our Journey
+        </p>
+
+        <h2 class="reveal reveal--up reveal--delay-1" id="timelineHeading"
+            style="font-size:var(--text-h2);margin-top:var(--space-4);">
+          Eight Years of Building
+        </h2>
+
+        <ol class="timeline-list" aria-label="Company history timeline">
+
+          <li class="timeline-item reveal reveal--up">
+            <div class="timeline-year" aria-label="Year 2017">2017</div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Global Architects Founded</h3>
+              <p class="timeline-desc">
+                Ar. Shailesh Kumar returns to Dehradun after 5 years in Delhi and Mumbai.
+                First studio established in Rajpur Road. First project: a private residence
+                in Mussoorie for a family friend.
+              </p>
+              <span class="timeline-tag">Founded</span>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal reveal--up reveal--delay-1">
+            <div class="timeline-year" aria-label="Year 2018">2018</div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">First Commercial Project</h3>
+              <p class="timeline-desc">
+                Completed a 12,000 sq ft commercial complex in Dehradun city centre.
+                The project established our approach to urban commercial architecture
+                in hill towns — low-rise, material-honest, landscape-integrated.
+              </p>
+              <span class="timeline-tag">Milestone</span>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal reveal--up reveal--delay-2">
+            <div class="timeline-year" aria-label="Year 2019">2019</div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">First Delhi Project + Team Expansion</h3>
+              <p class="timeline-desc">
+                Commissioned for a luxury residence in South Delhi — our first project
+                outside Uttarakhand. Team grows to 8 members. Studio moves to larger
+                premises in Clement Town.
+              </p>
+              <span class="timeline-tag">Growth</span>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal reveal--up reveal--delay-3">
+            <div class="timeline-year" aria-label="Year 2021">2021</div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">100th Project Completed</h3>
+              <p class="timeline-desc">
+                A landmark moment — 100 projects in 4 years. Projects now span
+                Uttarakhand, Delhi NCR, Rajasthan, and Maharashtra. Dedicated
+                interior design vertical launched.
+              </p>
+              <span class="timeline-tag">100 Projects</span>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal reveal--up reveal--delay-4">
+            <div class="timeline-year" aria-label="Year 2022">2022</div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">First National Award</h3>
+              <p class="timeline-desc">
+                The Forest Retreat in Dehradun wins a national recognition for
+                sustainable hill architecture. First major press coverage — featured
+                in Architectural Digest India.
+              </p>
+              <span class="timeline-tag">Award</span>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal reveal--up reveal--delay-5">
+            <div class="timeline-year" aria-label="Year 2024">2024</div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">500 Projects. 10 Cities. 1 Vision.</h3>
+              <p class="timeline-desc">
+                Global Architects reaches 500 completed projects across 10+ Indian cities.
+                Team of 24 architects and designers. New studio established in Delhi NCR
+                to serve the northern market. Website relaunched.
+              </p>
+              <span class="timeline-tag">500 Projects</span>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal reveal--up reveal--delay-6">
+            <div class="timeline-year" aria-label="Present 2025">2025 →</div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Now — The Next Chapter</h3>
+              <p class="timeline-desc">
+                Expanding into urban master planning, sustainable township design,
+                and hospitality architecture. A new residential tower in Dehradun
+                breaks ground. The Himalayan School of Architecture project begins.
+              </p>
+              <span class="timeline-tag">Present</span>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         AWARDS
+    ══════════════════════════════════ -->
+    <section class="about-awards" aria-labelledby="awardsHeading">
+      <div class="about-awards__container">
+
+        <p class="section-label reveal reveal--up">
+          <span class="section-label__line"></span>
+          Recognition
+        </p>
+
+        <h2 class="reveal reveal--up reveal--delay-1" id="awardsHeading"
+            style="font-size:var(--text-h2);margin-top:var(--space-4);">
+          Awards & Publications
+        </h2>
+
+        <div class="awards-grid">
+
+          <div class="award-card reveal reveal--up">
+            <div class="award-icon" aria-hidden="true">🏆</div>
+            <p class="award-year">2022</p>
+            <h3 class="award-title">Best Sustainable Hill Architecture</h3>
+            <p class="award-body">For the Forest Retreat, Dehradun — recognising exemplary integration of contemporary design with Himalayan landscape and sustainable building practices.</p>
+            <p class="award-org">Indian Institute of Architects — Northern Chapter</p>
+          </div>
+
+          <div class="award-card reveal reveal--up reveal--delay-1">
+            <div class="award-icon" aria-hidden="true">📰</div>
+            <p class="award-year">2023</p>
+            <h3 class="award-title">Featured — Architectural Digest India</h3>
+            <p class="award-body">The Light House, Delhi featured in AD India's annual 'Homes of the Year' issue, with a 12-page spread on the light well concept and material palette.</p>
+            <p class="award-org">Architectural Digest India</p>
+          </div>
+
+          <div class="award-card reveal reveal--up reveal--delay-2">
+            <div class="award-icon" aria-hidden="true">🌿</div>
+            <p class="award-year">2023</p>
+            <h3 class="award-title">Green Architecture Excellence</h3>
+            <p class="award-body">Recognised for consistent integration of passive cooling, natural ventilation, and locally-sourced materials across residential and commercial projects.</p>
+            <p class="award-org">CII — Green Building Council</p>
+          </div>
+
+          <div class="award-card reveal reveal--up reveal--delay-3">
+            <div class="award-icon" aria-hidden="true">📐</div>
+            <p class="award-year">2024</p>
+            <h3 class="award-title">Top 50 Architecture Practices — India</h3>
+            <p class="award-body">Listed among India's top 50 emerging architecture firms, recognised for design quality, project volume, and regional significance in Uttarakhand.</p>
+            <p class="award-org">Design & Architecture Magazine</p>
+          </div>
+
+          <div class="award-card reveal reveal--up reveal--delay-4">
+            <div class="award-icon" aria-hidden="true">🏔️</div>
+            <p class="award-year">2024</p>
+            <h3 class="award-title">Uttarakhand Architecture Excellence Award</h3>
+            <p class="award-body">State-level recognition for contribution to contemporary architecture in Uttarakhand — presented at the Uttarakhand Architecture Festival, Dehradun.</p>
+            <p class="award-org">Government of Uttarakhand</p>
+          </div>
+
+          <div class="award-card reveal reveal--up reveal--delay-5">
+            <div class="award-icon" aria-hidden="true">✏️</div>
+            <p class="award-year">2025</p>
+            <h3 class="award-title">Published — 'New Indian Architecture'</h3>
+            <p class="award-body">Three projects included in the definitive survey of contemporary Indian architecture, published by Rupa Publications. Chapter on hill architecture co-authored by Ar. Shailesh Kumar.</p>
+            <p class="award-org">Rupa Publications, New Delhi</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         TEAM
+    ══════════════════════════════════ -->
+    <section class="about-team" aria-labelledby="teamHeading">
+      <div class="about-team__container">
+
+        <p class="section-label reveal reveal--up">
+          <span class="section-label__line"></span>
+          The Team
+        </p>
+
+        <h2 class="reveal reveal--up reveal--delay-1" id="teamHeading"
+            style="font-size:var(--text-h2);margin-top:var(--space-4);">
+          24 People. One Vision.
+        </h2>
+
+        <p class="reveal reveal--up reveal--delay-2"
+           style="color:var(--text-secondary);line-height:1.7;max-width:600px;margin-top:var(--space-4);">
+          Our team brings together architects, interior designers, landscape specialists,
+          and structural consultants — all united by a belief in architecture that
+          genuinely improves the lives of the people who use it.
+        </p>
+
+        <div class="team-grid">
+
+          <div class="team-card reveal reveal--up">
+            <div class="team-card__img-wrap">
+              <img src="assets/images/team-01.webp" alt="Ar. Shailesh Kumar — Principal Architect" class="team-card__img" loading="lazy" decoding="async"/>
+            </div>
+            <h3 class="team-card__name">Ar. Shailesh Kumar</h3>
+            <p class="team-card__role">Principal Architect</p>
+            <p class="team-card__bio">B.Arch Honours. 10+ years experience. Specialises in residential and mixed-use architecture rooted in landscape.</p>
+          </div>
+
+          <div class="team-card reveal reveal--up reveal--delay-1">
+            <div class="team-card__img-wrap">
+              <img src="assets/images/team-02.webp" alt="Ar. Priya Nair — Senior Architect" class="team-card__img" loading="lazy" decoding="async"/>
+            </div>
+            <h3 class="team-card__name">Ar. Priya Nair</h3>
+            <p class="team-card__role">Senior Architect</p>
+            <p class="team-card__bio">M.Arch from SPA Delhi. 7 years experience. Leads commercial and cultural projects. Sustainability specialist.</p>
+          </div>
+
+          <div class="team-card reveal reveal--up reveal--delay-2">
+            <div class="team-card__img-wrap">
+              <img src="assets/images/team-03.webp" alt="Ar. Rahul Bisht — Project Architect" class="team-card__img" loading="lazy" decoding="async"/>
+            </div>
+            <h3 class="team-card__name">Ar. Rahul Bisht</h3>
+            <p class="team-card__role">Project Architect</p>
+            <p class="team-card__bio">Born in Uttarakhand. Deep knowledge of hill construction and local materials. Leads all Dehradun and Mussoorie projects.</p>
+          </div>
+
+          <div class="team-card reveal reveal--up reveal--delay-3">
+            <div class="team-card__img-wrap">
+              <img src="assets/images/team-04.webp" alt="Ar. Anjali Mehta — Interior Design Lead" class="team-card__img" loading="lazy" decoding="async"/>
+            </div>
+            <h3 class="team-card__name">Ar. Anjali Mehta</h3>
+            <p class="team-card__role">Interior Design Lead</p>
+            <p class="team-card__bio">NID Ahmedabad graduate. Leads the interior design vertical with a philosophy of material honesty and human-centred space planning.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         PROCESS DEEP DIVE
+    ══════════════════════════════════ -->
+    <section class="about-process" aria-labelledby="processDeepHeading">
+      <div class="about-process__container">
+
+        <p class="section-label reveal reveal--up">
+          <span class="section-label__line"></span>
+          How We Work
+        </p>
+
+        <h2 class="reveal reveal--up reveal--delay-1" id="processDeepHeading"
+            style="font-size:var(--text-h2);margin-top:var(--space-4);">
+          Our Process in Full
+        </h2>
+
+        <div class="process-deep-grid">
+
+          <!-- Featured card -->
+          <div class="process-deep-card process-deep-card--featured reveal reveal--up">
+            <div>
+              <p class="process-step-num" aria-hidden="true">01</p>
+              <h3 class="process-step-title">Discovery &<br />Listening</h3>
+            </div>
+            <div>
+              <p class="process-step-desc">
+                The first meeting is never in the office. We visit the site, walk the land,
+                sit with the family at the time of day they love most. We ask about the
+                morning light, about the tree they cannot remove, about the view from the
+                kitchen window they have always dreamed of. Only when we understand how
+                you want to live do we begin to think about architecture.
+              </p>
+              <p class="process-step-duration">4–8 weeks</p>
+            </div>
+          </div>
+
+          <div class="process-deep-card reveal reveal--up reveal--delay-1">
+            <p class="process-step-num" aria-hidden="true">02</p>
+            <h3 class="process-step-title">Concept Design</h3>
+            <p class="process-step-desc">
+              Hand sketches first — always. We present three distinct concepts,
+              each a different interpretation of the brief. No renders yet.
+              Drawings and models only — so the conversation stays about ideas, not finishes.
+            </p>
+            <p class="process-step-duration">6–10 weeks</p>
+          </div>
+
+          <div class="process-deep-card reveal reveal--up reveal--delay-2">
+            <p class="process-step-num" aria-hidden="true">03</p>
+            <h3 class="process-step-title">Design Development</h3>
+            <p class="process-step-desc">
+              The chosen concept is developed in full detail. Materials are selected,
+              structural system resolved, MEP integrated. 3D models and detailed
+              drawings presented. Every detail drawn by hand before it is built.
+            </p>
+            <p class="process-step-duration">8–14 weeks</p>
+          </div>
+
+          <div class="process-deep-card reveal reveal--up reveal--delay-3">
+            <p class="process-step-num" aria-hidden="true">04</p>
+            <h3 class="process-step-title">Approvals & Tendering</h3>
+            <p class="process-step-desc">
+              We handle all statutory approvals — MDDA, municipal, structural NOC.
+              We prepare tender documents and help select a contractor. We believe
+              the right contractor is as important as the right design.
+            </p>
+            <p class="process-step-duration">8–16 weeks</p>
+          </div>
+
+          <div class="process-deep-card reveal reveal--up reveal--delay-4">
+            <p class="process-step-num" aria-hidden="true">05</p>
+            <h3 class="process-step-title">Construction</h3>
+            <p class="process-step-desc">
+              We are on site. Every week, without exception. We review work, resolve
+              issues, make decisions. Architecture is made during construction —
+              in the gap between drawing and reality, that is where craft happens.
+            </p>
+            <p class="process-step-duration">12–24 months</p>
+          </div>
+
+          <div class="process-deep-card reveal reveal--up reveal--delay-5">
+            <p class="process-step-num" aria-hidden="true">06</p>
+            <h3 class="process-step-title">Handover & Beyond</h3>
+            <p class="process-step-desc">
+              We visit every completed project six months and one year after handover.
+              We want to know: does the light do what we intended? Are you living
+              the way you dreamed? This is not business — it is accountability.
+            </p>
+            <p class="process-step-duration">Ongoing</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         CTA
+    ══════════════════════════════════ -->
+    <section class="cta-section" aria-labelledby="aboutCtaHeading">
+      <div class="cta-section__container">
+        <div class="cta-section__bg-lines" aria-hidden="true">
+          <svg viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="200" x2="1200" y2="200" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
+            <line x1="600" y1="0" x2="600" y2="400" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
+            <circle cx="600" cy="200" r="180" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+          </svg>
+        </div>
+        <p class="cta-section__question">Ready to begin?</p>
+        <h2 class="cta-section__heading" id="aboutCtaHeading">
+          Let's Build Your<br />Dream Together
+        </h2>
+        <p class="cta-section__sub">
+          Every project starts with a conversation.<br />
+          Ours can start today.
+        </p>
+        <div class="cta-section__actions">
+          <a href="mailto:hello@globalarchitects.in" class="cta-section__email">hello@globalarchitects.in</a>
+          <a href="contact.html" class="btn btn--primary btn--large">Start a Project →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__container">
+      <div class="footer__top">
+        <a href="index.html" class="footer__logo" aria-label="Global Architects — Home">
+          <svg class="footer__logo-svg" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M8 16 A8 8 0 1 1 16 8 L16 16 L10 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <text x="24" y="21" font-family="'DM Sans Variable', sans-serif" font-size="13" font-weight="500" fill="currentColor" letter-spacing="0.05em">GLOBAL</text>
+            <text x="24" y="30" font-family="'DM Mono', monospace" font-size="7" font-weight="300" fill="currentColor" letter-spacing="0.15em" opacity="0.7">ARCHITECTS</text>
+          </svg>
+        </a>
+        <p class="footer__philosophy">Architecture rooted in place, crafted for people.</p>
+        <div class="footer__social">
+          <a href="https://www.instagram.com/globalarchitects.in" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+          <a href="https://www.linkedin.com/company/global-architects-dehradun" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer__divider" role="separator"></div>
+      <div class="footer__bottom">
+        <address class="footer__address">
+          <span class="footer__firm">Global Architects</span>
+          <span class="footer__sep" aria-hidden="true">·</span>
+          <span class="footer__location">Dehradun, Uttarakhand, India</span>
+          <span class="footer__sep" aria-hidden="true">·</span>
+          <a href="mailto:hello@globalarchitects.in" class="footer__email">hello@globalarchitects.in</a>
+        </address>
+        <p class="footer__copy"><small>© <span id="currentYear"></span> Global Architects. All rights reserved.</small></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/theme.js"      defer></script>
+  <script src="js/cursor.js"     defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js"       defer></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.remove('js-loading');
+
+    /* Hero animations */
+    const hero = document.querySelector('.about-hero');
+    if(hero) {
+      hero.classList.add('is-loaded');
+      setTimeout(() => {
+        document.querySelector('.about-hero__heading')?.classList.add('is-visible');
+        document.getElementById('aboutHeroSub')?.classList.add('is-visible');
+      }, 200);
+    }
+
+    /* Scroll reveals */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          /* Founder card pop */
+          if(entry.target.id === 'founderMedia') {
+            entry.target.classList.add('is-revealed');
+          }
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
+
+    document.querySelectorAll('.reveal, #founderMedia').forEach(el => io.observe(el));
+
+    /* Year */
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="morning">
+<head>
+  <!-- ═══════════════════════════════════════════════════════════
+       GLOBAL ARCHITECTS — projects.html
+       Complete Projects Portfolio Page
+  ═══════════════════════════════════════════════════════════════ -->
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Projects — Global Architects | Dehradun</title>
+  <meta name="description" content="Explore 500+ projects by Global Architects — luxury residential, commercial, cultural and mixed-use spaces across India. Filter by type, location, and material." />
+  <link rel="canonical" href="https://www.globalarchitects.in/projects.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Projects — Global Architects" />
+  <meta property="og:description" content="500+ projects across India. Residential, commercial, cultural architecture by Ar. Shailesh Kumar." />
+  <meta property="og:image"       content="assets/images/og-projects.webp" />
+  <meta property="og:url"         content="https://www.globalarchitects.in/projects.html" />
+  <meta property="og:type"        content="website" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Projects page specific styles -->
+  <style>
+    /* ── Page Hero ── */
+    .page-hero {
+      padding: calc(var(--space-32) + 60px) 0 var(--space-16);
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-secondary);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .page-hero__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: var(--space-8);
+    }
+
+    .page-hero__heading {
+      font-size: var(--text-h1);
+      letter-spacing: var(--ls-tight);
+      line-height: var(--lh-tight);
+    }
+
+    .page-hero__count {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: right;
+      padding-bottom: 0.5rem;
+    }
+
+    .page-hero__count span {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      color: var(--accent-primary);
+      letter-spacing: var(--ls-tight);
+      line-height: 1;
+    }
+
+    /* ── Search & Filter Bar ── */
+    .filter-bar {
+      position: sticky;
+      top: 60px;
+      z-index: var(--z-sticky);
+      background-color: var(--bg-primary);
+      border-bottom: 1px solid var(--border-secondary);
+      padding: var(--space-5) 0;
+      transition: background-color var(--duration-palette) var(--ease-in-out);
+    }
+
+    .filter-bar__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+
+    /* Search input */
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+      max-width: 400px;
+    }
+
+    .search-wrap__icon {
+      position: absolute;
+      left: var(--space-4);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      width: 16px;
+      height: 16px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: var(--space-3) var(--space-4) var(--space-3) var(--space-10);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-secondary);
+      border-radius: var(--radius-full);
+      outline: none;
+      transition:
+        border-color     var(--duration-base) var(--ease-out),
+        background-color var(--duration-base) var(--ease-out),
+        box-shadow       var(--duration-base) var(--ease-out);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+      font-family: var(--font-body);
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-primary);
+      background-color: var(--bg-primary);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+    }
+
+    /* Filter chips */
+    .filter-chips {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .filter-chip {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid var(--border-secondary);
+      border-radius: var(--radius-full);
+      background: transparent;
+      transition:
+        color            var(--duration-base) var(--ease-out),
+        border-color     var(--duration-base) var(--ease-out),
+        background-color var(--duration-base) var(--ease-out);
+      min-height: 36px;
+      cursor: pointer;
+    }
+
+    .filter-chip:hover {
+      color: var(--text-primary);
+      border-color: var(--border-primary);
+    }
+
+    .filter-chip.is-active {
+      color: var(--bg-primary);
+      background-color: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    /* Results count */
+    .filter-results {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    /* ── AI Search Section ── */
+    .ai-search {
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-secondary);
+      padding: var(--space-6) 0;
+    }
+
+    .ai-search__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+
+    .ai-search__label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-bottom: var(--space-4);
+    }
+
+    .ai-search__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent-primary);
+      animation: aiPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes aiPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .ai-search__input-wrap {
+      position: relative;
+      display: flex;
+      gap: var(--space-3);
+      align-items: center;
+    }
+
+    .ai-search__input {
+      flex: 1;
+      padding: var(--space-4) var(--space-6);
+      font-family: var(--font-body);
+      font-size: var(--text-body);
+      color: var(--text-primary);
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      outline: none;
+      transition:
+        border-color var(--duration-base) var(--ease-out),
+        box-shadow   var(--duration-base) var(--ease-out);
+    }
+
+    .ai-search__input::placeholder {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .ai-search__input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+    }
+
+    .ai-search__btn {
+      padding: var(--space-4) var(--space-6);
+      background-color: var(--accent-primary);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition:
+        background-color var(--duration-base) var(--ease-out),
+        transform        var(--duration-base) var(--ease-out);
+      min-height: 52px;
+    }
+
+    .ai-search__btn:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .ai-search__btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .ai-search__suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+    }
+
+    .ai-search__suggestion {
+      font-family: var(--font-body);
+      font-size: var(--text-caption);
+      color: var(--text-muted);
+      padding: var(--space-1) var(--space-3);
+      border: 1px solid var(--border-secondary);
+      border-radius: var(--radius-full);
+      transition: all var(--duration-base) var(--ease-out);
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .ai-search__suggestion:hover {
+      color: var(--accent-primary);
+      border-color: var(--accent-primary);
+      background-color: var(--accent-subtle);
+    }
+
+    .ai-search__result {
+      margin-top: var(--space-4);
+      padding: var(--space-4) var(--space-6);
+      background-color: var(--bg-elevated);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--accent-primary);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+      display: none;
+    }
+
+    .ai-search__result.is-visible { display: block; }
+
+    /* Loading state */
+    .ai-search__loading {
+      display: none;
+      align-items: center;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      color: var(--text-muted);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+    }
+
+    .ai-search__loading.is-visible { display: flex; }
+
+    .ai-search__spinner {
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--border-primary);
+      border-top-color: var(--accent-primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Projects Full Grid ── */
+    .projects-section {
+      padding: var(--space-16) 0 var(--space-32);
+      background-color: var(--bg-primary);
+    }
+
+    .projects-section__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+
+    /* Full grid — masonry-style */
+    .projects-full-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+
+    /* No results state */
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: var(--space-32) 0;
+      display: none;
+    }
+
+    .no-results.is-visible { display: block; }
+
+    .no-results__icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-4);
+      opacity: 0.3;
+    }
+
+    .no-results__text {
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      color: var(--text-muted);
+      margin-bottom: var(--space-3);
+    }
+
+    .no-results__sub {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+    }
+
+    /* Card hidden when filtered out */
+    .project-card.is-hidden {
+      display: none;
+    }
+
+    /* Card fade when filtering */
+    .project-card.is-filtering {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    /* ── Load More ── */
+    .load-more {
+      text-align: center;
+      margin-top: var(--space-16);
+    }
+
+    .load-more__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      padding: var(--space-5) var(--space-10);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      transition: all var(--duration-base) var(--ease-out);
+    }
+
+    .load-more__btn:hover {
+      color: var(--accent-primary);
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .load-more__count {
+      opacity: 0.5;
+    }
+
+    /* ── Responsive for projects page ── */
+    @media screen and (max-width: 1024px) {
+      .projects-full-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media screen and (max-width: 640px) {
+      .projects-full-grid { grid-template-columns: 1fr; }
+      .page-hero__container { grid-template-columns: 1fr; }
+      .page-hero__count { text-align: left; }
+      .filter-bar__container { gap: var(--space-3); }
+      .filter-results { display: none; }
+      .ai-search__input-wrap { flex-direction: column; }
+      .ai-search__btn { width: 100%; justify-content: center; }
+    }
+  </style>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Projects — Global Architects",
+    "description": "Portfolio of architecture projects by Global Architects, Dehradun",
+    "url": "https://www.globalarchitects.in/projects.html",
+    "publisher": {
+      "@type": "LocalBusiness",
+      "name": "Global Architects",
+      "url": "https://www.globalarchitects.in"
+    }
+  }
+  </script>
+</head>
+
+<body class="js-loading">
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__crosshair">
+      <span class="cursor__h"></span>
+      <span class="cursor__v"></span>
+    </div>
+    <div class="cursor__circle">
+      <span class="cursor__label">View</span>
+    </div>
+    <div class="cursor__dot"></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="nav is-visible is-scrolled" id="mainNav" role="banner">
+    <nav class="nav__inner" aria-label="Main navigation">
+      <a href="index.html" class="nav__logo" aria-label="Global Architects — Home">
+        <svg class="nav__logo-svg" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 16 A8 8 0 1 1 16 8 L16 16 L10 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="24" y="21" font-family="'DM Sans Variable', sans-serif" font-size="13" font-weight="500" fill="currentColor" letter-spacing="0.05em">GLOBAL</text>
+          <text x="24" y="30" font-family="'DM Mono', monospace" font-size="7" font-weight="300" fill="currentColor" letter-spacing="0.15em" opacity="0.7">ARCHITECTS</text>
+        </svg>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li class="nav__item"><a href="index.html"   class="nav__link">Home</a></li>
+        <li class="nav__item nav__item--active"><a href="projects.html" class="nav__link" aria-current="page">Projects</a></li>
+        <li class="nav__item"><a href="about.html"   class="nav__link">About</a></li>
+        <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <button class="nav__theme-toggle" id="themeToggle" aria-label="Toggle time mode" type="button">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="12" y1="2" x2="12" y2="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="12" y1="20" x2="12" y2="22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="2" y1="12" x2="4" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="20" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <a href="contact.html" class="nav__cta">Start a Project</a>
+        <button class="nav__hamburger" id="navHamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu" type="button">
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+          <span class="nav__hamburger-line"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+    <div class="mobile-menu__lines" aria-hidden="true">
+      <span class="mobile-menu__line"></span>
+      <span class="mobile-menu__line"></span>
+      <span class="mobile-menu__line"></span>
+    </div>
+    <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close navigation menu" type="button"><span aria-hidden="true">✕</span></button>
+    <nav aria-label="Mobile navigation">
+      <ul class="mobile-menu__links" role="list">
+        <li class="mobile-menu__item"><a href="index.html"   class="mobile-menu__link"><span class="mobile-menu__num">01</span>Home</a></li>
+        <li class="mobile-menu__item"><a href="projects.html" class="mobile-menu__link" aria-current="page"><span class="mobile-menu__num">02</span>Projects</a></li>
+        <li class="mobile-menu__item"><a href="about.html"   class="mobile-menu__link"><span class="mobile-menu__num">03</span>About</a></li>
+        <li class="mobile-menu__item"><a href="contact.html" class="mobile-menu__link"><span class="mobile-menu__num">04</span>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-menu__footer">
+      <p class="mobile-menu__location">Dehradun, Uttarakhand</p>
+      <a href="mailto:hello@globalarchitects.in" class="mobile-menu__email">hello@globalarchitects.in</a>
+    </div>
+  </div>
+
+  <main id="mainContent" role="main">
+
+    <!-- Page Hero -->
+    <section class="page-hero" aria-labelledby="pageHeading">
+      <div class="page-hero__container">
+        <div>
+          <p class="section-label reveal reveal--up">
+            <span class="section-label__line"></span>
+            Our Work
+          </p>
+          <h1 class="page-hero__heading reveal reveal--up reveal--delay-1" id="pageHeading">
+            Every Project,<br />A New Story
+          </h1>
+        </div>
+        <div class="page-hero__count reveal reveal--up reveal--delay-2" aria-label="500 plus projects delivered">
+          <span>500+</span>
+          Projects Delivered
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Search -->
+    <section class="ai-search" aria-labelledby="aiSearchHeading">
+      <div class="ai-search__container">
+
+        <div class="ai-search__label" id="aiSearchHeading">
+          <span class="ai-search__dot" aria-hidden="true"></span>
+          AI Project Discovery — Industry First
+        </div>
+
+        <div class="ai-search__input-wrap">
+          <label for="aiSearchInput" class="sr-only">Search projects using natural language</label>
+          <input
+            type="text"
+            id="aiSearchInput"
+            class="ai-search__input"
+            placeholder="Try: &quot;residential projects with natural light in hills&quot; or &quot;commercial buildings using stone and timber&quot;"
+            aria-describedby="aiSearchHint"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button
+            class="ai-search__btn"
+            id="aiSearchBtn"
+            type="button"
+            aria-label="Search projects with AI"
+          >
+            Search with AI
+          </button>
+        </div>
+
+        <p id="aiSearchHint" class="sr-only">
+          Use natural language to find projects by type, material, location, or style
+        </p>
+
+        <!-- Quick suggestions -->
+        <div class="ai-search__suggestions" aria-label="Search suggestions">
+          <button class="ai-search__suggestion" type="button" data-query="residential projects with natural light">Natural light homes</button>
+          <button class="ai-search__suggestion" type="button" data-query="commercial buildings with glass facade">Glass facades</button>
+          <button class="ai-search__suggestion" type="button" data-query="projects using local stone and timber materials">Stone & timber</button>
+          <button class="ai-search__suggestion" type="button" data-query="cultural and public spaces">Cultural spaces</button>
+          <button class="ai-search__suggestion" type="button" data-query="hillside and mountain architecture Uttarakhand">Hill architecture</button>
+          <button class="ai-search__suggestion" type="button" data-query="sustainable eco friendly green design">Sustainable design</button>
+        </div>
+
+        <!-- Loading -->
+        <div class="ai-search__loading" id="aiSearchLoading" aria-live="polite" aria-label="Searching projects">
+          <span class="ai-search__spinner" aria-hidden="true"></span>
+          Searching projects...
+        </div>
+
+        <!-- Result -->
+        <div class="ai-search__result" id="aiSearchResult" role="status" aria-live="polite"></div>
+
+      </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar" role="search" aria-label="Filter projects">
+      <div class="filter-bar__container">
+
+        <!-- Search -->
+        <div class="search-wrap">
+          <svg class="search-wrap__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <label for="projectSearch" class="sr-only">Search projects by name or location</label>
+          <input
+            type="search"
+            id="projectSearch"
+            class="search-input"
+            placeholder="Search projects..."
+            aria-label="Search projects by name or location"
+            autocomplete="off"
+          />
+        </div>
+
+        <!-- Filter chips -->
+        <div class="filter-chips" role="group" aria-label="Filter by project type">
+          <button class="filter-chip is-active" data-filter="all"         type="button" aria-pressed="true">All</button>
+          <button class="filter-chip"           data-filter="residential"  type="button" aria-pressed="false">Residential</button>
+          <button class="filter-chip"           data-filter="commercial"   type="button" aria-pressed="false">Commercial</button>
+          <button class="filter-chip"           data-filter="cultural"     type="button" aria-pressed="false">Cultural</button>
+          <button class="filter-chip"           data-filter="mixed"        type="button" aria-pressed="false">Mixed-Use</button>
+          <button class="filter-chip"           data-filter="interior"     type="button" aria-pressed="false">Interior</button>
+        </div>
+
+        <!-- Results count -->
+        <p class="filter-results" id="filterResults" aria-live="polite" aria-atomic="true">
+          12 projects
+        </p>
+
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <section class="projects-section" aria-labelledby="projectsGridHeading">
+      <div class="projects-section__container">
+
+        <h2 class="sr-only" id="projectsGridHeading">All Projects</h2>
+
+        <div class="projects-full-grid" id="projectsGrid" role="list">
+
+          <!-- Project 01 -->
+          <article class="project-card" data-material="concrete" data-type="residential" data-location="delhi" data-name="the light house" role="listitem">
+            <a href="project-detail.html" class="project-card__link" aria-label="View The Light House — Residential project in Delhi, 2024">
+              <div class="project-card__media">
+                <img src="assets/images/project-01.webp" alt="The Light House — Luxury residence in Delhi with concrete facade and large windows" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Residential</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Delhi</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2024</span>
+                </div>
+                <h3 class="project-card__title">The Light House</h3>
+                <p class="project-card__material" aria-hidden="true">Concrete · Glass · Steel</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- Project 02 -->
+          <article class="project-card" data-material="glass" data-type="commercial" data-location="mumbai" data-name="vertex tower" role="listitem">
+            <a href="project-detail.html" class="project-card__link" aria-label="View Vertex Tower — Commercial project in Mumbai, 2023">
+              <div class="project-card__media">
+                <img src="assets/images/project-02.webp" alt="Vertex Tower — Commercial high-rise in Mumbai with glass curtain wall" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Commercial</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Mumbai</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2023</span>
+                </div>
+                <h3 class="project-card__title">Vertex Tower</h3>
+                <p class="project-card__material" aria-hidden="true">Glass · Aluminium · Stone</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- Project 03 -->
+          <article class="project-card" data-material="stone" data-type="cultural" data-location="jaipur" data-name="the ground pavilion" role="listitem">
+            <a href="project-detail.html" class="project-card__link" aria-label="View The Ground Pavilion — Cultural project in Jaipur, 2025">
+              <div class="project-card__media">
+                <img src="assets/images/project-03.webp" alt="The Ground Pavilion — Cultural pavilion in Jaipur built with local stone" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Cultural</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Jaipur</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2025</span>
+                </div>
+                <h3 class="project-card__title">The Ground Pavilion</h3>
+                <p class="project-card__material" aria-hidden="true">Stone · Timber · Earth</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- Project 04 -->
+          <article class="project-card" data-material="wood" data-type="residential" data-location="dehradun" data-name="forest retreat" role="listitem">
+            <a href="project-detail.html" class="project-card__link" aria-label="View Forest Retreat — Residential project in Dehradun, 2024">
+              <div class="project-card__media">
+                <img src="assets/images/project-04.webp" alt="Forest Retreat — Luxury hill home in Dehradun surrounded by deodar forest" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Residential</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Dehradun</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2024</span>
+                </div>
+                <h3 class="project-card__title">Forest Retreat</h3>
+                <p class="project-card__material" aria-hidden="true">Timber · Stone · Glass</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- Project 05 -->
+          <article class="project-card" data-material="concrete" data-type="mixed" data-location="noida" data-name="the urban court" role="listitem">
+            <a href="project-detail.html" class="project-card__link" aria-label="View The Urban Court — Mixed-use project in Noida, 2023">
+              <div class="project-card__media">
+                <img src="assets/images/project-05.webp" alt="The Urban Court — Mixed-use development in Noida with retail and residential" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Mixed-Use</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Noida</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2023</span>
+                </div>
+                <h3 class="project-card__title">The Urban Court</h3>
+                <p class="project-card__material" aria-hidden="true">Concrete · Glass · Steel</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- Project 06 -->
+          <article class="project-card" data-material="stone" data-type="interior" data-location="delhi" data-name="sanctuary penthouse" role="listitem">
+            <a href="project-detail.html" class="project-card__link" aria-label="View Sanctuary Penthouse — Interior project in Delhi, 2025">
+              <div class="project-card__media">
+                <img src="assets/images/project-06.webp" alt="Sanctuary Penthouse — Luxury interior design in Delhi with stone and brass finishes" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Interior</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Delhi</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2025</span>
+                </div>
+                <h3 class="project-card__title">Sanctuary Penthouse</h3>
+                <p class="project-card__material" aria-hidden="true">Stone · Brass · Timber</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- Project 07 -->
+          <article class="project-card" data-material="glass" data-type="commercial" data-location="bengaluru" data-name="tech campus phase 1" role="listitem">
+            <a href="project-detail.html" class="project-card__link" aria-label="View Tech Campus Phase 1 — Commercial project in Bengaluru, 2022">
+              <div class="project-card__media">
+                <img src="assets/images/project-07.webp" alt="Tech Campus Phase 1 — Modern IT campus in Bengaluru with glass and steel" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Commercial</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Bengaluru</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2022</span>
+                </div>
+                <h3 class="project-card__title">Tech Campus Phase 1</h3>
+                <p class="project-card__material" aria-hidden="true">Glass · Steel · Concrete</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- Project 08 -->
+          <article class="project-card" data-material="wood" data-type="residential" data-location="mussoorie" data-name="the ridge house" role="listitem">
+            <a href="project-detail.html" class="project-card__link" aria-label="View The Ridge House — Residential project in Mussoorie, 2023">
+              <div class="project-card__media">
+                <img src="assets/images/project-08.webp" alt="The Ridge House — Mountain home in Mussoorie with panoramic Himalayan views" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Residential</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Mussoorie</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2023</span>
+                </div>
+                <h3 class="project-card__title">The Ridge House</h3>
+                <p class="project-card__material" aria-hidden="true">Timber · Slate · Glass</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- Project 09 -->
+          <article class="project-card" data-material="concrete" data-type="cultural" data-location="chandigarh" data-name="city arts centre" role="listitem">
+            <a href="project-detail.html" class="project-card__link" aria-label="View City Arts Centre — Cultural project in Chandigarh, 2024">
+              <div class="project-card__media">
+                <img src="assets/images/project-09.webp" alt="City Arts Centre — Cultural institution in Chandigarh with raw concrete aesthetic" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Cultural</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Chandigarh</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2024</span>
+                </div>
+                <h3 class="project-card__title">City Arts Centre</h3>
+                <p class="project-card__material" aria-hidden="true">Concrete · Brick · Steel</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- Project 10 -->
+          <article class="project-card" data-material="stone" data-type="mixed" data-location="dehradun" data-name="himalayan gateway" role="listitem">
+            <a href="project-detail.html" class="project-card__link" aria-label="View Himalayan Gateway — Mixed-use project in Dehradun, 2025">
+              <div class="project-card__media">
+                <img src="assets/images/project-10.webp" alt="Himalayan Gateway — Mixed-use complex in Dehradun inspired by mountain forms" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Mixed-Use</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Dehradun</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2025</span>
+                </div>
+                <h3 class="project-card__title">Himalayan Gateway</h3>
+                <p class="project-card__material" aria-hidden="true">Stone · Timber · Steel</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- Project 11 -->
+          <article class="project-card" data-material="glass" data-type="interior" data-location="mumbai" data-name="marine view residence" role="listitem">
+            <a href="project-detail.html" class="project-card__link" aria-label="View Marine View Residence — Interior project in Mumbai, 2023">
+              <div class="project-card__media">
+                <img src="assets/images/project-11.webp" alt="Marine View Residence — Sea-facing luxury interior in Mumbai with panoramic glass" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Interior</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Mumbai</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2023</span>
+                </div>
+                <h3 class="project-card__title">Marine View Residence</h3>
+                <p class="project-card__material" aria-hidden="true">Glass · Marble · Teak</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- Project 12 -->
+          <article class="project-card" data-material="wood" data-type="residential" data-location="rishikesh" data-name="river pavilion" role="listitem">
+            <a href="project-detail.html" class="project-card__link" aria-label="View River Pavilion — Residential project in Rishikesh, 2024">
+              <div class="project-card__media">
+                <img src="assets/images/project-12.webp" alt="River Pavilion — Riverside retreat in Rishikesh with timber deck and Ganga views" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Residential</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Rishikesh</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2024</span>
+                </div>
+                <h3 class="project-card__title">River Pavilion</h3>
+                <p class="project-card__material" aria-hidden="true">Timber · Bamboo · Stone</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- No Results -->
+          <div class="no-results" id="noResults" role="status" aria-live="polite">
+            <div class="no-results__icon" aria-hidden="true">◻</div>
+            <p class="no-results__text">No projects found</p>
+            <p class="no-results__sub">Try a different filter or search term</p>
+          </div>
+
+        </div>
+
+        <!-- Load More -->
+        <div class="load-more">
+          <button class="load-more__btn" id="loadMoreBtn" type="button" aria-label="Load more projects">
+            Load More Projects
+            <span class="load-more__count" aria-label="488 more projects available">(488 more)</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__container">
+      <div class="footer__top">
+        <a href="index.html" class="footer__logo" aria-label="Global Architects — Home">
+          <svg class="footer__logo-svg" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M8 16 A8 8 0 1 1 16 8 L16 16 L10 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <text x="24" y="21" font-family="'DM Sans Variable', sans-serif" font-size="13" font-weight="500" fill="currentColor" letter-spacing="0.05em">GLOBAL</text>
+            <text x="24" y="30" font-family="'DM Mono', monospace" font-size="7" font-weight="300" fill="currentColor" letter-spacing="0.15em" opacity="0.7">ARCHITECTS</text>
+          </svg>
+        </a>
+        <p class="footer__philosophy">Architecture rooted in place, crafted for people.</p>
+        <div class="footer__social">
+          <a href="https://www.instagram.com/globalarchitects.in" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Follow Global Architects on Instagram">Instagram</a>
+          <a href="https://www.linkedin.com/company/global-architects-dehradun" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer__divider" role="separator"></div>
+      <div class="footer__bottom">
+        <address class="footer__address">
+          <span class="footer__firm">Global Architects</span>
+          <span class="footer__sep" aria-hidden="true">·</span>
+          <span class="footer__location">Dehradun, Uttarakhand, India</span>
+          <span class="footer__sep" aria-hidden="true">·</span>
+          <a href="mailto:hello@globalarchitects.in" class="footer__email">hello@globalarchitects.in</a>
+        </address>
+        <p class="footer__copy"><small>© <span id="currentYear"></span> Global Architects. All rights reserved.</small></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Site JS -->
+  <script src="js/theme.js"      defer></script>
+  <script src="js/cursor.js"     defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js"       defer></script>
+
+  <!-- Projects page JS -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    /* ── Remove js-loading on projects page (no blueprint) ── */
+    document.body.classList.remove('js-loading');
+
+    const grid       = document.getElementById('projectsGrid');
+    const cards      = grid.querySelectorAll('.project-card');
+    const chips      = document.querySelectorAll('.filter-chip');
+    const searchInput= document.getElementById('projectSearch');
+    const resultsEl  = document.getElementById('filterResults');
+    const noResults  = document.getElementById('noResults');
+    const loadMoreBtn= document.getElementById('loadMoreBtn');
+
+    let activeFilter = 'all';
+    let searchQuery  = '';
+
+    /* ── FILTER FUNCTION ── */
+    function filterProjects() {
+      let visible = 0;
+
+      cards.forEach(card => {
+        const type     = card.dataset.type     || '';
+        const name     = card.dataset.name     || '';
+        const location = card.dataset.location || '';
+
+        const matchesFilter = activeFilter === 'all' || type === activeFilter;
+        const matchesSearch = searchQuery === '' ||
+          name.includes(searchQuery) ||
+          location.includes(searchQuery) ||
+          type.includes(searchQuery);
+
+        if (matchesFilter && matchesSearch) {
+          card.classList.remove('is-hidden');
+          visible++;
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
+
+      /* Update count */
+      resultsEl.textContent = `${visible} project${visible !== 1 ? 's' : ''}`;
+
+      /* No results state */
+      noResults.classList.toggle('is-visible', visible === 0);
+    }
+
+    /* ── FILTER CHIPS ── */
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => {
+          c.classList.remove('is-active');
+          c.setAttribute('aria-pressed', 'false');
+        });
+        chip.classList.add('is-active');
+        chip.setAttribute('aria-pressed', 'true');
+        activeFilter = chip.dataset.filter;
+        filterProjects();
+      });
+    });
+
+    /* ── SEARCH ── */
+    searchInput.addEventListener('input', () => {
+      searchQuery = searchInput.value.toLowerCase().trim();
+      filterProjects();
+    });
+
+    /* ── AI SEARCH ── */
+    const aiInput   = document.getElementById('aiSearchInput');
+    const aiBtn     = document.getElementById('aiSearchBtn');
+    const aiLoading = document.getElementById('aiSearchLoading');
+    const aiResult  = document.getElementById('aiSearchResult');
+    const suggestions = document.querySelectorAll('.ai-search__suggestion');
+
+    /* Project data for AI context */
+    const projectData = Array.from(cards).map(card => ({
+      name:     card.dataset.name,
+      type:     card.dataset.type,
+      location: card.dataset.location,
+      material: card.dataset.material,
+    }));
+
+    async function runAISearch(query) {
+      if (!query.trim()) return;
+
+      aiBtn.disabled = true;
+      aiLoading.classList.add('is-visible');
+      aiResult.classList.remove('is-visible');
+
+      try {
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 300,
+            system: `You are a helpful assistant for Global Architects, a premium architecture firm in Dehradun, India. 
+Given a user query, suggest which projects from our portfolio match and explain why in 2-3 sentences. 
+Be warm, professional, and specific. Always end by suggesting they contact us for similar projects.
+Portfolio: ${JSON.stringify(projectData)}`,
+            messages: [{ role: 'user', content: query }]
+          })
+        });
+
+        const data = await response.json();
+        const text = data.content?.[0]?.text || 'Please try a different search query.';
+
+        aiResult.textContent = text;
+        aiResult.classList.add('is-visible');
+
+      } catch (err) {
+        aiResult.textContent = 'Our AI search is momentarily unavailable. Please use the filters above to browse projects, or contact us directly at hello@globalarchitects.in';
+        aiResult.classList.add('is-visible');
+      } finally {
+        aiBtn.disabled = false;
+        aiLoading.classList.remove('is-visible');
+      }
+    }
+
+    /* AI search button */
+    aiBtn.addEventListener('click', () => runAISearch(aiInput.value));
+
+    /* Enter key */
+    aiInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') runAISearch(aiInput.value);
+    });
+
+    /* Quick suggestions */
+    suggestions.forEach(suggestion => {
+      suggestion.addEventListener('click', () => {
+        const query = suggestion.dataset.query;
+        aiInput.value = query;
+        runAISearch(query);
+        aiInput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+
+    /* ── LOAD MORE (demo) ── */
+    loadMoreBtn.addEventListener('click', () => {
+      loadMoreBtn.textContent = 'Contact us to see all 500+ projects →';
+      loadMoreBtn.style.color = 'var(--accent-primary)';
+      loadMoreBtn.style.borderColor = 'var(--accent-primary)';
+      setTimeout(() => {
+        window.location.href = 'contact.html';
+      }, 1200);
+    });
+
+    /* ── Initial filter ── */
+    filterProjects();
+
+    /* ── Year ── */
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  });
+  </script>
+
+</body>
+</html>
