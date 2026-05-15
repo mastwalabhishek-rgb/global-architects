@@ -24,15 +24,14 @@ const CursorManager = (() => {
 
   /* ── Check for touch/hover support ── */
   const hasHover  = window.matchMedia('(hover: hover)').matches;
-const hasFine   = window.matchMedia('(pointer: fine)').matches;
-const isTouch   = !hasHover || !hasFine;
+  const hasFine   = window.matchMedia('(pointer: fine)').matches;
+  const isTouch   = !hasHover || !hasFine;
 
-/* Bail out on touch devices */
-if (isTouch) return { init: () => {} };
-
-/* Force hide default cursor on desktop */
-document.documentElement.style.cursor = 'none';
-document.body.style.cursor = 'none';
+  /* Bail out on touch devices */
+  if (isTouch) {
+    document.documentElement.classList.remove('cursor-active');
+    return { init: () => {} };
+  }
 
   /* ── DOM Elements ── */
   const CURSOR_EL      = document.getElementById('cursor');
@@ -41,7 +40,10 @@ document.body.style.cursor = 'none';
   const LABEL_EL       = CURSOR_EL?.querySelector('.cursor__label');
   const DOT_EL         = CURSOR_EL?.querySelector('.cursor__dot');
 
-  if (!CURSOR_EL) return { init: () => {} };
+  if (!CURSOR_EL) {
+    document.documentElement.classList.remove('cursor-active');
+    return { init: () => {} };
+  }
 
 
   /* ── State ── */
@@ -327,6 +329,9 @@ document.body.style.cursor = 'none';
      INIT
   ───────────────────────────────────────────────────────────── */
   function init() {
+    /* Enable custom cursor mode only after successful init */
+    document.documentElement.classList.add('cursor-active');
+
     /* Start RAF loop */
     rafId = requestAnimationFrame(tick);
 
@@ -359,6 +364,7 @@ document.body.style.cursor = 'none';
     document.removeEventListener('mousemove', onMouseMove);
     document.documentElement.removeEventListener('mouseleave', onDocumentLeave);
     document.documentElement.removeEventListener('mouseenter', onDocumentEnter);
+    document.documentElement.classList.remove('cursor-active');
   }
 
 

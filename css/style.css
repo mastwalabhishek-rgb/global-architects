@@ -112,7 +112,7 @@
   --z-sticky:    30;
   --z-overlay:   40;
   --z-modal:     50;
-  --z-cursor:    100;
+  --z-cursor:    300;
   --z-blueprint: 200;
 
   /* ── Shadows ── */
@@ -296,9 +296,11 @@ body {
     color            var(--duration-palette) var(--ease-in-out);
 }
 
-/* Hide default cursor — custom cursor replaces it */
+/* Hide default cursor only when custom cursor is active */
 @media (hover: hover) and (pointer: fine) {
-  *, *::before, *::after { cursor: none !important; }
+  html.cursor-active *,
+  html.cursor-active *::before,
+  html.cursor-active *::after { cursor: none !important; }
 }
 
 img, video, svg {
