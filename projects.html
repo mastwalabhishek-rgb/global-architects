@@ -579,13 +579,13 @@
       </div>
     </section>
 
-    <!-- AI Search -->
+    <!-- Smart Search -->
     <section class="ai-search" aria-labelledby="aiSearchHeading">
       <div class="ai-search__container">
 
         <div class="ai-search__label" id="aiSearchHeading">
           <span class="ai-search__dot" aria-hidden="true"></span>
-          AI Project Discovery — Industry First
+          Smart Project Discovery
         </div>
 
         <div class="ai-search__input-wrap">
@@ -603,9 +603,9 @@
             class="ai-search__btn"
             id="aiSearchBtn"
             type="button"
-            aria-label="Search projects with AI"
+            aria-label="Search matching projects"
           >
-            Search with AI
+            Find Projects
           </button>
         </div>
 
@@ -1089,59 +1089,126 @@
       filterProjects();
     });
 
-    /* ── AI SEARCH ── */
+    /* ── SMART PROJECT DISCOVERY ── */
     const aiInput   = document.getElementById('aiSearchInput');
     const aiBtn     = document.getElementById('aiSearchBtn');
     const aiLoading = document.getElementById('aiSearchLoading');
     const aiResult  = document.getElementById('aiSearchResult');
     const suggestions = document.querySelectorAll('.ai-search__suggestion');
 
-    /* Project data for AI context */
+    const keywordMap = {
+      home: 'residential',
+      homes: 'residential',
+      house: 'residential',
+      houses: 'residential',
+      villa: 'residential',
+      office: 'commercial',
+      offices: 'commercial',
+      tower: 'commercial',
+      workplace: 'commercial',
+      public: 'cultural',
+      culture: 'cultural',
+      cultural: 'cultural',
+      art: 'cultural',
+      arts: 'cultural',
+      hill: 'dehradun',
+      hills: 'dehradun',
+      mountain: 'dehradun',
+      mountains: 'dehradun',
+      uttarakhand: 'dehradun',
+      sunlight: 'light',
+      daylight: 'light',
+      bright: 'light',
+      eco: 'sustainable',
+      green: 'sustainable',
+      nature: 'sustainable'
+    };
+
+    const materialHints = {
+      concrete: ['concrete', 'minimal', 'raw'],
+      glass: ['glass', 'facade', 'transparent', 'light', 'daylight'],
+      stone: ['stone', 'local', 'earth', 'timber', 'natural'],
+      wood: ['wood', 'timber', 'warm', 'hill', 'mountain', 'sustainable']
+    };
+
+    function normaliseQuery(query) {
+      return query
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, ' ')
+        .split(/\s+/)
+        .filter(Boolean)
+        .map(word => keywordMap[word] || word);
+    }
+
     const projectData = Array.from(cards).map(card => ({
       name:     card.dataset.name,
       type:     card.dataset.type,
       location: card.dataset.location,
       material: card.dataset.material,
+      title:    card.querySelector('.project-card__title')?.textContent.trim() || '',
+      href:     card.querySelector('.project-card__link')?.getAttribute('href') || '#'
     }));
 
-    async function runAISearch(query) {
+    function scoreProject(project, words) {
+      const haystack = [
+        project.name,
+        project.type,
+        project.location,
+        project.material,
+        project.title,
+        ...(materialHints[project.material] || [])
+      ].join(' ').toLowerCase();
+
+      return words.reduce((score, word) => {
+        if (haystack.includes(word)) {
+          return score + (word === project.type || word === project.location || word === project.material ? 3 : 1);
+        }
+        return score;
+      }, 0);
+    }
+
+    function runAISearch(query) {
       if (!query.trim()) return;
 
       aiBtn.disabled = true;
       aiLoading.classList.add('is-visible');
       aiResult.classList.remove('is-visible');
 
-      try {
-        const response = await fetch('https://api.anthropic.com/v1/messages', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            model: 'claude-sonnet-4-20250514',
-            max_tokens: 300,
-            system: `You are a helpful assistant for Global Architects, a premium architecture firm in Dehradun, India. 
-Given a user query, suggest which projects from our portfolio match and explain why in 2-3 sentences. 
-Be warm, professional, and specific. Always end by suggesting they contact us for similar projects.
-Portfolio: ${JSON.stringify(projectData)}`,
-            messages: [{ role: 'user', content: query }]
-          })
-        });
+      window.setTimeout(() => {
+        const words = normaliseQuery(query);
+        const matches = projectData
+          .map(project => ({ ...project, score: scoreProject(project, words) }))
+          .filter(project => project.score > 0)
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 3);
 
-        const data = await response.json();
-        const text = data.content?.[0]?.text || 'Please try a different search query.';
+        if (!matches.length) {
+          aiResult.innerHTML = 'No close match found. Try searching by project type, city, or material like <strong>residential</strong>, <strong>glass</strong>, <strong>stone</strong>, or <strong>Dehradun</strong>.';
+        } else {
+          const intro = matches.length === 1
+            ? 'Best match from our portfolio:'
+            : 'Best matches from our portfolio:';
+          aiResult.innerHTML = `
+            <p>${intro}</p>
+            <ul>
+              ${matches.map(project => `
+                <li>
+                  <a href="${project.href}"><strong>${project.title}</strong></a>
+                  <span> — ${project.type} project in ${project.location}, using ${project.material}.</span>
+                </li>
+              `).join('')}
+            </ul>
+            <p>Use the filters below to narrow the list further, or contact us for similar project ideas.</p>
+          `;
+        }
 
-        aiResult.textContent = text;
         aiResult.classList.add('is-visible');
-
-      } catch (err) {
-        aiResult.textContent = 'Our AI search is momentarily unavailable. Please use the filters above to browse projects, or contact us directly at hello@globalarchitects.in';
-        aiResult.classList.add('is-visible');
-      } finally {
         aiBtn.disabled = false;
         aiLoading.classList.remove('is-visible');
-      }
+      }, 250);
     }
 
-    /* AI search button */
+    /* Smart search button */
     aiBtn.addEventListener('click', () => runAISearch(aiInput.value));
 
     /* Enter key */
