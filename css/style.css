@@ -303,6 +303,10 @@ body {
   html.cursor-active *::after { cursor: none !important; }
 }
 
+.cursor {
+  display: none !important;
+}
+
 img, video, svg {
   display: block;
   max-width: 100%;
