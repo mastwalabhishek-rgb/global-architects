@@ -562,17 +562,32 @@ const AnimationManager = (() => {
       const cards = document.querySelectorAll('.project-card');
       if (!cards.length) return;
 
-      gsap.from(cards, {
+      cards.forEach(card => card.classList.add('is-revealed'));
+
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        cards.forEach(card => {
+          card.style.opacity = '1';
+          card.style.transform = 'none';
+        });
+        return;
+      }
+
+      gsap.fromTo(cards, {
+        y:        70,
+        opacity:  0,
+      }, {
         scrollTrigger: {
           trigger: '.projects-grid',
           start:   'top 80%',
           toggleActions: 'play none none none',
         },
-        y:        70,
-        opacity:  0,
+        y:        0,
+        opacity:  1,
         duration: 0.9,
         ease:     'power3.out',
         stagger:  0.1,
+        immediateRender: false,
+        clearProps: 'transform,opacity',
       });
     },
 
