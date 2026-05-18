@@ -418,87 +418,6 @@
       margin-top: var(--space-2);
     }
 
-    /* ── Awards & Recognition ── */
-    .about-awards {
-      padding: var(--section-pad) 0;
-      background-color: var(--bg-secondary);
-    }
-
-    .about-awards__container {
-      max-width: var(--container-max);
-      margin-inline: auto;
-      padding-inline: var(--container-pad);
-    }
-
-    .awards-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: var(--space-4);
-      margin-top: var(--space-12);
-    }
-
-    .award-card {
-      background-color: var(--bg-primary);
-      border: 1px solid var(--border-secondary);
-      border-radius: var(--radius-lg);
-      padding: var(--space-8);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-4);
-      transition:
-        border-color var(--duration-base) ease,
-        transform    var(--duration-base) ease,
-        box-shadow   var(--duration-base) ease;
-    }
-
-    .award-card:hover {
-      border-color: var(--accent-primary);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .award-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: var(--radius-md);
-      background-color: var(--accent-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-    }
-
-    .award-year {
-      font-family: var(--font-mono);
-      font-size: var(--text-label);
-      letter-spacing: var(--ls-wider);
-      text-transform: uppercase;
-      color: var(--accent-primary);
-    }
-
-    .award-title {
-      font-family: var(--font-display);
-      font-size: var(--text-h3);
-      font-weight: 600;
-      letter-spacing: var(--ls-tight);
-      line-height: var(--lh-snug);
-    }
-
-    .award-body {
-      font-size: var(--text-sm);
-      color: var(--text-secondary);
-      line-height: var(--lh-relaxed);
-    }
-
-    .award-org {
-      font-family: var(--font-mono);
-      font-size: var(--text-label);
-      letter-spacing: var(--ls-wider);
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-top: auto;
-    }
-
     /* ── Team Section ── */
     .about-team {
       padding: var(--section-pad) 0;
@@ -698,7 +617,6 @@
       .founder__img-wrap      { max-width: 480px; }
       .founder__quote-card    { right: var(--space-4); }
       .team-grid              { grid-template-columns: repeat(2,1fr); }
-      .awards-grid            { grid-template-columns: repeat(2,1fr); }
       .process-deep-card--featured { grid-column: 1; grid-template-columns: 1fr; }
     }
 
@@ -708,7 +626,6 @@
       .timeline-list::before   { left: 60px; }
       .timeline-item           { grid-template-columns: 60px 1fr; }
       .timeline-item::before   { left: calc(60px - 4px); }
-      .awards-grid             { grid-template-columns: 1fr; }
       .team-grid               { grid-template-columns: 1fr 1fr; }
       .process-deep-grid       { grid-template-columns: 1fr; }
       .process-deep-card--featured { grid-column: 1; }
@@ -1152,77 +1069,6 @@
           </li>
 
         </ol>
-      </div>
-    </section>
-
-
-    <!-- ══════════════════════════════════
-         AWARDS
-    ══════════════════════════════════ -->
-    <section class="about-awards" aria-labelledby="awardsHeading">
-      <div class="about-awards__container">
-
-        <p class="section-label reveal reveal--up">
-          <span class="section-label__line"></span>
-          Recognition
-        </p>
-
-        <h2 class="reveal reveal--up reveal--delay-1" id="awardsHeading"
-            style="font-size:var(--text-h2);margin-top:var(--space-4);">
-          Awards & Publications
-        </h2>
-
-        <div class="awards-grid">
-
-          <div class="award-card reveal reveal--up">
-            <div class="award-icon" aria-hidden="true">🏆</div>
-            <p class="award-year">2022</p>
-            <h3 class="award-title">Best Sustainable Hill Architecture</h3>
-            <p class="award-body">For the Forest Retreat, Dehradun — recognising exemplary integration of contemporary design with Himalayan landscape and sustainable building practices.</p>
-            <p class="award-org">Indian Institute of Architects — Northern Chapter</p>
-          </div>
-
-          <div class="award-card reveal reveal--up reveal--delay-1">
-            <div class="award-icon" aria-hidden="true">📰</div>
-            <p class="award-year">2023</p>
-            <h3 class="award-title">Featured — Architectural Digest India</h3>
-            <p class="award-body">The Light House, Delhi featured in AD India's annual 'Homes of the Year' issue, with a 12-page spread on the light well concept and material palette.</p>
-            <p class="award-org">Architectural Digest India</p>
-          </div>
-
-          <div class="award-card reveal reveal--up reveal--delay-2">
-            <div class="award-icon" aria-hidden="true">🌿</div>
-            <p class="award-year">2023</p>
-            <h3 class="award-title">Green Architecture Excellence</h3>
-            <p class="award-body">Recognised for consistent integration of passive cooling, natural ventilation, and locally-sourced materials across residential and commercial projects.</p>
-            <p class="award-org">CII — Green Building Council</p>
-          </div>
-
-          <div class="award-card reveal reveal--up reveal--delay-3">
-            <div class="award-icon" aria-hidden="true">📐</div>
-            <p class="award-year">2024</p>
-            <h3 class="award-title">Top 50 Architecture Practices — India</h3>
-            <p class="award-body">Listed among India's top 50 emerging architecture firms, recognised for design quality, project volume, and regional significance in Uttarakhand.</p>
-            <p class="award-org">Design & Architecture Magazine</p>
-          </div>
-
-          <div class="award-card reveal reveal--up reveal--delay-4">
-            <div class="award-icon" aria-hidden="true">🏔️</div>
-            <p class="award-year">2024</p>
-            <h3 class="award-title">Uttarakhand Architecture Excellence Award</h3>
-            <p class="award-body">State-level recognition for contribution to contemporary architecture in Uttarakhand — presented at the Uttarakhand Architecture Festival, Dehradun.</p>
-            <p class="award-org">Government of Uttarakhand</p>
-          </div>
-
-          <div class="award-card reveal reveal--up reveal--delay-5">
-            <div class="award-icon" aria-hidden="true">✏️</div>
-            <p class="award-year">2025</p>
-            <h3 class="award-title">Published — 'New Indian Architecture'</h3>
-            <p class="award-body">Three projects included in the definitive survey of contemporary Indian architecture, published by Rupa Publications. Chapter on hill architecture co-authored by Ar. Shailesh Kumar.</p>
-            <p class="award-org">Rupa Publications, New Delhi</p>
-          </div>
-
-        </div>
       </div>
     </section>
 
