@@ -608,6 +608,11 @@
     }
 
     /* â”€â”€ Responsive â”€â”€ */
+    @media screen and (max-width: 1024px) {
+      .related-grid { grid-template-columns: repeat(2,1fr); }
+      .materials-grid { grid-template-columns: repeat(2,1fr); }
+    }
+
     @media screen and (max-width: 768px) {
       .chapter-brief__container { grid-template-columns: 1fr; }
       .chapter-brief__specs { position: static; }
@@ -615,11 +620,6 @@
       .living-grid { grid-template-columns: 1fr; }
       .living-img--tall { grid-row: auto; aspect-ratio: 4/3; }
       .related-grid { grid-template-columns: 1fr; }
-    }
-
-    @media screen and (max-width: 1024px) {
-      .related-grid { grid-template-columns: repeat(2,1fr); }
-      .materials-grid { grid-template-columns: repeat(2,1fr); }
     }
   </style>
 
@@ -1320,7 +1320,39 @@
         ],
         designReading: 'The design uses neoclassical symmetry as its main language: columns frame the verandahs, pediments crown the central and roof volumes, and balustrades give the balconies a traditional edge. The grey planes and red roof accents prevent the white facade from feeling flat, while the boundary wall, lit vertical panels and curved gate make the arrival sequence clear. It reads as a formal Bareilly family residence, but the planted balconies and warm recessed lighting keep it soft enough for everyday living.'
       },
-      'sanctuary-penthouse': createPortfolioDetail({ title: 'Sanctuary Penthouse', type: 'Interior', location: 'Delhi', year: '2025', materials: 'Stone Â· Brass Â· Timber', image: 'assets/images/about-hero.png' }),
+      'linear-terrace-residence': {
+        title: 'The Linear Terrace Residence',
+        type: 'Residential',
+        location: 'Pathankot, Punjab',
+        year: '2022',
+        image: 'assets/images/project5.1.jpeg',
+        imageAlt: 'The Linear Terrace Residence - Pathankot residence with concrete frames, timber bands, glass balconies and planted roof terrace',
+        tagline: 'A 2022 Pathankot residence shaped by strong horizontal terraces, warm timber bands, concrete frames, glass railings, roof planting and a crafted street boundary.',
+        specs: ['Private Residence', 'Pathankot, Punjab', '2100 sq.ft', '3900 sq.ft', '2022', 'Concrete / Timber / Glass / Greenery', 'Completed', 'Ar. Shailesh Kumar'],
+        briefTitle: 'A Terrace-Led Home<br />For Pathankot',
+        brief: [
+          'The residence is composed as a layered family home where each floor projects outward to create shaded balconies and usable outdoor rooms. The broad concrete frames make the elevation calm, strong and contemporary.',
+          'Warm horizontal timber bands are used as the balancing element. They soften the concrete mass, frame the side volumes and continue into the boundary wall so the house reads as one complete architectural composition from the street.',
+          'Glass railings, roof planters, hanging greens and a patterned feature panel keep the frontage open and garden-like without losing privacy. The result is a 2100 sq.ft plot planned into a generous 3900 sq.ft residence with a clear urban presence.'
+        ],
+        quote: 'The design keeps the house visually light by letting the terraces breathe: concrete gives structure, timber gives warmth and planting gives the facade daily life.',
+        sketchTitle: 'From Linear Frames<br />to Terrace Living',
+        sketchIntro: 'The concept begins with stacked horizontal frames, then adds timber side bands, balcony gardens, glass edges and a roof terrace to turn the frontage into a shaded living facade.',
+        spaceTitle: 'Design Reading',
+        buildTitle: 'Three Views of the Residence',
+        buildIntro: 'The three views show the residence from the front, the corner and the roof. Together they explain how the concrete frames, timber cladding, glass railings and planted terraces work as one Pathankot family home.',
+        gallery: [
+          { image: 'assets/images/project5.1.jpeg', alt: 'Front view of The Linear Terrace Residence showing concrete frames, timber gate panels, glass balconies and planted roof terrace', caption: 'Front Elevation' },
+          { image: 'assets/images/project5.2.jpeg', alt: 'Corner view of The Linear Terrace Residence showing horizontal timber cladding, deep balcony slabs, glass railings and roof planting', caption: 'Corner View' },
+          { image: 'assets/images/project5.3.png', alt: 'Aerial view of The Linear Terrace Residence showing roof terrace, stair volume, planted edges and patterned side screen', caption: 'Roof View' }
+        ],
+        materialsDetail: [
+          { color: '#D7D2CA', texture: 'radial-gradient(circle at 18% 24%, rgba(255,255,255,.5) 0 1px, transparent 2px), radial-gradient(circle at 72% 36%, rgba(70,70,70,.25) 0 1px, transparent 2px), linear-gradient(135deg, rgba(255,255,255,.18), rgba(0,0,0,.14))', name: 'Textured Concrete Frames', desc: 'Broad concrete bands form the main horizontal language, shade the balconies and give the house a grounded contemporary profile.', origin: 'Use: balcony frames, parapets and boundary walls' },
+          { color: '#9B5D2E', texture: 'repeating-linear-gradient(0deg, rgba(50,25,10,.42) 0 2px, rgba(176,103,48,.48) 2px 7px, rgba(82,42,18,.36) 7px 10px)', name: 'Linear Timber Bands', desc: 'Wood-finish slats warm up the facade, mark the side volume and continue into the gate and boundary for visual continuity.', origin: 'Use: side cladding, gate panels and wall bands' },
+          { color: '#AEB9BE', texture: 'linear-gradient(90deg, rgba(25,35,42,.3) 1px, transparent 1px), linear-gradient(0deg, rgba(255,255,255,.48) 1px, transparent 1px)', name: 'Glass + Terrace Greens', desc: 'Clear balcony railings keep the terraces visually open while planters and hanging greens soften the roof edge and upper floors.', origin: 'Use: balconies, roof terrace and planter edges' }
+        ],
+        designReading: 'The elevation succeeds because it turns practical shade into the main architectural expression. Deep concrete slabs protect the rooms below, glass railings keep the balconies light, and timber bands bring warmth to the otherwise crisp geometry. The roof terrace and planted ledges give the house a lived-in softness, while the patterned side screen and aligned boundary wall make the street edge feel complete.'
+      },
       'tech-campus-phase-1': {
         title: 'Hotel Exterior Design Concept',
         type: 'Hotel',
