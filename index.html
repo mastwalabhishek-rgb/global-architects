@@ -43,8 +43,8 @@
   <!-- Google Fonts — Variable fonts for kinetic typography -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 
-  <!-- Preload hero image -->
-  <link rel="preload" as="image" href="assets/images/hero-building.jpg" />
+  <!-- Preload hero video -->
+  <link rel="preload" as="video" href="assets/images/herovideo.mp4" type="video/mp4" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
@@ -343,16 +343,11 @@
     ───────────────────────────────────────── -->
     <section class="hero" aria-labelledby="heroHeading">
 
-      <!-- Hero background image -->
+      <!-- Hero background video -->
       <div class="hero__media" aria-hidden="true">
-        <img
-          src="assets/images/herosec.jpeg"
-          alt=""
-          class="hero__img"
-          loading="eager"
-          decoding="async"
-          fetchpriority="high"
-        />
+        <video class="hero__video" autoplay muted loop playsinline preload="auto">
+          <source src="assets/images/herovideo.mp4" type="video/mp4" />
+        </video>
         <div class="hero__overlay"></div>
       </div>
 

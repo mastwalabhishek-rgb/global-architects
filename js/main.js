@@ -271,23 +271,23 @@ const FooterYear = (() => {
 
 
 /* ═══════════════════════════════════════════════════════════════
-   6. HERO IMAGE LOAD
-   Triggers zoom-out animation when image loads
+   6. HERO MEDIA LOAD
+   Reveals hero video when it is ready
 ═══════════════════════════════════════════════════════════════ */
 
-const HeroImage = (() => {
+const HeroMedia = (() => {
 
   function init() {
-    const hero    = document.querySelector('.hero');
-    const heroImg = document.querySelector('.hero__img');
-    if (!hero || !heroImg) return;
+    const hero      = document.querySelector('.hero');
+    const heroVideo = document.querySelector('.hero__video');
+    if (!hero || !heroVideo) return;
 
-    if (heroImg.complete && heroImg.naturalWidth > 0) {
+    if (heroVideo.readyState >= 2) {
       hero.classList.add('is-loaded');
     } else {
-      heroImg.addEventListener('load', () => {
+      heroVideo.addEventListener('loadeddata', () => {
         hero.classList.add('is-loaded');
-      });
+      }, { once: true });
     }
   }
 
@@ -489,7 +489,7 @@ window.addEventListener('unhandledrejection', (e) => {
 
 function initApp() {
 
-  try { HeroImage.init();        } catch(e) { console.warn('HeroImage:', e); }
+  try { HeroMedia.init();        } catch(e) { console.warn('HeroMedia:', e); }
   try { NavActive.init();        } catch(e) { console.warn('NavActive:', e); }
   try { SmoothAnchor.init();     } catch(e) { console.warn('SmoothAnchor:', e); }
   try { MaterialHover.init();    } catch(e) { console.warn('MaterialHover:', e); }
@@ -531,6 +531,7 @@ window.GlobalArchitects = {
   NavActive,
   A11y,
   ImagePlaceholder,
+  HeroMedia,
   PerfMonitor,
   version: '1.0.0',
 };

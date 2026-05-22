@@ -1022,26 +1022,25 @@ small {
   overflow: hidden;
 }
 
-/* Background image */
+/* Background video */
 .hero__media {
   position: absolute;
   inset: 0;
   z-index: var(--z-base);
+  background-color: #1C1A16;
 }
 
-.hero__img {
+.hero__video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
-    object-fit: contain;
-  background-color: #1C1A16;
-  transform: scale(1.06);
-  transition: transform 12s var(--ease-out);
+  object-fit: contain;
+  object-position: center center;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-out);
 }
 
-.hero.is-loaded .hero__img {
-  transform: scale(1);
+.hero.is-loaded .hero__video {
+  opacity: 1;
 }
 
 .hero__overlay {
