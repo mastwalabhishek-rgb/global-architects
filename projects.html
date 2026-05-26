@@ -419,6 +419,31 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
+    .project-card--isometric {
+      border: 1px solid rgba(210, 171, 111, 0.45);
+      background:
+        linear-gradient(145deg, rgba(210, 171, 111, 0.14), transparent 42%),
+        var(--bg-secondary);
+    }
+
+    .project-card--isometric .project-card__media {
+      background-color: #2f2d2b;
+    }
+
+    .project-card--isometric .project-card__overlay {
+      background: linear-gradient(
+        to top,
+        rgba(12, 10, 8, 0.78) 0%,
+        rgba(12, 10, 8, 0.32) 48%,
+        rgba(12, 10, 8, 0.04) 78%
+      );
+    }
+
+    .project-card--isometric .project-card__type,
+    .project-card--isometric .project-card__material {
+      color: #f0c783;
+    }
+
     /* ── Load More ── */
     .load-more {
       text-align: center;
@@ -658,12 +683,11 @@
 
         <!-- Filter chips -->
         <div class="filter-chips" role="group" aria-label="Filter by project type">
-          <button class="filter-chip is-active" data-filter="all"         type="button" aria-pressed="true">All</button>
+          <button class="filter-chip is-active" data-filter="all"          type="button" aria-pressed="true">All</button>
           <button class="filter-chip"           data-filter="residential"  type="button" aria-pressed="false">Residential</button>
           <button class="filter-chip"           data-filter="commercial"   type="button" aria-pressed="false">Commercial</button>
-          <button class="filter-chip"           data-filter="cultural"     type="button" aria-pressed="false">Cultural</button>
-          <button class="filter-chip"           data-filter="mixed"        type="button" aria-pressed="false">Mixed-Use</button>
           <button class="filter-chip"           data-filter="interior"     type="button" aria-pressed="false">Interior</button>
+          <button class="filter-chip"           data-filter="isometric"    type="button" aria-pressed="false">Isometric Floor Plan</button>
         </div>
 
         <!-- Results count -->
@@ -844,46 +868,46 @@
           </article>
 
           <!-- Project 08 -->
-          <article class="project-card" data-material="wood" data-type="residential" data-location="mussoorie" data-name="the ridge house" role="listitem">
-            <a href="project-detail.html?project=ridge-house" class="project-card__link" aria-label="View The Ridge House — Residential project in Mussoorie, 2023">
+          <article class="project-card project-card--isometric" data-material="wood" data-type="isometric" data-location="dehradun" data-name="1300 sq ft family isometric home plan" role="listitem">
+            <a href="project-detail.html?project=1300-sqft-family-isometric-plan" class="project-card__link" aria-label="View 1300 Sq Ft Family Home Plan project">
               <div class="project-card__media">
-                <img src="assets/images/hero-building.jpg" alt="The Ridge House — Mountain home in Mussoorie with panoramic Himalayan views" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <img src="assets/images/iso2.1.png" alt="1300 sq ft family isometric home plan showing bedrooms, lounge, dining, kitchen, washrooms and central stair core" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
                 <div class="project-card__texture" aria-hidden="true"></div>
                 <div class="project-card__overlay" aria-hidden="true"></div>
               </div>
               <div class="project-card__info">
                 <div class="project-card__meta">
-                  <span class="project-card__type">Residential</span>
+                  <span class="project-card__type">Isometric Floor Plan</span>
                   <span class="project-card__separator" aria-hidden="true">·</span>
-                  <span class="project-card__location">Mussoorie</span>
+                  <span class="project-card__location">Dehradun</span>
                   <span class="project-card__separator" aria-hidden="true">·</span>
-                  <span class="project-card__year">2023</span>
+                  <span class="project-card__year">2026</span>
                 </div>
-                <h3 class="project-card__title">The Ridge House</h3>
-                <p class="project-card__material" aria-hidden="true">Timber · Slate · Glass</p>
+                <h3 class="project-card__title">1300 Sq Ft Family Home Plan</h3>
+                <p class="project-card__material" aria-hidden="true">1300 Sq.Ft · Bedrooms · Kitchen · Dining</p>
                 <span class="project-card__arrow" aria-hidden="true">→</span>
               </div>
             </a>
           </article>
 
           <!-- Project 09 -->
-          <article class="project-card" data-material="concrete" data-type="cultural" data-location="chandigarh" data-name="city arts centre" role="listitem">
-            <a href="project-detail.html?project=city-arts-centre" class="project-card__link" aria-label="View City Arts Centre — Cultural project in Chandigarh, 2024">
+          <article class="project-card project-card--isometric" data-material="wood" data-type="isometric" data-location="delhi" data-name="compact 600 sq ft isometric home plan" role="listitem">
+            <a href="project-detail.html?project=compact-600-sqft-isometric-plan" class="project-card__link" aria-label="View Compact 600 Sq Ft Isometric Home Plan project">
               <div class="project-card__media">
-                <img src="assets/images/about-hero.png" alt="City Arts Centre — Cultural institution in Chandigarh with raw concrete aesthetic" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <img src="assets/images/iso1.4.png" alt="Compact 600 sq ft isometric home plan showing kitchen, dining, lounge, washroom, staircase and entry parking pocket" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
                 <div class="project-card__texture" aria-hidden="true"></div>
                 <div class="project-card__overlay" aria-hidden="true"></div>
               </div>
               <div class="project-card__info">
                 <div class="project-card__meta">
-                  <span class="project-card__type">Cultural</span>
+                  <span class="project-card__type">Isometric Floor Plan</span>
                   <span class="project-card__separator" aria-hidden="true">·</span>
-                  <span class="project-card__location">Chandigarh</span>
+                  <span class="project-card__location">600 Sq.Ft</span>
                   <span class="project-card__separator" aria-hidden="true">·</span>
-                  <span class="project-card__year">2024</span>
+                  <span class="project-card__year">2025</span>
                 </div>
-                <h3 class="project-card__title">City Arts Centre</h3>
-                <p class="project-card__material" aria-hidden="true">Concrete · Brick · Steel</p>
+                <h3 class="project-card__title">Compact 600 Sq Ft Home Plan</h3>
+                <p class="project-card__material" aria-hidden="true">Kitchen · Dining · Lounge · Bedrooms</p>
                 <span class="project-card__arrow" aria-hidden="true">→</span>
               </div>
             </a>
@@ -913,33 +937,10 @@
           </article>
 
           <!-- Project 11 -->
-          <article class="project-card" data-material="glass" data-type="interior" data-location="mumbai" data-name="marine view residence" role="listitem">
-            <a href="project-detail.html?project=marine-view-residence" class="project-card__link" aria-label="View Marine View Residence — Interior project in Mumbai, 2023">
+          <article class="project-card" data-material="wood" data-type="residential" data-location="dehradun" data-name="the verdant jaali residence" role="listitem">
+            <a href="project-detail.html?project=verdant-jaali-residence" class="project-card__link" aria-label="View The Verdant Jaali Residence — Residential project in Dehradun, 2021">
               <div class="project-card__media">
-                <img src="assets/images/project-02.jpg" alt="Marine View Residence — Sea-facing luxury interior in Mumbai with panoramic glass" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
-                <div class="project-card__texture" aria-hidden="true"></div>
-                <div class="project-card__overlay" aria-hidden="true"></div>
-              </div>
-              <div class="project-card__info">
-                <div class="project-card__meta">
-                  <span class="project-card__type">Interior</span>
-                  <span class="project-card__separator" aria-hidden="true">·</span>
-                  <span class="project-card__location">Mumbai</span>
-                  <span class="project-card__separator" aria-hidden="true">·</span>
-                  <span class="project-card__year">2023</span>
-                </div>
-                <h3 class="project-card__title">Marine View Residence</h3>
-                <p class="project-card__material" aria-hidden="true">Glass · Marble · Teak</p>
-                <span class="project-card__arrow" aria-hidden="true">→</span>
-              </div>
-            </a>
-          </article>
-
-          <!-- Project 12 -->
-          <article class="project-card" data-material="wood" data-type="residential" data-location="rishikesh" data-name="river pavilion" role="listitem">
-            <a href="project-detail.html?project=river-pavilion" class="project-card__link" aria-label="View River Pavilion — Residential project in Rishikesh, 2024">
-              <div class="project-card__media">
-                <img src="assets/images/about-hero.png" alt="River Pavilion — Riverside retreat in Rishikesh with timber deck and Ganga views" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <img src="assets/images/project6.1.jpeg" alt="The Verdant Jaali Residence — Dehradun residence with teal volumes, timber bands, white jaali screens, stone boundary and vertical green wall" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
                 <div class="project-card__texture" aria-hidden="true"></div>
                 <div class="project-card__overlay" aria-hidden="true"></div>
               </div>
@@ -947,12 +948,35 @@
                 <div class="project-card__meta">
                   <span class="project-card__type">Residential</span>
                   <span class="project-card__separator" aria-hidden="true">·</span>
-                  <span class="project-card__location">Rishikesh</span>
+                  <span class="project-card__location">Dehradun</span>
                   <span class="project-card__separator" aria-hidden="true">·</span>
-                  <span class="project-card__year">2024</span>
+                  <span class="project-card__year">2021</span>
                 </div>
-                <h3 class="project-card__title">River Pavilion</h3>
-                <p class="project-card__material" aria-hidden="true">Timber · Bamboo · Stone</p>
+                <h3 class="project-card__title">The Verdant Jaali Residence</h3>
+                <p class="project-card__material" aria-hidden="true">Timber · Jaali · Stone · Green Wall</p>
+                <span class="project-card__arrow" aria-hidden="true">→</span>
+              </div>
+            </a>
+          </article>
+
+          <!-- Project 12 -->
+          <article class="project-card" data-material="stone" data-type="residential" data-location="najibabad" data-name="the stone veil residence" role="listitem">
+            <a href="project-detail.html?project=stone-veil-residence" class="project-card__link" aria-label="View The Stone Veil Residence — Residential project in Najibabad, 2022">
+              <div class="project-card__media">
+                <img src="assets/images/project7.4.jpeg" alt="The Stone Veil Residence — Najibabad home with pale stone facade, timber balcony, black fins, white screens and planted terrace" class="project-card__img" loading="lazy" decoding="async" width="800" height="600"/>
+                <div class="project-card__texture" aria-hidden="true"></div>
+                <div class="project-card__overlay" aria-hidden="true"></div>
+              </div>
+              <div class="project-card__info">
+                <div class="project-card__meta">
+                  <span class="project-card__type">Residential</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__location">Najibabad</span>
+                  <span class="project-card__separator" aria-hidden="true">·</span>
+                  <span class="project-card__year">2022</span>
+                </div>
+                <h3 class="project-card__title">The Stone Veil Residence</h3>
+                <p class="project-card__material" aria-hidden="true">Stone · Timber · Jaali · Greenery</p>
                 <span class="project-card__arrow" aria-hidden="true">→</span>
               </div>
             </a>
@@ -1045,10 +1069,11 @@
 
       cards.forEach(card => {
         const type     = card.dataset.type     || '';
+        const types    = type.split(/\s+/);
         const name     = card.dataset.name     || '';
         const location = card.dataset.location || '';
 
-        const matchesFilter = activeFilter === 'all' || type === activeFilter;
+        const matchesFilter = activeFilter === 'all' || types.includes(activeFilter);
         const matchesSearch = searchQuery === '' ||
           name.includes(searchQuery) ||
           location.includes(searchQuery) ||
