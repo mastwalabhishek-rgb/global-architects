@@ -23,11 +23,11 @@
   <link rel="stylesheet" href="css/responsive.css" />
 
   <style>
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-       PROJECT DETAIL â€” Scrollytelling Styles
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    /* ══════════════════════════════════════════
+       PROJECT DETAIL — Scrollytelling Styles
+    ══════════════════════════════════════════ */
 
-    /* â”€â”€ Chapter base â”€â”€ */
+    /* ── Chapter base ── */
     .chapter {
       min-height: 100vh;
       display: flex;
@@ -36,7 +36,7 @@
       overflow: hidden;
     }
 
-    /* â”€â”€ Chapter 0: HERO â”€â”€ */
+    /* ── Chapter 0: HERO ── */
     .chapter-hero {
       position: relative;
       min-height: 100vh;
@@ -182,7 +182,7 @@
       color: rgba(255,255,255,0.4);
     }
 
-    /* â”€â”€ Chapter Label â”€â”€ */
+    /* ── Chapter Label ── */
     .chapter-label {
       font-family: var(--font-mono);
       font-size: var(--text-label);
@@ -201,7 +201,7 @@
       flex-shrink: 0;
     }
 
-    /* â”€â”€ Chapter 1: THE BRIEF â”€â”€ */
+    /* ── Chapter 1: THE BRIEF ── */
     .chapter-brief {
       background-color: var(--bg-secondary);
       padding: var(--section-pad) 0;
@@ -257,7 +257,7 @@
       color: var(--text-secondary);
     }
 
-    /* â”€â”€ Chapter 2: THE SKETCH â”€â”€ */
+    /* ── Chapter 2: THE SKETCH ── */
     .chapter-sketch {
       background-color: var(--bg-primary);
       padding: var(--section-pad) 0;
@@ -312,7 +312,7 @@
       letter-spacing: .08em;
     }
 
-    /* â”€â”€ Chapter 3: MATERIALS â”€â”€ */
+    /* ── Chapter 3: MATERIALS ── */
     .chapter-materials {
       background-color: var(--bg-secondary);
       padding: var(--section-pad) 0;
@@ -376,7 +376,7 @@
       margin-top: var(--space-3);
     }
 
-    /* â”€â”€ Chapter 4: THE BUILD â€” Horizontal Scroll â”€â”€ */
+    /* ── Chapter 4: THE BUILD — Horizontal Scroll ── */
     .chapter-build {
       background-color: var(--bg-primary);
       padding: var(--section-pad) 0;
@@ -457,7 +457,7 @@
     }
     .build-scroll-hint__arrow { animation: bounceX 1.4s ease-in-out infinite; }
 
-    /* â”€â”€ Chapter 5: THE SPACE â€” Curtain Wipe â”€â”€ */
+    /* ── Chapter 5: THE SPACE — Curtain Wipe ── */
     .chapter-space {
       background-color: var(--bg-inverse);
       padding: var(--section-pad) 0;
@@ -507,7 +507,7 @@
       line-height: var(--lh-relaxed);
     }
 
-    /* â”€â”€ Chapter 6: LIVING IN IT â”€â”€ */
+    /* ── Chapter 6: LIVING IN IT ── */
     .chapter-living {
       background-color: var(--bg-primary);
       padding: var(--section-pad) 0;
@@ -552,7 +552,7 @@
       color: var(--text-secondary);
     }
 
-    /* â”€â”€ Chapter END: Related + CTA â”€â”€ */
+    /* ── Chapter END: Related + CTA ── */
     .chapter-end {
       background-color: var(--bg-secondary);
       padding: var(--section-pad) 0;
@@ -594,7 +594,7 @@
       gap: var(--space-4);
     }
 
-    /* â”€â”€ Progress Bar â”€â”€ */
+    /* ── Progress Bar ── */
     .reading-progress {
       position: fixed;
       top: 0;
@@ -607,7 +607,7 @@
       transition: transform .1s linear;
     }
 
-    /* â”€â”€ Responsive â”€â”€ */
+    /* ── Responsive ── */
     @media screen and (max-width: 1024px) {
       .related-grid { grid-template-columns: repeat(2,1fr); }
       .materials-grid { grid-template-columns: repeat(2,1fr); }
@@ -652,7 +652,7 @@
   <!-- Navigation -->
   <header class="nav is-visible is-scrolled" id="mainNav" role="banner">
     <nav class="nav__inner" aria-label="Main navigation">
-      <a href="index.html" class="nav__logo" aria-label="Global Architects â€” Home">
+      <a href="index.html" class="nav__logo" aria-label="Global Architects — Home">
         <svg class="nav__logo-svg" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M8 16 A8 8 0 1 1 16 8 L16 16 L10 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
           <text x="24" y="21" font-family="'DM Sans Variable', sans-serif" font-size="13" font-weight="500" fill="currentColor" letter-spacing="0.05em">GLOBAL</text>
@@ -692,7 +692,7 @@
       <span class="mobile-menu__line"></span>
       <span class="mobile-menu__line"></span>
     </div>
-    <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close navigation menu" type="button"><span aria-hidden="true">âœ•</span></button>
+    <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close navigation menu" type="button"><span aria-hidden="true">✕</span></button>
     <nav aria-label="Mobile navigation">
       <ul class="mobile-menu__links" role="list">
         <li class="mobile-menu__item"><a href="index.html"    class="mobile-menu__link"><span class="mobile-menu__num">01</span>Home</a></li>
@@ -709,9 +709,9 @@
 
   <main id="mainContent" role="main">
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-         CHAPTER 0 â€” HERO
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- ══════════════════════════════════
+         CHAPTER 0 — HERO
+    ══════════════════════════════════ -->
     <section class="chapter-hero" aria-labelledby="projectTitle">
       <div class="chapter-hero__media">
         <img src="assets/images/project1.2.jpeg"
@@ -723,14 +723,14 @@
 
       <div class="chapter-hero__content">
         <a href="projects.html" class="chapter-hero__back" aria-label="Back to all projects">
-          â† All Projects
+          ← All Projects
         </a>
 
         <p class="chapter-hero__meta" id="projectMeta">
           <span>Residential</span>
-          <span class="chapter-hero__meta-sep" aria-hidden="true">Â·</span>
+          <span class="chapter-hero__meta-sep" aria-hidden="true">·</span>
           <span>Dehradun, India</span>
-          <span class="chapter-hero__meta-sep" aria-hidden="true">Â·</span>
+          <span class="chapter-hero__meta-sep" aria-hidden="true">·</span>
           <span>2024</span>
         </p>
 
@@ -751,9 +751,9 @@
     </section>
 
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-         CHAPTER 1 â€” THE BRIEF
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- ══════════════════════════════════
+         CHAPTER 1 — THE BRIEF
+    ══════════════════════════════════ -->
     <section class="chapter-brief" aria-labelledby="briefHeading">
       <div class="chapter-brief__container">
 
@@ -787,7 +787,7 @@
             </div>
             <div class="spec-item reveal reveal--left reveal--delay-4">
               <dt class="spec-label">Materials</dt>
-              <dd class="spec-value">Stone Â· Timber Â· Glass Â· Jaali</dd>
+              <dd class="spec-value">Stone · Timber · Glass · Jaali</dd>
             </div>
             <div class="spec-item reveal reveal--left reveal--delay-5">
               <dt class="spec-label">Status</dt>
@@ -840,7 +840,7 @@
               it warmth, and the terraces give the family daily contact with the sky."
             </p>
             <footer style="margin-top:var(--space-4);font-family:var(--font-mono);font-size:var(--text-label);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-primary);">
-              â€” Ar. Shailesh Kumar
+              Ar. Shailesh Kumar
             </footer>
           </blockquote>
         </div>
@@ -849,9 +849,9 @@
     </section>
 
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-         CHAPTER 2 â€” THE SKETCH
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- ══════════════════════════════════
+         CHAPTER 2 — THE SKETCH
+    ══════════════════════════════════ -->
     <section class="chapter-sketch" aria-labelledby="sketchHeading">
       <div class="chapter-sketch__container">
 
@@ -928,8 +928,8 @@
             <line class="sketch-line" x1="750" y1="335" x2="750" y2="345" style="opacity:.3"/>
 
             <!-- Labels -->
-            <text class="sketch-text" x="450" y="358" text-anchor="middle">24.0 m â€” East Elevation</text>
-            <text class="sketch-text" x="450" y="14"  text-anchor="middle">Morning Sun â†“</text>
+            <text class="sketch-text" x="450" y="358" text-anchor="middle">24.0 m — East Elevation</text>
+            <text class="sketch-text" x="450" y="14"  text-anchor="middle">Morning Sun ↓</text>
             <text class="sketch-text" x="450" y="240" text-anchor="middle" font-size="9">Light Well</text>
             <text class="sketch-text" x="95"  y="370" text-anchor="middle">Neem</text>
           </svg>
@@ -939,9 +939,9 @@
     </section>
 
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-         CHAPTER 3 â€” MATERIALS
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- ══════════════════════════════════
+         CHAPTER 3 — MATERIALS
+    ══════════════════════════════════ -->
     <section class="chapter-materials" aria-labelledby="materialsHeading">
       <div class="chapter-materials__container">
 
@@ -997,9 +997,9 @@
     </section>
 
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-         CHAPTER 4 â€” THE BUILD
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- ══════════════════════════════════
+         CHAPTER 4 — THE BUILD
+    ══════════════════════════════════ -->
     <section class="chapter-build" aria-labelledby="buildHeading">
       <div class="chapter-build__container">
         <p class="chapter-label reveal reveal--up">
@@ -1017,7 +1017,7 @@
       </div>
 
       <p class="build-scroll-hint" aria-hidden="true">
-        <span class="build-scroll-hint__arrow">â†’</span>
+        <span class="build-scroll-hint__arrow">→</span>
         Drag to explore the project views
       </p>
 
@@ -1053,9 +1053,9 @@
     </section>
 
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-         CHAPTER 5 â€” THE SPACE
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- ══════════════════════════════════
+         CHAPTER 5 — THE SPACE
+    ══════════════════════════════════ -->
     <section class="chapter-space" aria-labelledby="spaceHeading">
       <div class="chapter-space__container">
 
@@ -1080,9 +1080,9 @@
     </section>
 
 
-    <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-         CHAPTER END â€” Related + CTA
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+    <!-- ══════════════════════════════════
+         CHAPTER END — Related + CTA
+    ══════════════════════════════════ -->
     <section class="chapter-end" aria-label="Project enquiry">
       <div class="chapter-end__container">
 
@@ -1091,7 +1091,7 @@
           <p class="chapter-end__cta-q">Have a project in mind?</p>
           <h2 class="chapter-end__cta-heading">Let's Build Something<br />Extraordinary</h2>
           <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
-            <a href="contact.html" class="btn btn--primary btn--large">Start a Project â†’</a>
+            <a href="contact.html" class="btn btn--primary btn--large">Start a Project →</a>
             <a href="projects.html" class="btn btn--outline btn--large">View All Projects</a>
           </div>
         </div>
@@ -1105,7 +1105,7 @@
   <footer class="footer" role="contentinfo">
     <div class="footer__container">
       <div class="footer__top">
-        <a href="index.html" class="footer__logo" aria-label="Global Architects â€” Home">
+        <a href="index.html" class="footer__logo" aria-label="Global Architects — Home">
           <svg class="footer__logo-svg" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M8 16 A8 8 0 1 1 16 8 L16 16 L10 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
             <text x="24" y="21" font-family="'DM Sans Variable', sans-serif" font-size="13" font-weight="500" fill="currentColor" letter-spacing="0.05em">GLOBAL</text>
@@ -1122,12 +1122,12 @@
       <div class="footer__bottom">
         <address class="footer__address">
           <span class="footer__firm">Global Architects</span>
-          <span class="footer__sep" aria-hidden="true">Â·</span>
+          <span class="footer__sep" aria-hidden="true">·</span>
           <span class="footer__location">Dehradun, Uttarakhand, India</span>
-          <span class="footer__sep" aria-hidden="true">Â·</span>
+          <span class="footer__sep" aria-hidden="true">·</span>
           <a href="mailto:hello@globalarchitects.in" class="footer__email">hello@globalarchitects.in</a>
         </address>
-        <p class="footer__copy"><small>Â© <span id="currentYear"></span> Global Architects. All rights reserved.</small></p>
+        <p class="footer__copy"><small>© <span id="currentYear"></span> Global Architects. All rights reserved.</small></p>
       </div>
     </div>
   </footer>
@@ -1151,7 +1151,7 @@
         image: 'assets/images/project1.2.jpeg',
         imageAlt: 'The Courtyard Terrace House - contemporary Dehradun home with stone cladding, timber soffits and glass terraces',
         tagline: 'A Dehradun residence composed as layered terraces - grey stone, white planes, warm timber ceilings, glass edges and planted roof decks working as one calm family home.',
-        specs: ['Private Residence', 'Dehradun, India', '2000 sq.ft', '3800 sq.ft', '2024', 'Stone Â· Timber Â· Glass Â· Jaali', 'Completed', 'Ar. Shailesh Kumar'],
+        specs: ['Private Residence', 'Dehradun, India', '2000 sq.ft', '3800 sq.ft', '2024', 'Stone · Timber · Glass · Jaali', 'Completed', 'Ar. Shailesh Kumar'],
         briefTitle: 'Layered Terraces<br />For Dehradun Living',
         brief: [
           'The project reads as a contemporary hillside-family home translated for the urban edge of Dehradun. Its strongest move is the stacking of broad horizontal slabs that shade the rooms below while creating usable terraces above.',
@@ -1182,7 +1182,7 @@
         imageAlt: 'The Brick Matrix IT Office - Dehradun IT company office facade with red brick lattice, curved frame and glass curtain wall',
         imagePosition: 'center top',
         tagline: 'A compact IT company office in Dehradun shaped as a luminous brand facade - red brick jaali, curved frame, glass curtain wall and warm night lighting.',
-        specs: ['IT Company Office', 'Dehradun, India', '180 sq. mt.', '6000 sq.ft', '2024', 'Brick Jaali Â· Glass Â· Wood Â· Metal Gate', 'Concept', 'Ar. Shailesh Kumar'],
+        specs: ['IT Company Office', 'Dehradun, India', '180 sq. mt.', '6000 sq.ft', '2024', 'Brick Jaali · Glass · Wood · Metal Gate', 'Concept', 'Ar. Shailesh Kumar'],
         briefTitle: 'An IT Office Facade<br />for a Narrow Urban Plot',
         brief: [
           'This Dehradun commercial project is designed for an IT company that needed a tall, memorable street presence on a compact plot. Instead of treating the facade as a flat signboard, the building turns the entire elevation into a layered brand surface.',
@@ -1213,7 +1213,7 @@
         imageAlt: 'Contemporary Lounge Interior - Dehradun living room with blue sectional seating, wood ceiling, cove lighting and marble tables',
         tagline: 'A refined Dehradun lounge interior shaped with deep teal seating, a warm wooden ceiling, soft cove lighting, marble tables, textured wall panels and a calm TV wall.',
         specLabels: ['Project Type', 'Location', 'Interior Scope', 'Primary Space', 'Year', 'Palette', 'Status', 'Principal'],
-        specs: ['Interior Design', 'Dehradun, India', 'Living Lounge', 'Formal Seating + TV Wall', '2025', 'Teal Â· Wood Â· Marble Â· Warm Light', 'Concept', 'Ar. Shailesh Kumar'],
+        specs: ['Interior Design', 'Dehradun, India', 'Living Lounge', 'Formal Seating + TV Wall', '2025', 'Teal · Wood · Marble · Warm Light', 'Concept', 'Ar. Shailesh Kumar'],
         briefTitle: 'A Calm Lounge<br />Built Around Texture',
         brief: [
           'The lounge is planned as a generous formal seating room with an L-shaped sectional, individual accent chairs and layered marble coffee tables. The layout keeps conversation, TV viewing and circulation balanced within one compact interior.',
@@ -1246,7 +1246,7 @@
       location: `${location}, India`,
       year,
       image,
-      imageAlt: `${title} â€” ${type.toLowerCase()} project in ${location} by Global Architects`,
+      imageAlt: `${title} — ${type.toLowerCase()} project in ${location} by Global Architects`,
       tagline: `${title} is a ${type.toLowerCase()} project in ${location}, shaped around context, material clarity and everyday experience.`,
       specs: [type, `${location}, India`, 'Portfolio project', '-', year, materials, status, 'Ar. Shailesh Kumar'],
       briefTitle: `${title}<br />Project Story`,
@@ -1259,7 +1259,7 @@
       livingTitle: `Life Inside ${title}`,
       living: [
         'The experience inside is planned around natural movement, useful thresholds and spaces that stay comfortable through the day.',
-        'The project reflects Global Architectsâ€™ focus on grounded, durable and context-led design.'
+        'The project reflects Global Architects’ focus on grounded, durable and context-led design.'
       ]
     });
 
@@ -1272,7 +1272,7 @@
         image: 'assets/images/project3.1.jpeg',
         imageAlt: 'The Jaali Terrace House - Dehradun residence with patterned jaali tower, timber cladding, glass balconies and terrace planters',
         tagline: 'A 2025 Dehradun residence shaped by a tall patterned jaali tower, warm timber bands, grey textured walls, deep white terraces and planted outdoor rooms.',
-        specs: ['Private Residence', 'Dehradun, India', '2200 sq.ft', '3700 sq.ft', '2025', 'Jaali Â· Timber Â· Glass Â· Stone', 'Completed', 'Ar. Shailesh Kumar'],
+        specs: ['Private Residence', 'Dehradun, India', '2200 sq.ft', '3700 sq.ft', '2025', 'Jaali · Timber · Glass · Stone', 'Completed', 'Ar. Shailesh Kumar'],
         briefTitle: 'A Patterned Urban Home<br />For Dehradun',
         brief: [
           'The house is organized as a strong street-facing composition: a tall service-and-stair volume rises on one side, wrapped by a delicate geometric jaali that gives privacy, shade and a memorable identity to the elevation.',
@@ -1305,7 +1305,7 @@
         image: 'assets/images/project4.1.png',
         imageAlt: 'Neoclassical Residence Bareilly - white residential facade with columns, triangular pediments, balustrades and decorative wall panel',
         tagline: 'A 2023 Bareilly residence composed with neoclassical columns, crisp white bands, grey wall planes, red pitched roof accents, balcony balustrades and a crafted entrance gate.',
-        specs: ['Private Residence', 'Bareilly, Uttar Pradesh', '2560 sq.ft', '4250 sq.ft', '2023', 'Stucco Â· Stone Â· Metal Â· Glass', 'Completed', 'Ar. Shailesh Kumar'],
+        specs: ['Private Residence', 'Bareilly, Uttar Pradesh', '2560 sq.ft', '4250 sq.ft', '2023', 'Stucco · Stone · Metal · Glass', 'Completed', 'Ar. Shailesh Kumar'],
         briefTitle: 'A Neoclassical Home<br />For Bareilly',
         brief: [
           'The residence is designed as a formal family home with a symmetrical street presence. Tall paired columns, layered cornices and triangular pediments give the elevation a classical rhythm without making the house feel visually heavy.',
@@ -1372,7 +1372,7 @@
         imageAlt: 'Hotel Exterior Design Concept - Dehradun hotel facade with Italian stone, honeycomb feature wall, glass lattice and palm-lined entrance',
         imagePosition: 'center center',
         tagline: 'A Dehradun hotel facade designed around Italian stone, honeycomb identity panels, screened guest-room windows, planted roof edges and a palm-lined arrival court.',
-        specs: ['Hotel', 'Dehradun, India', '2,304 sq.m', '6,039 sq.m', '2018', 'Italian Stone Â· Glass Â· Metal Â· Jaali', 'Completed', 'Ar. Shailesh Kumar'],
+        specs: ['Hotel', 'Dehradun, India', '2,304 sq.m', '6,039 sq.m', '2018', 'Italian Stone · Glass · Metal · Jaali', 'Completed', 'Ar. Shailesh Kumar'],
         briefTitle: 'A Hotel Facade<br />with a Garden Arrival',
         brief: [
           'The project reads first as a hospitality frontage: a tall Italian stone face carries the hotel identity, while white honeycomb motifs create a memorable graphic language across the corner and entrance elevation.',
@@ -1466,7 +1466,7 @@
         imageAlt: 'Bedroom Lounge Interior - Dehradun bedroom with soft beige wall panels, cove lighting, lounge seating and treadmill zone',
         tagline: 'A compact Dehradun bedroom interior designed as a complete private suite with warm cove lighting, soft wall mouldings, lounge seating, TV storage, wardrobe panels and a treadmill corner.',
         specLabels: ['Project Type', 'Location', 'Interior Scope', 'Primary Space', 'Year', 'Palette', 'Status', 'Principal'],
-        specs: ['Interior Design', 'Dehradun, India', 'Bedroom Suite', 'Bed + Lounge + TV + Fitness Corner', '2025', 'Beige Â· Wood Â· Sage Â· Warm Light', 'Completed', 'Ar. Shailesh Kumar'],
+        specs: ['Interior Design', 'Dehradun, India', 'Bedroom Suite', 'Bed + Lounge + TV + Fitness Corner', '2025', 'Beige · Wood · Sage · Warm Light', 'Completed', 'Ar. Shailesh Kumar'],
         briefTitle: 'A Bedroom Suite<br />With Lounge Comfort',
         brief: [
           'The room is designed as more than a sleeping space. It combines a bed zone, compact sofa lounge, TV wall, wardrobe storage and treadmill corner into one calm private suite.',
@@ -1565,9 +1565,9 @@
     const requestedProject = new URLSearchParams(window.location.search).get('project') || 'terraced-stone-residence';
     const activeProject = projectDetails[requestedProject] || projectDetails['terraced-stone-residence'];
 
-    document.title = `${activeProject.title} â€” Global Architects | Dehradun`;
-    document.querySelector('meta[name="description"]')?.setAttribute('content', `${activeProject.title} â€” ${activeProject.type} project in ${activeProject.location} by Global Architects.`);
-    document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${activeProject.title} â€” Global Architects`);
+    document.title = `${activeProject.title} — Global Architects | Dehradun`;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', `${activeProject.title} — ${activeProject.type} project in ${activeProject.location} by Global Architects.`);
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${activeProject.title} — Global Architects`);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', activeProject.tagline);
     document.querySelector('meta[property="og:image"]')?.setAttribute('content', activeProject.image);
 
@@ -1582,9 +1582,9 @@
     if (meta) {
       meta.innerHTML = `
         <span>${activeProject.type}</span>
-        <span class="chapter-hero__meta-sep" aria-hidden="true">Â·</span>
+        <span class="chapter-hero__meta-sep" aria-hidden="true">·</span>
         <span>${activeProject.location}</span>
-        <span class="chapter-hero__meta-sep" aria-hidden="true">Â·</span>
+        <span class="chapter-hero__meta-sep" aria-hidden="true">·</span>
         <span>${activeProject.year}</span>
       `;
     }
@@ -1667,7 +1667,7 @@
     if (designReading && activeProject.designReading) designReading.textContent = activeProject.designReading;
     document.body.classList.remove('js-loading');
 
-    /* â”€â”€ Hero animations â”€â”€ */
+    /* ── Hero animations ── */
     setTimeout(() => {
       const hero = document.querySelector('.chapter-hero');
       if(hero) hero.classList.add('is-loaded');
@@ -1676,7 +1676,7 @@
       document.getElementById('projectTagline')?.classList.add('is-visible');
     }, 200);
 
-    /* â”€â”€ Reading progress bar â”€â”€ */
+    /* ── Reading progress bar ── */
     const progressBar = document.getElementById('readingProgress');
     if(progressBar) {
       window.addEventListener('scroll', () => {
@@ -1688,7 +1688,7 @@
       }, { passive: true });
     }
 
-    /* â”€â”€ IntersectionObserver for chapter reveals â”€â”€ */
+    /* ── IntersectionObserver for chapter reveals ── */
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(!entry.isIntersecting) return;
@@ -1696,13 +1696,13 @@
 
         el.classList.add('is-revealed', 'is-visible');
 
-        /* Sketch canvas â€” trigger SVG draw */
+        /* Sketch canvas — trigger SVG draw */
         if(el.id === 'sketchCanvas') {
           el.classList.add('is-visible');
           el.querySelector('.chapter-sketch__svg')?.classList.add('is-visible');
         }
 
-        /* Space reveal â€” curtain wipe */
+        /* Space reveal — curtain wipe */
         if(el.id === 'spaceReveal') {
           el.classList.add('is-visible');
         }
@@ -1719,7 +1719,7 @@
 
     document.querySelectorAll('.reveal, #sketchCanvas, #spaceReveal').forEach(el => io.observe(el));
 
-    /* â”€â”€ Drag to scroll build gallery â”€â”€ */
+    /* ── Drag to scroll build gallery ── */
     const scroll = document.getElementById('buildScroll');
     if(scroll) {
       let isDown = false, startX, scrollLeft;
@@ -1740,7 +1740,7 @@
       });
     }
 
-    /* â”€â”€ Year â”€â”€ */
+    /* ── Year ── */
     document.getElementById('currentYear').textContent = new Date().getFullYear();
   });
   </script>
