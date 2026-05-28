@@ -297,6 +297,88 @@ const HeroMedia = (() => {
 
 
 /* ═══════════════════════════════════════════════════════════════
+   7. HERO SOUND TOGGLE
+   Lets users opt in to hero video audio
+═══════════════════════════════════════════════════════════════ */
+
+const HeroSound = (() => {
+
+  let wantsSound = false;
+  let heroInView = true;
+
+  function init() {
+    const hero      = document.querySelector('.hero');
+    const heroVideo = document.querySelector('.hero__video');
+    const toggle    = document.getElementById('heroSoundToggle');
+    const label     = toggle?.querySelector('.hero__sound-text');
+
+    if (!hero || !heroVideo || !toggle) return;
+
+    heroVideo.muted = true;
+    heroVideo.volume = 0.72;
+
+    const setButtonState = (isSoundOn) => {
+      toggle.classList.toggle('is-active', isSoundOn);
+      toggle.setAttribute('aria-pressed', String(isSoundOn));
+      toggle.setAttribute(
+        'aria-label',
+        isSoundOn ? 'Turn hero video sound off' : 'Turn hero video sound on'
+      );
+      if (label) label.textContent = isSoundOn ? 'Sound Off' : 'Sound On';
+    };
+
+    const applySoundState = async () => {
+      const shouldPlaySound = wantsSound && heroInView;
+      heroVideo.muted = !shouldPlaySound;
+      setButtonState(shouldPlaySound);
+
+      if (shouldPlaySound && heroVideo.paused) {
+        try {
+          await heroVideo.play();
+        } catch (error) {
+          wantsSound = false;
+          heroVideo.muted = true;
+          setButtonState(false);
+        }
+      }
+    };
+
+    toggle.addEventListener('click', () => {
+      wantsSound = !wantsSound;
+      applySoundState();
+    });
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          heroInView = entry.isIntersecting && entry.intersectionRatio > 0.35;
+          applySoundState();
+        });
+      }, { threshold: [0, 0.35, 0.7] });
+
+      observer.observe(hero);
+    } else {
+      window.addEventListener('scroll', () => {
+        const rect = hero.getBoundingClientRect();
+        heroInView = rect.bottom > window.innerHeight * 0.35 &&
+                     rect.top < window.innerHeight * 0.65;
+        applySoundState();
+      }, { passive: true });
+    }
+
+    heroVideo.addEventListener('pause', () => {
+      if (wantsSound && heroInView) applySoundState();
+    });
+
+    setButtonState(false);
+  }
+
+  return { init };
+
+})();
+
+
+/* ═══════════════════════════════════════════════════════════════
    7. MARQUEE PAUSE ON REDUCED MOTION
 ═══════════════════════════════════════════════════════════════ */
 
@@ -490,6 +572,7 @@ window.addEventListener('unhandledrejection', (e) => {
 function initApp() {
 
   try { HeroMedia.init();        } catch(e) { console.warn('HeroMedia:', e); }
+  try { HeroSound.init();        } catch(e) { console.warn('HeroSound:', e); }
   try { NavActive.init();        } catch(e) { console.warn('NavActive:', e); }
   try { SmoothAnchor.init();     } catch(e) { console.warn('SmoothAnchor:', e); }
   try { MaterialHover.init();    } catch(e) { console.warn('MaterialHover:', e); }
@@ -532,6 +615,7 @@ window.GlobalArchitects = {
   A11y,
   ImagePlaceholder,
   HeroMedia,
+  HeroSound,
   PerfMonitor,
   version: '1.0.0',
 };

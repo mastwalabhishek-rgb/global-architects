@@ -118,6 +118,15 @@
   aspect-ratio: 4/3;
 }
 
+.hero__sound-toggle {
+  bottom: var(--space-8);
+  padding-inline: var(--space-4);
+}
+
+.hero__sound-text {
+  display: none;
+}
+
 /* ── Services ── */
 .services__header {
   grid-template-columns: 1fr;
@@ -302,6 +311,10 @@
 
   /* Nav — show CTA, hide hamburger */
   .nav__cta { display: flex; }
+
+  .hero__sound-text {
+    display: inline;
+  }
 
   /* Philosophy — 2 col on tablet */
   .philosophy__pillars {
