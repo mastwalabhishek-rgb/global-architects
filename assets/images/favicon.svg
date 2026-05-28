@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Global Architects">
+  <rect width="64" height="64" rx="12" fill="#ffffff"/>
+  <path d="M10 24 32 10l22 14v8L32 18 10 32z" fill="#111111"/>
+  <path d="M14 36c0-10 8-18 18-18h4v9h-4c-5 0-9 4-9 9s4 9 9 9h3v9h-3c-10 0-18-8-18-18z" fill="#c88f32"/>
+  <path d="M40 54V25l12 29h-8l-4-10-4 10z" fill="#c88f32"/>
+  <path d="M40 25 28 54h8l4-10 4 10h8z" fill="none" stroke="#111111" stroke-width="2"/>
+</svg>
