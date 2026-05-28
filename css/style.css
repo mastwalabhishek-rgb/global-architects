@@ -1017,6 +1017,8 @@ small {
 
 .hero {
   position: relative;
+  isolation: isolate;
+  min-height: 100vh;
   min-height: 100svh;
   display: flex;
   align-items: flex-end;
@@ -1060,8 +1062,8 @@ small {
 .hero__sound-toggle {
   position: absolute;
   left: var(--container-pad);
-  bottom: var(--space-12);
-  z-index: var(--z-raised);
+  bottom: calc(var(--space-12) + env(safe-area-inset-bottom, 0px));
+  z-index: 30;
   display: inline-flex;
   align-items: center;
   gap: var(--space-3);
@@ -1078,6 +1080,7 @@ small {
   backdrop-filter: blur(16px);
   box-shadow: 0 12px 36px rgba(0,0,0,0.18);
   cursor: pointer;
+  touch-action: manipulation;
   transition:
     background-color var(--duration-base) var(--ease-out),
     border-color var(--duration-base) var(--ease-out),

@@ -119,7 +119,8 @@
 }
 
 .hero__sound-toggle {
-  bottom: var(--space-8);
+  left: var(--space-5);
+  bottom: calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
   padding-inline: var(--space-4);
 }
 

@@ -315,6 +315,7 @@ const HeroSound = (() => {
     if (!hero || !heroVideo || !toggle) return;
 
     heroVideo.muted = true;
+    heroVideo.setAttribute('muted', '');
     heroVideo.volume = 0.72;
 
     const setButtonState = (isSoundOn) => {
@@ -329,15 +330,25 @@ const HeroSound = (() => {
 
     const applySoundState = async () => {
       const shouldPlaySound = wantsSound && heroInView;
-      heroVideo.muted = !shouldPlaySound;
+
+      if (shouldPlaySound) {
+        heroVideo.muted = false;
+        heroVideo.removeAttribute('muted');
+        heroVideo.volume = 0.72;
+      } else {
+        heroVideo.muted = true;
+        heroVideo.setAttribute('muted', '');
+      }
+
       setButtonState(shouldPlaySound);
 
-      if (shouldPlaySound && heroVideo.paused) {
+      if (shouldPlaySound) {
         try {
           await heroVideo.play();
         } catch (error) {
           wantsSound = false;
           heroVideo.muted = true;
+          heroVideo.setAttribute('muted', '');
           setButtonState(false);
         }
       }
