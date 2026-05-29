@@ -20,6 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/images/project1.2.jpeg" fetchpriority="high" />
 
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
@@ -31,7 +32,7 @@
 
   <link rel="stylesheet" href="css/style.css?v=20260528-2" />
   <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/responsive.css?v=20260528-2" />
+  <link rel="stylesheet" href="css/responsive.css?v=20260529-1" />
 
   <style>
     .service-hero { padding: calc(var(--space-32) + 40px) 0 var(--space-20); background: var(--bg-secondary); border-bottom: 1px solid var(--border-secondary); }
@@ -108,7 +109,7 @@
             <p class="service-hero__text">Global Architects plans residential architecture for Dehradun and Uttarakhand families who want a practical home with strong elevation, natural light, ventilation, privacy and long-term build quality.</p>
             <div class="service-hero__actions"><a href="contact.html" class="btn btn--primary">Discuss Home Design</a><a href="projects.html" class="btn btn--outline">View Residential Work</a></div>
           </div>
-          <div class="service-hero__media"><img src="assets/images/project1.2.jpeg" alt="Residential architecture in Dehradun by Global Architects with terraces, stone and timber details" width="720" height="900" /></div>
+          <div class="service-hero__media"><img src="assets/images/project1.2.jpeg" alt="Residential architecture in Dehradun by Global Architects with terraces, stone and timber details" width="720" height="900" loading="eager" fetchpriority="high" decoding="async" /></div>
         </div>
       </div>
     </section>
@@ -130,9 +131,9 @@
         <p class="section-label"><span class="section-label__line"></span>Selected Residential Work</p>
         <h2 class="service-heading">Real project references from our residential portfolio.</h2>
         <div class="service-projects">
-          <article class="service-project"><a href="project-detail.html?project=terraced-stone-residence"><img src="assets/images/project1.2.jpeg" alt="The Courtyard Terrace House residential project in Dehradun" /><div class="service-project__body"><p class="service-project__meta">Residential - Dehradun</p><h3>The Courtyard Terrace House</h3></div></a></article>
-          <article class="service-project"><a href="project-detail.html?project=forest-retreat"><img src="assets/images/project4.1.png" alt="The Jaali Terrace House residential project in Dehradun" /><div class="service-project__body"><p class="service-project__meta">Residential - Dehradun</p><h3>The Jaali Terrace House</h3></div></a></article>
-          <article class="service-project"><a href="project-detail.html?project=verdant-jaali-residence"><img src="assets/images/project6.1.jpeg" alt="The Verdant Jaali Residence residential project in Dehradun" /><div class="service-project__body"><p class="service-project__meta">Residential - Dehradun</p><h3>The Verdant Jaali Residence</h3></div></a></article>
+          <article class="service-project"><a href="project-detail.html?project=terraced-stone-residence"><img src="assets/images/project1.2.jpeg" alt="The Courtyard Terrace House residential project in Dehradun" loading="lazy" decoding="async" /><div class="service-project__body"><p class="service-project__meta">Residential - Dehradun</p><h3>The Courtyard Terrace House</h3></div></a></article>
+          <article class="service-project"><a href="project-detail.html?project=forest-retreat"><img src="assets/images/project4.1.png" alt="The Jaali Terrace House residential project in Dehradun" loading="lazy" decoding="async" /><div class="service-project__body"><p class="service-project__meta">Residential - Dehradun</p><h3>The Jaali Terrace House</h3></div></a></article>
+          <article class="service-project"><a href="project-detail.html?project=verdant-jaali-residence"><img src="assets/images/project6.1.jpeg" alt="The Verdant Jaali Residence residential project in Dehradun" loading="lazy" decoding="async" /><div class="service-project__body"><p class="service-project__meta">Residential - Dehradun</p><h3>The Verdant Jaali Residence</h3></div></a></article>
         </div>
       </div>
     </section>
@@ -169,7 +170,7 @@
   <script src="js/theme.js" defer></script>
   <script src="js/cursor.js" defer></script>
   <script src="js/animations.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js?v=20260529-1" defer></script>
   <script>document.addEventListener('DOMContentLoaded',function(){document.getElementById('currentYear').textContent=new Date().getFullYear();var nav=document.getElementById('mainNav');if(nav)nav.classList.add('is-visible');});</script>
 </body>
 </html>
