@@ -277,23 +277,10 @@ const FooterYear = (() => {
 
 const HeroMedia = (() => {
 
-  const videoQuery = window.matchMedia('(min-width: 769px)');
-
   function init() {
     const hero      = document.querySelector('.hero');
     const heroVideo = document.querySelector('.hero__video');
     if (!hero || !heroVideo) return;
-
-    if (!videoQuery.matches) {
-      heroVideo.removeAttribute('autoplay');
-      heroVideo.removeAttribute('src');
-      heroVideo.querySelectorAll('source').forEach(source => source.remove());
-      heroVideo.load?.();
-      hero.classList.add('is-loaded');
-      return;
-    }
-
-    heroVideo.preload = 'metadata';
 
     if (heroVideo.readyState >= 2) {
       hero.classList.add('is-loaded');
@@ -318,7 +305,6 @@ const HeroSound = (() => {
 
   let wantsSound = false;
   let heroInView = true;
-  const videoQuery = window.matchMedia('(min-width: 769px)');
 
   function init() {
     const hero      = document.querySelector('.hero');
@@ -327,10 +313,6 @@ const HeroSound = (() => {
     const label     = toggle?.querySelector('.hero__sound-text');
 
     if (!hero || !heroVideo || !toggle) return;
-    if (!videoQuery.matches) {
-      toggle.hidden = true;
-      return;
-    }
 
     heroVideo.muted = true;
     heroVideo.setAttribute('muted', '');

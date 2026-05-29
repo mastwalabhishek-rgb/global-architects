@@ -40,16 +40,6 @@
 }
 
 /* ── Hero ── */
-.hero__media {
-  background-image: url('../assets/images/project7.2.png');
-  background-size: cover;
-  background-position: center;
-}
-
-.hero__video {
-  display: none;
-}
-
 .hero__content {
   padding-top: clamp(7rem, 25vw, 10rem);
   padding-bottom: var(--space-16);
@@ -129,7 +119,6 @@
 }
 
 .hero__sound-toggle {
-  display: none;
   left: var(--space-5);
   bottom: calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
   padding-inline: var(--space-4);
@@ -769,21 +758,4 @@ table {
   max-width: 100%;
   overflow-x: auto;
   display: block;
-}
-
-@media screen and (min-width: 769px) {
-
-  .hero__media {
-    background-image: none;
-  }
-
-  .hero__video,
-  .hero__sound-toggle {
-    display: inline-flex;
-  }
-
-  .hero__video {
-    display: block;
-  }
-
 }

@@ -44,7 +44,7 @@
   <!-- Google Fonts — Variable fonts for kinetic typography -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 
-  <link rel="preload" as="image" href="assets/images/project7.2.png" media="(max-width: 768px)" fetchpriority="high" />
+  <link rel="preload" as="video" href="assets/images/herovideo.mp4" type="video/mp4" />
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -59,7 +59,7 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css?v=20260528-2" />
   <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/responsive.css?v=20260529-1" />
+  <link rel="stylesheet" href="css/responsive.css?v=20260529-2" />
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -366,8 +366,8 @@
 
       <!-- Hero background video -->
       <div class="hero__media" aria-hidden="true">
-        <video class="hero__video" autoplay muted loop playsinline preload="none" poster="assets/images/project7.2.png">
-          <source src="assets/images/herovideo.mp4" type="video/mp4" media="(min-width: 769px)" />
+        <video class="hero__video" autoplay muted loop playsinline preload="auto">
+          <source src="assets/images/herovideo.mp4" type="video/mp4" />
         </video>
         <div class="hero__overlay"></div>
       </div>
@@ -1035,7 +1035,7 @@
   <script src="js/theme.js" defer></script>
   <script src="js/cursor.js" defer></script>
   <script src="js/animations.js" defer></script>
-  <script src="js/main.js?v=20260529-1" defer></script>
+  <script src="js/main.js?v=20260529-2" defer></script>
 
   <!-- Inline: current year (non-critical, tiny) -->
   <script>
