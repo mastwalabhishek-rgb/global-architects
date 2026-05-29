@@ -25,11 +25,11 @@ const MaterialHover = (() => {
 
   /* Material → texture file mapping */
   const TEXTURE_MAP = {
-    concrete: 'assets/textures/concrete.webp',
-    glass:    'assets/textures/glass.webp',
-    stone:    'assets/textures/stone.webp',
-    wood:     'assets/textures/wood.webp',
-    metal:    'assets/textures/metal.webp',
+    concrete: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(0,0,0,0.12))',
+    glass:    'linear-gradient(135deg, rgba(255,255,255,0.45), rgba(120,150,160,0.16))',
+    stone:    'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 32%), linear-gradient(135deg, rgba(0,0,0,0.12), rgba(255,255,255,0.08))',
+    wood:     'repeating-linear-gradient(90deg, rgba(80,42,18,0.18) 0 3px, rgba(255,220,170,0.12) 3px 9px)',
+    metal:    'repeating-linear-gradient(90deg, rgba(255,255,255,0.2) 0 1px, rgba(0,0,0,0.08) 1px 6px)',
   };
 
   /* Cursor label element from cursor.js */
@@ -46,12 +46,7 @@ const MaterialHover = (() => {
 
       if (!textureEl || !texturePath) return;
 
-      /* Preload texture */
-      const img    = new Image();
-      img.src      = texturePath;
-      img.onload   = () => {
-        textureEl.style.backgroundImage = `url('${texturePath}')`;
-      };
+      textureEl.style.backgroundImage = texturePath;
 
       /* Update cursor label with material name */
       card.addEventListener('mouseenter', () => {
@@ -512,7 +507,7 @@ const PerfMonitor = (() => {
         new PerformanceObserver((list) => {
           list.getEntries().forEach(entry => {
             console.log(
-              `%c FID: ${entry.processingStart - entry.startTime.toFixed(0)}ms ` +
+              `%c FID: ${(entry.processingStart - entry.startTime).toFixed(0)}ms ` +
               `${entry.processingStart - entry.startTime < 100 ? '✅' : '⚠️'}`,
               'background:#1C1A16;color:#C4A882;padding:2px 8px'
             );
@@ -601,7 +596,7 @@ function initApp() {
       '%c Excellence in Design & Planning\n' +
       'Dehradun, Uttarakhand · Est. 2017\n' +
       'Ar. Shailesh Kumar, Principal Architect\n\n' +
-      'hello@globalarchitects.in\n',
+      'globalarchitects24@gmail.com\n',
       'background:#1C1A16;color:#C4A882;font-size:16px;font-weight:bold;padding:8px 16px',
       '',
       'color:#5A5650;font-size:12px;padding:0 16px'

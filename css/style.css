@@ -398,7 +398,17 @@ small {
   border: 0;
 }
 
-.visually-hidden { @extend .sr-only; }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
 
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1494,19 +1504,19 @@ small {
 }
 
 [data-material="concrete"] .project-card__texture {
-  background-image: url('../assets/textures/concrete.webp');
+  background-image: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(0,0,0,0.12));
 }
 
 [data-material="glass"] .project-card__texture {
-  background-image: url('../assets/textures/glass.webp');
+  background-image: linear-gradient(135deg, rgba(255,255,255,0.45), rgba(120,150,160,0.16));
 }
 
 [data-material="stone"] .project-card__texture {
-  background-image: url('../assets/textures/stone.webp');
+  background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 32%), linear-gradient(135deg, rgba(0,0,0,0.12), rgba(255,255,255,0.08));
 }
 
 [data-material="wood"] .project-card__texture {
-  background-image: url('../assets/textures/wood.webp');
+  background-image: repeating-linear-gradient(90deg, rgba(80,42,18,0.18) 0 3px, rgba(255,220,170,0.12) 3px 9px);
 }
 
 .project-card:hover .project-card__texture {
