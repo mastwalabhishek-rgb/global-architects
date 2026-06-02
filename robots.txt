@@ -1,4 +1,7 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 
-Sitemap: https://www.globalarchitects.in/sitemap.xml
+Sitemap: https://www.globalarchitects24.com/sitemap.xml
+
+
+

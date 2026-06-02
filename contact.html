@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="morning">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Global Architects | Start a Project | Dehradun</title>
   <meta name="description" content="Contact Global Architects — Start your project with Ar. Shailesh Kumar in Dehradun. Residential, commercial & interior design inquiries welcome. globalarchitects24@gmail.com" />
-  <link rel="canonical" href="https://globalarchitects24.com/contact.html" />
+  <link rel="canonical" href="https://www.globalarchitects24.com/contact.html" />
 
   <meta property="og:title"       content="Contact — Global Architects" />
   <meta property="og:description" content="Start your project. globalarchitects24@gmail.com · Dehradun, Uttarakhand" />
@@ -28,18 +28,18 @@
   <link rel="stylesheet" href="css/responsive.css" />
 
   <style>
-    /* ══════════════════════════════════════════
+    /* ==========================================
        CONTACT PAGE STYLES
-    ══════════════════════════════════════════ */
+    ========================================== */
 
-    /* ── Page layout ── */
+    /* -- Page layout -- */
     .contact-page {
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
 
-    /* ── Left Panel — Info ── */
+    /* -- Left Panel — Info -- */
     .contact-info {
       background-color: var(--bg-inverse);
       padding: calc(var(--space-32) + 60px) var(--space-16) var(--space-20);
@@ -265,7 +265,7 @@
       50%       { opacity: 0.4; }
     }
 
-    /* ── Right Panel — Form ── */
+    /* -- Right Panel — Form -- */
     .contact-form-panel {
       background-color: var(--bg-primary);
       padding: calc(var(--space-32) + 60px) var(--space-16) var(--space-20);
@@ -674,7 +674,7 @@
       color: var(--accent-primary);
     }
 
-    /* ── FAQ strip ── */
+    /* -- FAQ strip -- */
     .contact-faq {
       background-color: var(--bg-secondary);
       padding: var(--space-20) 0;
@@ -713,7 +713,7 @@
       color: var(--text-secondary);
     }
 
-    /* ── Responsive ── */
+    /* -- Responsive -- */
     @media screen and (max-width: 1024px) {
       .contact-page { grid-template-columns: 1fr; }
       .contact-info {
@@ -748,7 +748,7 @@
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "name": "Contact Global Architects",
-    "url": "https://www.globalarchitects.in/contact.html",
+    "url": "https://www.globalarchitects24.com/contact.html",
     "mainEntity": {
       "@type": "LocalBusiness",
       "name": "Global Architects",
@@ -826,7 +826,7 @@
       <span class="mobile-menu__line"></span>
       <span class="mobile-menu__line"></span>
     </div>
-    <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close navigation menu" type="button"><span aria-hidden="true">✕</span></button>
+    <button class="mobile-menu__close" id="mobileMenuClose" aria-label="Close navigation menu" type="button"><span aria-hidden="true">×</span></button>
     <nav aria-label="Mobile navigation">
       <ul class="mobile-menu__links" role="list">
         <li class="mobile-menu__item"><a href="index.html"    class="mobile-menu__link"><span class="mobile-menu__num">01</span>Home</a></li>
@@ -844,9 +844,9 @@
 
   <main id="mainContent" role="main">
 
-    <!-- ══════════════════════════════════
+    <!-- ==================================
          CONTACT — Split Layout
-    ══════════════════════════════════ -->
+    ================================== -->
     <div class="contact-page">
 
       <!-- LEFT PANEL — Info -->
@@ -1212,9 +1212,9 @@
     <!-- /contact-page -->
 
 
-    <!-- ══════════════════════════════════
+    <!-- ==================================
          FAQ
-    ══════════════════════════════════ -->
+    ================================== -->
     <section class="contact-faq" aria-labelledby="faqHeading">
       <div class="contact-faq__container">
 
@@ -1309,7 +1309,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('js-loading');
 
-    /* ── Hero animations ── */
+    /* -- Hero animations -- */
     setTimeout(() => {
       document.querySelector('.contact-info__heading')?.classList.add('is-visible');
       document.getElementById('contactSub')?.classList.add('is-visible');
@@ -1320,7 +1320,7 @@
       document.getElementById('contactSocial')?.classList.add('is-visible');
     }, 300);
 
-    /* ── Inquiry type selector ── */
+    /* -- Inquiry type selector -- */
     const types = document.querySelectorAll('.inquiry-type');
     types.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1330,7 +1330,7 @@
       });
     });
 
-    /* ── Timeline selector ── */
+    /* -- Timeline selector -- */
     const tlBtns = document.querySelectorAll('.timeline-option');
     tlBtns.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1340,7 +1340,7 @@
       });
     });
 
-    /* ── Budget range ── */
+    /* -- Budget range -- */
     const budgetRange   = document.getElementById('budgetRange');
     const budgetDisplay = document.getElementById('budgetDisplay');
 
@@ -1354,7 +1354,7 @@
       budgetDisplay.textContent = formatBudget(budgetRange.value);
     });
 
-    /* ── Form validation ── */
+    /* -- Form validation -- */
     const form      = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     const success   = document.getElementById('formSuccess');
@@ -1436,7 +1436,7 @@
       success.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 
-    /* ── Scroll reveals ── */
+    /* -- Scroll reveals -- */
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if(entry.isIntersecting) {
@@ -1448,12 +1448,15 @@
 
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    /* ── Year ── */
+    /* -- Year -- */
     document.getElementById('currentYear').textContent = new Date().getFullYear();
   });
   </script>
 
 </body>
 </html>
+
+
+
 
 
