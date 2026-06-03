@@ -1571,11 +1571,52 @@
       }
     });
 
-    const requestedProject = new URLSearchParams(window.location.search).get('project') || 'terraced-stone-residence';
-    const activeProject = projectDetails[requestedProject] || projectDetails['terraced-stone-residence'];
+    const defaultProjectKey = 'terraced-stone-residence';
+    const projectSlugMap = {
+      'the-courtyard-terrace-house': 'terraced-stone-residence',
+      'the-brick-matrix-it-office': 'brick-matrix-it-office',
+      'contemporary-lounge-interior': 'ground-pavilion',
+      'the-jaali-terrace-house': 'forest-retreat',
+      'neoclassical-residence-bareilly': 'urban-court',
+      'the-linear-terrace-residence': 'linear-terrace-residence',
+      'hotel-exterior-design-concept': 'tech-campus-phase-1',
+      '1300-sq-ft-family-home-plan': '1300-sqft-family-isometric-plan',
+      'compact-600-sq-ft-home-plan': 'compact-600-sqft-isometric-plan',
+      'bedroom-lounge-interior': 'himalayan-gateway',
+      'the-verdant-jaali-residence': 'verdant-jaali-residence',
+      'the-stone-veil-residence': 'stone-veil-residence'
+    };
+    const canonicalSlugMap = {
+      'terraced-stone-residence': 'the-courtyard-terrace-house',
+      'brick-matrix-it-office': 'the-brick-matrix-it-office',
+      'ground-pavilion': 'contemporary-lounge-interior',
+      'forest-retreat': 'the-jaali-terrace-house',
+      'urban-court': 'neoclassical-residence-bareilly',
+      'linear-terrace-residence': 'the-linear-terrace-residence',
+      'tech-campus-phase-1': 'hotel-exterior-design-concept',
+      '1300-sqft-family-isometric-plan': '1300-sq-ft-family-home-plan',
+      'compact-600-sqft-isometric-plan': 'compact-600-sq-ft-home-plan',
+      'himalayan-gateway': 'bedroom-lounge-interior',
+      'verdant-jaali-residence': 'the-verdant-jaali-residence',
+      'stone-veil-residence': 'the-stone-veil-residence'
+    };
+
+    const requestedProject = new URLSearchParams(window.location.search).get('project') || canonicalSlugMap[defaultProjectKey];
+    const resolvedProjectKey = projectDetails[projectSlugMap[requestedProject] || requestedProject]
+      ? (projectSlugMap[requestedProject] || requestedProject)
+      : defaultProjectKey;
+    const activeProject = projectDetails[resolvedProjectKey];
+    const activeSlug = canonicalSlugMap[resolvedProjectKey] || resolvedProjectKey;
+
+    if (requestedProject !== activeSlug) {
+      const canonicalUrl = new URL(window.location.href);
+      canonicalUrl.searchParams.set('project', activeSlug);
+      window.history.replaceState({}, '', canonicalUrl);
+    }
 
     document.title = `${activeProject.title} — Global Architects | Dehradun`;
     document.querySelector('meta[name="description"]')?.setAttribute('content', `${activeProject.title} — ${activeProject.type} project in ${activeProject.location} by Global Architects.`);
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', `https://www.globalarchitects24.com/project-detail.html?project=${activeSlug}`);
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${activeProject.title} — Global Architects`);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', activeProject.tagline);
     document.querySelector('meta[property="og:image"]')?.setAttribute('content', activeProject.image);
