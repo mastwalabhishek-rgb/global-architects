@@ -1,11 +1,10 @@
-﻿{
+{
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "has": [{ "type": "host", "value": "globalarchitects24.com" }],
-      "destination": "https://www.globalarchitects24.com/$1",
+      "destination": "https://www.globalarchitects24.com/:path*",
       "permanent": true
     }
   ]
 }
-
