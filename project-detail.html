@@ -1572,27 +1572,8 @@
     });
 
     const defaultProjectKey = 'the-courtyard-terrace-house';
-    const legacySlugMap = {
-      'terraced-stone-residence': 'the-courtyard-terrace-house',
-      'brick-matrix-it-office': 'the-brick-matrix-it-office',
-      'ground-pavilion': 'contemporary-lounge-interior',
-      'forest-retreat': 'the-jaali-terrace-house',
-      'urban-court': 'neoclassical-residence-bareilly',
-      'linear-terrace-residence': 'the-linear-terrace-residence',
-      'tech-campus-phase-1': 'hotel-exterior-design-concept',
-      '1300-sqft-family-isometric-plan': '1300-sq-ft-family-home-plan',
-      'compact-600-sqft-isometric-plan': 'compact-600-sq-ft-home-plan',
-      'himalayan-gateway': 'bedroom-lounge-interior',
-      'verdant-jaali-residence': 'the-verdant-jaali-residence',
-      'stone-veil-residence': 'the-stone-veil-residence'
-    };
-
     const requestedProject = new URLSearchParams(window.location.search).get('project') || defaultProjectKey;
-    const resolvedProjectKey = projectDetails[requestedProject]
-      ? requestedProject
-      : projectDetails[legacySlugMap[requestedProject]]
-        ? legacySlugMap[requestedProject]
-        : defaultProjectKey;
+    const resolvedProjectKey = projectDetails[requestedProject] ? requestedProject : defaultProjectKey;
     const activeProject = projectDetails[resolvedProjectKey];
     const activeSlug = resolvedProjectKey;
 
