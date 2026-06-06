@@ -82,13 +82,16 @@ const NavActive = (() => {
 
   function init() {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const activePath  = currentPath === 'journal-post.html'
+      ? 'journal.html'
+      : currentPath;
     const navLinks    = document.querySelectorAll('.nav__link');
 
     navLinks.forEach(link => {
       const href     = link.getAttribute('href');
       const linkPage = href?.split('/').pop() || 'index.html';
 
-      if (linkPage === currentPath) {
+      if (linkPage === activePath) {
         link.closest('.nav__item')?.classList.add('nav__item--active');
         link.setAttribute('aria-current', 'page');
       } else {
