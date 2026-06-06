@@ -9,7 +9,7 @@
 
   <meta property="og:title"       content="The Courtyard Terrace House - Global Architects" />
   <meta property="og:description" content="A layered Dehradun residence with deep overhangs, grey stone, timber soffits, glass railings and planted terraces." />
-  <meta property="og:image"       content="assets/images/project1.2.jpeg" />
+  <meta property="og:image"       content="https://www.globalarchitects24.com/assets/images/project1.2.jpeg" />
   <meta property="og:type"        content="article" />
 
   
@@ -1588,7 +1588,8 @@
     document.querySelector('link[rel="canonical"]')?.setAttribute('href', `https://www.globalarchitects24.com/project-detail.html?project=${activeSlug}`);
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${activeProject.title} — Global Architects`);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', activeProject.tagline);
-    document.querySelector('meta[property="og:image"]')?.setAttribute('content', activeProject.image);
+    const absoluteProjectImage = new URL(activeProject.image, 'https://www.globalarchitects24.com/').href;
+    document.querySelector('meta[property="og:image"]')?.setAttribute('content', absoluteProjectImage);
 
     const heroImage = document.querySelector('.chapter-hero__img');
     if (heroImage) {
