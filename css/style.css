@@ -2826,3 +2826,14 @@ small {
     opacity: 1;
   }
 }
+/* Social icons for inline links */
+.footer__social-link svg,
+.contact-social__link svg,
+.footer__social a svg,
+.footer__social-link svg {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  fill: currentColor;
+}
