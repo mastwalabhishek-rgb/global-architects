@@ -201,6 +201,31 @@
 }
 
 /* ── CTA Section ── */
+.faq__container {
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+}
+
+.faq__header {
+  max-width: none;
+  position: static;
+}
+
+.faq__question {
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-6) 0;
+}
+
+.faq__question h3 {
+  font-size: clamp(1.2rem, 6vw, 1.55rem);
+}
+
+.faq__item p {
+  padding-right: 0;
+  font-size: var(--text-sm);
+}
+
 .cta-section__actions {
   flex-direction: column;
   align-items: center;
@@ -251,6 +276,7 @@
 .services,
 .about-teaser,
 .process,
+.faq,
 .cta-section {
   padding: clamp(3rem, 10vw, 5rem) 0;
 }
