@@ -601,6 +601,140 @@
       gap: var(--space-4);
     }
 
+    .floor-plan-section {
+      padding: var(--section-pad) 0;
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border-secondary);
+    }
+
+    .floor-plan-section[hidden] {
+      display: none;
+    }
+
+    .floor-plan__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+      display: grid;
+      grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+      gap: var(--space-14);
+      align-items: start;
+    }
+
+    .floor-plan__eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-bottom: var(--space-4);
+    }
+
+    .floor-plan__heading {
+      font-size: var(--text-h2);
+      line-height: var(--lh-tight);
+      margin-bottom: var(--space-5);
+    }
+
+    .floor-plan__description {
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-8);
+    }
+
+    .floor-plan__specs {
+      display: grid;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+
+    .floor-plan__spec {
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--border-secondary);
+    }
+
+    .floor-plan__spec dt {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--space-1);
+    }
+
+    .floor-plan__spec dd {
+      color: var(--text-primary);
+      line-height: var(--lh-relaxed);
+    }
+
+    .floor-plan__tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+    }
+
+    .floor-plan__tab {
+      border: 1px solid var(--border-primary);
+      background: transparent;
+      color: var(--text-primary);
+      min-height: 44px;
+      padding: 0 var(--space-5);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      cursor: pointer;
+      transition:
+        background-color var(--duration-base) var(--ease-out),
+        color var(--duration-base) var(--ease-out),
+        border-color var(--duration-base) var(--ease-out);
+    }
+
+    .floor-plan__tab[aria-selected="true"] {
+      background: var(--text-primary);
+      border-color: var(--text-primary);
+      color: var(--bg-primary);
+    }
+
+    .floor-plan__viewer {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-secondary);
+      overflow: hidden;
+    }
+
+    .floor-plan__image {
+      width: 100%;
+      max-height: min(78vh, 980px);
+      object-fit: contain;
+      display: block;
+      background: #fff;
+    }
+
+    .floor-plan__caption {
+      padding: var(--space-4) var(--space-5);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border-secondary);
+    }
+
+    .floor-plan__highlights {
+      margin-top: var(--space-8);
+    }
+
+    .floor-plan__highlights h3 {
+      font-size: clamp(1.4rem, 2vw, 1.8rem);
+      margin-bottom: var(--space-4);
+    }
+
+    .floor-plan__highlights p {
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+    }
+
     /* -- Progress Bar -- */
     .reading-progress {
       position: fixed;
@@ -618,6 +752,7 @@
     @media screen and (max-width: 1024px) {
       .related-grid { grid-template-columns: repeat(2,1fr); }
       .materials-grid { grid-template-columns: repeat(2,1fr); }
+      .floor-plan__container { grid-template-columns: 1fr; }
     }
 
     @media screen and (max-width: 768px) {
@@ -627,6 +762,8 @@
       .living-grid { grid-template-columns: 1fr; }
       .living-img--tall { grid-row: auto; aspect-ratio: 4/3; }
       .related-grid { grid-template-columns: 1fr; }
+      .floor-plan__tabs { flex-direction: column; }
+      .floor-plan__tab { width: 100%; }
     }
   </style>
 
@@ -856,6 +993,44 @@
           </blockquote>
         </div>
 
+      </div>
+    </section>
+
+
+    <!-- ----------------------------------
+         CHAPTER 2 — FLOOR PLANS
+    ---------------------------------- -->
+    <section class="floor-plan-section" id="floorPlanSection" aria-labelledby="floorPlanHeading" hidden>
+      <div class="floor-plan__container">
+        <div class="floor-plan__content">
+          <p class="floor-plan__eyebrow">Floor Plan Study</p>
+          <h2 class="floor-plan__heading" id="floorPlanHeading">Ground, First and Second Floor Plans</h2>
+          <p class="floor-plan__description" id="floorPlanDescription"></p>
+
+          <dl class="floor-plan__specs" id="floorPlanSpecs"></dl>
+
+          <div class="floor-plan__highlights">
+            <h3>Key Highlights</h3>
+            <p id="floorPlanHighlights"></p>
+          </div>
+
+          <a class="btn btn--primary btn--large" id="floorPlanWhatsapp" href="https://wa.me/917275075065" target="_blank" rel="noopener noreferrer">
+            Enquire about a similar layout
+          </a>
+        </div>
+
+        <div class="floor-plan__media">
+          <div class="floor-plan__tabs" role="tablist" aria-label="Select floor plan">
+            <button class="floor-plan__tab" id="floorTabGround" type="button" role="tab" aria-selected="true" aria-controls="floorPanel" data-floor-index="0">Ground Floor</button>
+            <button class="floor-plan__tab" id="floorTabFirst" type="button" role="tab" aria-selected="false" aria-controls="floorPanel" data-floor-index="1">First Floor</button>
+            <button class="floor-plan__tab" id="floorTabSecond" type="button" role="tab" aria-selected="false" aria-controls="floorPanel" data-floor-index="2">Second Floor</button>
+          </div>
+
+          <figure class="floor-plan__viewer" id="floorPanel" role="tabpanel" aria-labelledby="floorTabGround">
+            <img class="floor-plan__image" id="floorPlanImage" src="assets/images/g-plus-2-luxury-residence-dehradun-ground-floor.png" alt="G+2 Luxury Residence Dehradun ground floor plan with living room, master bedroom, guest room, open kitchen, lift, double-height mandir and two-car porch" loading="lazy" decoding="async" />
+            <figcaption class="floor-plan__caption" id="floorPlanCaption">Ground Floor Plan</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -1640,6 +1815,87 @@
           { color: '#EFEDE6', texture: 'linear-gradient(35deg, transparent 0 42%, rgba(255,255,255,.9) 43% 48%, transparent 49% 100%), linear-gradient(145deg, transparent 0 42%, rgba(255,255,255,.9) 43% 48%, transparent 49% 100%)', name: 'White Jaali Screens', desc: 'Geometric jaali screens filter privacy, mark the entrance rhythm and add a crafted Indian layer to the clean modern facade.', origin: 'Use: vertical facade screen and gate panels' }
         ],
         designReading: 'The design is strongest where it balances mass and detail. The pale stone shell and beige frame give the residence a calm, linear presence, while black fins sharpen the facade and timber panels warm it up. Jaali screens repeat at different scales, tying the balcony, side wall and boundary together. With a 4800 sq.ft plot and 5600 sq.ft covered area, the project reads as a generous residential composition with layered terraces, screens and planted edges.'
+      },
+      'g-plus-2-luxury-residence-dehradun': {
+        title: 'G+2 Luxury Residence Plan',
+        type: 'Residential Plan',
+        location: 'Dehradun, India',
+        year: 'G+2',
+        image: 'assets/images/ambalaplan2.png',
+        imageAlt: 'G+2 Luxury Residence Dehradun ground floor plan with living room, master bedroom, guest room, open kitchen, lift, double-height mandir and two-car porch',
+        imagePosition: 'center top',
+        tagline: "A G+2 luxury residence in Dehradun planned across ground, first and second floors with three master bedrooms, two guest rooms, lift access, a double-height mandir, double-height staircase and open terraces on every level.",
+        specLabels: ['Project Type', 'Location', 'Plot Frontage', 'Plot Depth', 'Configuration', 'Key Highlights', 'Status', 'Principal'],
+        specs: ["G+2 Luxury Residence (Ground + First + Second Floor)", 'Dehradun, India', "39'-5\" (Ground Floor) / Road Width: 20'-0\"", "82'-0\"", '3 Master Bedrooms, 2 Guest Rooms, Double-Height Mandir, Lift, Double-Height Staircase, Open Terraces on all floors', 'Lift-equipped / Double-height mandir / Bar zone', 'Concept Plan', 'Ar. Shailesh Kumar'],
+        briefTitle: 'A G+2 Luxury Residence<br />Planned for Multi-Generational Living',
+        brief: [
+          "This G+2 luxury residence in Dehradun spans a 39'-5\" wide plot with three master bedrooms, two guest rooms, a double-height mandir, and a private lift across three floors. The design features a spiral double-height staircase, expansive open terraces on every level, and a dedicated entertainment area with a bar counter on the second floor — built for multi-generational family living with distinct private and social zones on each floor.",
+          'The ground floor concentrates daily family life around the living room, open kitchen, lobby, master bedroom, guest room, double-height mandir, lift and 2-car porch, keeping arrival, worship and family gathering connected.',
+          'The first and second floors create separate private and social layers, with master suites, guest accommodation, study, pantry, open drawing room, entertainment lounge, bar counter and large terraces arranged around the lift and double-height staircase.'
+        ],
+        quote: 'The plan uses vertical connection as a luxury feature: lift, staircase and double-height mandir organize the family home across all three levels.',
+        spaceTitle: 'Planning Reading',
+        hideSketch: true,
+        hideMaterials: true,
+        hideBuild: true,
+        floorPlan: {
+          heading: 'Ground, First and Second Floor Plans',
+          description: "This G+2 luxury residence in Dehradun spans a 39'-5\" wide plot with three master bedrooms, two guest rooms, a double-height mandir, and a private lift across three floors. The design features a spiral double-height staircase, expansive open terraces on every level, and a dedicated entertainment area with a bar counter on the second floor — built for multi-generational family living with distinct private and social zones on each floor.",
+          highlights: 'Lift-equipped, double-height mandir, spiral double-height staircase, multiple master suites, expansive open terraces on every level, dedicated bar/entertainment zone',
+          whatsappText: 'Hello, I would like to enquire about a similar layout to the G+2 Luxury Residence Plan in Dehradun by Global Architects.',
+          specs: [
+            { label: 'Project Type', value: 'G+2 Luxury Residence (Ground + First + Second Floor)' },
+            { label: 'Plot Frontage', value: "39'-5\" (Ground Floor) / Road Width: 20'-0\"" },
+            { label: 'Plot Depth', value: "82'-0\"" },
+            { label: 'Configuration', value: '3 Master Bedrooms, 2 Guest Rooms, Double-Height Mandir, Lift, Double-Height Staircase, Open Terraces on all floors' },
+            { label: 'Ground Floor', value: "Living Room: 18'-2\" x 17'-0\"; Master Bedroom, Guest Room; Open Kitchen: 11'-9\" x 13'-0\"; Lobby: 16'-0\" x 17'-2\"; Double-Height Mandir, Puja Room; Lift, Double-Height Staircase; 2-Car Porch, Foyer" },
+            { label: 'First Floor', value: "2 Master Bedrooms (18'-2\"x17'-0\" and 15'-0\"x14'-6\"); Guest Room; Study Room, Pantry; Open Drawing Room; Lobby: 16'-0\" x 17'-2\"; Open Terrace, 2 Toilets" },
+            { label: 'Second Floor', value: "Guest Room: 12'-0\" x 17'-0\"; Open Sitting/Entertainment Area: 21'-2\" x 23'-2\"; Bar Counter; Lobby: 25'-9\" x 10'-9\"; Open Terrace: 35'-0\" x 29'-10\"" }
+          ],
+          floors: [
+            {
+              label: 'Ground Floor',
+              image: 'assets/images/g-plus-2-luxury-residence-dehradun-ground-floor.png',
+              alt: 'G+2 Luxury Residence Dehradun ground floor plan with living room, master bedroom, guest room, open kitchen, lift, double-height mandir, puja room, lobby, foyer and two-car porch',
+              caption: 'Ground Floor Plan'
+            },
+            {
+              label: 'First Floor',
+              image: 'assets/images/g-plus-2-luxury-residence-dehradun-first-floor.png',
+              alt: 'G+2 Luxury Residence Dehradun first floor plan with two master bedrooms, guest room, study room, pantry, open drawing room, lift, lobby, toilets and open terrace',
+              caption: 'First Floor Plan'
+            },
+            {
+              label: 'Second Floor',
+              image: 'assets/images/g-plus-2-luxury-residence-dehradun-second-floor.png',
+              alt: 'G+2 Luxury Residence Dehradun second floor plan with guest room, open sitting entertainment area, bar counter, lobby, lift, double-height mandir and open terrace',
+              caption: 'Second Floor Plan'
+            }
+          ]
+        },
+        imageObjects: [
+          {
+            name: 'G+2 Luxury Residence Dehradun Ground Floor Plan',
+            contentUrl: 'https://www.globalarchitects24.com/assets/images/g-plus-2-luxury-residence-dehradun-ground-floor.png',
+            caption: 'Ground floor plan for a G+2 luxury residence in Dehradun with living room, bedrooms, lift, double-height mandir and two-car porch.'
+          },
+          {
+            name: 'G+2 Luxury Residence Dehradun First Floor Plan',
+            contentUrl: 'https://www.globalarchitects24.com/assets/images/g-plus-2-luxury-residence-dehradun-first-floor.png',
+            caption: 'First floor plan for a G+2 luxury residence in Dehradun with master bedrooms, guest room, study, pantry, drawing room and open terrace.'
+          },
+          {
+            name: 'G+2 Luxury Residence Dehradun Second Floor Plan',
+            contentUrl: 'https://www.globalarchitects24.com/assets/images/g-plus-2-luxury-residence-dehradun-second-floor.png',
+            caption: 'Second floor plan for a G+2 luxury residence in Dehradun with guest room, entertainment area, bar counter, lobby and open terrace.'
+          },
+          {
+            name: 'G+2 Luxury Residence Dehradun Hero Image',
+            contentUrl: 'https://www.globalarchitects24.com/assets/images/ambalaplan2.png',
+            caption: 'Hero thumbnail for the G+2 luxury residence floor-plan project by Global Architects.'
+          }
+        ],
+        designReading: 'The planning is organized around a strong vertical core: lift access, the spiral double-height staircase and the double-height mandir connect the three floors visually and functionally. The ground floor handles arrival, family living and worship; the first floor is bedroom-led with study and drawing spaces; and the second floor turns into a social terrace level with entertainment seating and a bar counter. Open terraces on every level keep the home breathable while giving each generation a distinct outdoor zone.'
       }
     });
 
@@ -1662,6 +1918,27 @@
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', activeProject.tagline);
     const absoluteProjectImage = new URL(activeProject.image, 'https://www.globalarchitects24.com/').href;
     document.querySelector('meta[property="og:image"]')?.setAttribute('content', absoluteProjectImage);
+
+    if (activeProject.imageObjects?.length) {
+      const imageSchema = document.createElement('script');
+      imageSchema.type = 'application/ld+json';
+      imageSchema.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': activeProject.imageObjects.map(item => ({
+          '@type': 'ImageObject',
+          name: item.name,
+          contentUrl: item.contentUrl,
+          caption: item.caption,
+          creator: {
+            '@type': 'Organization',
+            name: 'Global Architects'
+          },
+          creditText: 'Global Architects',
+          representativeOfPage: item.contentUrl === new URL(activeProject.image, 'https://www.globalarchitects24.com/').href
+        }))
+      });
+      document.head.appendChild(imageSchema);
+    }
 
     const heroImage = document.querySelector('.chapter-hero__img');
     if (heroImage) {
@@ -1709,6 +1986,9 @@
     const sketchSvg = document.getElementById('sketchSvg');
     if (sketchSvg) sketchSvg.setAttribute('aria-label', `Architectural concept sketch of ${activeProject.title}`);
 
+    const sketchSection = document.querySelector('.chapter-sketch');
+    if (sketchSection && activeProject.hideSketch) sketchSection.hidden = true;
+
     const materialsSection = document.querySelector('.chapter-materials');
     if (materialsSection && activeProject.hideMaterials) {
       materialsSection.hidden = true;
@@ -1733,6 +2013,58 @@
       });
     }
 
+    const floorPlanSection = document.getElementById('floorPlanSection');
+    if (floorPlanSection && activeProject.floorPlan) {
+      const floorPlan = activeProject.floorPlan;
+      floorPlanSection.hidden = false;
+      document.getElementById('floorPlanHeading').textContent = floorPlan.heading;
+      document.getElementById('floorPlanDescription').textContent = floorPlan.description;
+      document.getElementById('floorPlanHighlights').textContent = floorPlan.highlights;
+
+      const specsList = document.getElementById('floorPlanSpecs');
+      if (specsList) {
+        specsList.innerHTML = floorPlan.specs.map(spec => `
+          <div class="floor-plan__spec">
+            <dt>${spec.label}</dt>
+            <dd>${spec.value}</dd>
+          </div>
+        `).join('');
+      }
+
+      const whatsapp = document.getElementById('floorPlanWhatsapp');
+      if (whatsapp) {
+        whatsapp.href = `https://wa.me/917275075065?text=${encodeURIComponent(floorPlan.whatsappText)}`;
+      }
+
+      const floorTabs = document.querySelectorAll('.floor-plan__tab');
+      const floorPanel = document.getElementById('floorPanel');
+      const floorImage = document.getElementById('floorPlanImage');
+      const floorCaption = document.getElementById('floorPlanCaption');
+
+      const showFloor = index => {
+        const floor = floorPlan.floors[index];
+        if (!floor) return;
+        floorTabs.forEach((tab, tabIndex) => {
+          const selected = tabIndex === index;
+          tab.setAttribute('aria-selected', String(selected));
+          if (selected && floorPanel) {
+            floorPanel.setAttribute('aria-labelledby', tab.id);
+          }
+        });
+        if (floorImage) {
+          floorImage.src = floor.image;
+          floorImage.alt = floor.alt;
+        }
+        if (floorCaption) floorCaption.textContent = floor.caption;
+      };
+
+      floorTabs.forEach(tab => {
+        tab.addEventListener('click', () => showFloor(Number(tab.dataset.floorIndex)));
+      });
+
+      showFloor(0);
+    }
+
     const buildHeading = document.getElementById('buildHeading');
     if (buildHeading && activeProject.buildTitle) buildHeading.textContent = activeProject.buildTitle;
     const buildIntro = buildHeading?.nextElementSibling;
@@ -1752,6 +2084,8 @@
       }
       if (caption) caption.textContent = item.caption;
     });
+    const buildSection = document.querySelector('.chapter-build');
+    if (buildSection && activeProject.hideBuild) buildSection.hidden = true;
 
     const spaceHeading = document.getElementById('spaceHeading');
     if (spaceHeading) spaceHeading.textContent = activeProject.spaceTitle;
