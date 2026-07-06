@@ -321,6 +321,8 @@
       const waNumber = '917275075065';
       const waUrl = `https://wa.me/${waNumber}?text=${text}`;
 
+      window.GlobalArchitects?.ConversionTracking?.track('generate_lead', { label: 'Uttarkashi form submission' });
+
       // Open WhatsApp chat in a new tab/window (works with WhatsApp Web or mobile app)
       window.open(waUrl, '_blank');
     });

@@ -1455,6 +1455,7 @@
         `Message: ${formData.get('message') || ''}`
       ].join('\n');
 
+      window.GlobalArchitects?.ConversionTracking?.track('generate_lead', { label: 'Contact form submission' });
       window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
 
       form.style.display = 'none';

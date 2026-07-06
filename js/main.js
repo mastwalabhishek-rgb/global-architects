@@ -573,6 +573,68 @@ window.addEventListener('unhandledrejection', (e) => {
 });
 
 
+
+/* ================================================================
+   11. CONVERSION TRACKING
+   Sends GA4 events and mapped Meta Pixel conversion events
+================================================================ */
+
+const ConversionTracking = (() => {
+
+  function track(eventName, params = {}) {
+    const eventParams = {
+      event_category: 'conversion',
+      event_label: params.label || eventName,
+      ...params,
+    };
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, eventParams);
+    }
+
+    const metaEvent = (eventName === 'whatsapp_click' || eventName === 'phone_call_click')
+      ? 'Contact'
+      : 'Lead';
+
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', metaEvent, {
+        content_name: eventName,
+        event_label: eventParams.event_label,
+      });
+    }
+  }
+
+  function trackClick(target) {
+    if (!target?.closest) return;
+
+    const link = target.closest('a[href]');
+    const button = target.closest('button');
+    const href = link?.getAttribute('href') || '';
+    const label = (link || button)?.textContent?.replace(/\s+/g, ' ').trim() || '';
+
+    if (href.includes('wa.me') || href.includes('api.whatsapp.com')) {
+      track('whatsapp_click', { label: label || href });
+      return;
+    }
+
+    if (href.startsWith('tel:')) {
+      track('phone_call_click', { label: href.replace('tel:', '') });
+      return;
+    }
+
+    if (button?.dataset.type === 'consultation' || /book consultation|free consultation/i.test(label)) {
+      track('consultation_click', { label: label || 'Consultation' });
+    }
+  }
+
+  function init() {
+    document.addEventListener('click', (e) => trackClick(e.target));
+  }
+
+  return { init, track };
+
+})();
+
 /* ═══════════════════════════════════════════════════════════════
    MASTER INIT
    Initialize all modules in correct order
@@ -590,6 +652,7 @@ function initApp() {
   try { Marquee.init();          } catch(e) { console.warn('Marquee:', e); }
   try { ImagePlaceholder.init(); } catch(e) { console.warn('ImagePlaceholder:', e); }
   try { PerfMonitor.init();      } catch(e) { console.warn('PerfMonitor:', e); }
+  try { ConversionTracking.init(); } catch(e) { console.warn('ConversionTracking:', e); }
 
   /* Dev console greeting */
   if (window.location.hostname === 'localhost' ||
@@ -626,5 +689,6 @@ window.GlobalArchitects = {
   HeroMedia,
   HeroSound,
   PerfMonitor,
+  ConversionTracking,
   version: '1.0.0',
 };
