@@ -1,7 +1,7 @@
-/* ═══════════════════════════════════════════════════════════════
-   GLOBAL ARCHITECTS — main.js
-   Master Controller — Wires All Modules Together
-   ═══════════════════════════════════════════════════════════════
+/* ===============================================================
+   GLOBAL ARCHITECTS - main.js
+   Master Controller - Wires All Modules Together
+   ===============================================================
 
    RESPONSIBILITIES:
    1.  Material texture hover on project cards
@@ -11,19 +11,19 @@
    5.  Performance monitoring
    6.  Error boundary
    7.  Utility helpers
-   ═══════════════════════════════════════════════════════════════ */
+   =============================================================== */
 
 'use strict';
 
 
-/* ═══════════════════════════════════════════════════════════════
+/* ===============================================================
    1. MATERIAL TEXTURE HOVER
    Project cards show material texture on hover
-═══════════════════════════════════════════════════════════════ */
+=============================================================== */
 
 const MaterialHover = (() => {
 
-  /* Material → texture file mapping */
+  /* Material -> texture file mapping */
   const TEXTURE_MAP = {
     concrete: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(0,0,0,0.12))',
     glass:    'linear-gradient(135deg, rgba(255,255,255,0.45), rgba(120,150,160,0.16))',
@@ -52,11 +52,11 @@ const MaterialHover = (() => {
       card.addEventListener('mouseenter', () => {
         if (cursorLabel) {
           const materialNames = {
-            concrete: 'Concrete · Glass · Steel',
-            glass:    'Glass · Aluminium · Stone',
-            stone:    'Stone · Timber · Earth',
-            wood:     'Timber · Stone · Steel',
-            metal:    'Steel · Glass · Concrete',
+            concrete: 'Concrete / Glass / Steel',
+            glass:    'Glass / Aluminium / Stone',
+            stone:    'Stone / Timber / Earth',
+            wood:     'Timber / Stone / Steel',
+            metal:    'Steel / Glass / Concrete',
           };
           cursorLabel.textContent = materialNames[material] || 'View';
         }
@@ -73,10 +73,10 @@ const MaterialHover = (() => {
 })();
 
 
-/* ═══════════════════════════════════════════════════════════════
+/* ===============================================================
    2. ACTIVE NAV DETECTION
    Highlights current page in navigation
-═══════════════════════════════════════════════════════════════ */
+=============================================================== */
 
 const NavActive = (() => {
 
@@ -106,10 +106,10 @@ const NavActive = (() => {
 })();
 
 
-/* ═══════════════════════════════════════════════════════════════
+/* ===============================================================
    3. SMOOTH ANCHOR SCROLLING
    Handles #hash links with offset for fixed nav
-═══════════════════════════════════════════════════════════════ */
+=============================================================== */
 
 const SmoothAnchor = (() => {
 
@@ -147,9 +147,9 @@ const SmoothAnchor = (() => {
 })();
 
 
-/* ═══════════════════════════════════════════════════════════════
+/* ===============================================================
    4. ACCESSIBILITY ENHANCEMENTS
-═══════════════════════════════════════════════════════════════ */
+=============================================================== */
 
 const A11y = (() => {
 
@@ -161,7 +161,7 @@ const A11y = (() => {
   }
 
   /* Add keyboard-nav class when Tab is pressed
-     Removes it on mouse click — shows focus ring only for keyboard */
+     Removes it on mouse click - shows focus ring only for keyboard */
   function handleFocusVisible() {
     document.body.classList.add('using-mouse');
 
@@ -218,7 +218,7 @@ const A11y = (() => {
         link.rel = 'noopener noreferrer';
       }
 
-      /* Accessibility — if no aria-label mentions "new tab" */
+      /* Accessibility - if no aria-label mentions "new tab" */
       const label = link.getAttribute('aria-label') || '';
       if (!label.includes('new tab') && !label.includes('opens in')) {
         link.setAttribute(
@@ -251,10 +251,10 @@ const A11y = (() => {
 })();
 
 
-/* ═══════════════════════════════════════════════════════════════
+/* ===============================================================
    5. FOOTER YEAR
    Auto-updates copyright year
-═══════════════════════════════════════════════════════════════ */
+=============================================================== */
 
 const FooterYear = (() => {
 
@@ -268,10 +268,10 @@ const FooterYear = (() => {
 })();
 
 
-/* ═══════════════════════════════════════════════════════════════
+/* ===============================================================
    6. HERO MEDIA LOAD
    Reveals hero video when it is ready
-═══════════════════════════════════════════════════════════════ */
+=============================================================== */
 
 const HeroMedia = (() => {
 
@@ -294,10 +294,10 @@ const HeroMedia = (() => {
 })();
 
 
-/* ═══════════════════════════════════════════════════════════════
+/* ===============================================================
    7. HERO SOUND TOGGLE
    Lets users opt in to hero video audio
-═══════════════════════════════════════════════════════════════ */
+=============================================================== */
 
 const HeroSound = (() => {
 
@@ -387,9 +387,9 @@ const HeroSound = (() => {
 })();
 
 
-/* ═══════════════════════════════════════════════════════════════
+/* ===============================================================
    7. MARQUEE PAUSE ON REDUCED MOTION
-═══════════════════════════════════════════════════════════════ */
+=============================================================== */
 
 const Marquee = (() => {
 
@@ -403,7 +403,7 @@ const Marquee = (() => {
       /* Content already duplicated in HTML */
     }
 
-    /* Pause when not in viewport — performance */
+    /* Pause when not in viewport - performance */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         track.style.animationPlayState =
@@ -420,9 +420,9 @@ const Marquee = (() => {
 })();
 
 
-/* ═══════════════════════════════════════════════════════════════
-   8. IMAGE PLACEHOLDER — Shows while images load
-═══════════════════════════════════════════════════════════════ */
+/* ===============================================================
+   8. IMAGE PLACEHOLDER - Shows while images load
+=============================================================== */
 
 const ImagePlaceholder = (() => {
 
@@ -466,7 +466,7 @@ const ImagePlaceholder = (() => {
             img.naturalWidth  || img.width  || 800,
             img.naturalHeight || img.height || 600
           );
-          img.alt = img.alt || 'Project image — Global Architects';
+          img.alt = img.alt || 'Project image - Global Architects';
         }
       }, { once: true });
     });
@@ -477,9 +477,9 @@ const ImagePlaceholder = (() => {
 })();
 
 
-/* ═══════════════════════════════════════════════════════════════
+/* ===============================================================
    9. PERFORMANCE MONITORING (Dev only)
-═══════════════════════════════════════════════════════════════ */
+=============================================================== */
 
 const PerfMonitor = (() => {
 
@@ -499,7 +499,7 @@ const PerfMonitor = (() => {
           const last    = entries[entries.length - 1];
           console.log(
             `%c LCP: ${last.startTime.toFixed(0)}ms ` +
-            `${last.startTime < 2500 ? '✅' : '⚠️'}`,
+            `${last.startTime < 2500 ? 'OK' : 'WARN'}`,
             'background:#1C1A16;color:#C4A882;padding:2px 8px'
           );
         }).observe({ type: 'largest-contentful-paint', buffered: true });
@@ -511,7 +511,7 @@ const PerfMonitor = (() => {
           list.getEntries().forEach(entry => {
             console.log(
               `%c FID: ${(entry.processingStart - entry.startTime).toFixed(0)}ms ` +
-              `${entry.processingStart - entry.startTime < 100 ? '✅' : '⚠️'}`,
+              `${entry.processingStart - entry.startTime < 100 ? 'OK' : 'WARN'}`,
               'background:#1C1A16;color:#C4A882;padding:2px 8px'
             );
           });
@@ -527,7 +527,7 @@ const PerfMonitor = (() => {
           });
           console.log(
             `%c CLS: ${clsScore.toFixed(4)} ` +
-            `${clsScore < 0.1 ? '✅' : '⚠️'}`,
+            `${clsScore < 0.1 ? 'OK' : 'WARN'}`,
             'background:#1C1A16;color:#C4A882;padding:2px 8px'
           );
         }).observe({ type: 'layout-shift', buffered: true });
@@ -540,8 +540,8 @@ const PerfMonitor = (() => {
       if (timing) {
         const loadTime = timing.loadEventEnd - timing.startTime;
         console.log(
-          `%c Global Architects — Page loaded in ${loadTime.toFixed(0)}ms ` +
-          `${loadTime < 2000 ? '✅' : '⚠️'}`,
+          `%c Global Architects - Page loaded in ${loadTime.toFixed(0)}ms ` +
+          `${loadTime < 2000 ? 'OK' : 'WARN'}`,
           'background:#8B6914;color:#fff;padding:4px 8px;font-weight:bold'
         );
       }
@@ -553,13 +553,13 @@ const PerfMonitor = (() => {
 })();
 
 
-/* ═══════════════════════════════════════════════════════════════
+/* ===============================================================
    10. ERROR BOUNDARY
    Catch and log JS errors gracefully
-═══════════════════════════════════════════════════════════════ */
+=============================================================== */
 
 window.addEventListener('error', (e) => {
-  /* Don't break the site — log silently */
+  /* Don't break the site - log silently */
   if (window.location.hostname === 'localhost') {
     console.error('Global Architects JS Error:', e.message, e.filename, e.lineno);
   }
@@ -635,10 +635,10 @@ const ConversionTracking = (() => {
 
 })();
 
-/* ═══════════════════════════════════════════════════════════════
+/* ===============================================================
    MASTER INIT
    Initialize all modules in correct order
-═══════════════════════════════════════════════════════════════ */
+=============================================================== */
 
 function initApp() {
 
@@ -658,9 +658,9 @@ function initApp() {
   if (window.location.hostname === 'localhost' ||
       window.location.hostname === '127.0.0.1') {
     console.log(
-      '\n%c 🏛  GLOBAL ARCHITECTS %c\n' +
+      '\n%c GLOBAL ARCHITECTS  GLOBAL ARCHITECTS %c\n' +
       '%c Excellence in Design & Planning\n' +
-      'Dehradun, Uttarakhand · Est. 2017\n' +
+      'Dehradun, Uttarakhand / Est. 2017\n' +
       'Ar. Shailesh Kumar, Principal Architect\n\n' +
       'globalarchitects24@gmail.com\n',
       'background:#1C1A16;color:#C4A882;font-size:16px;font-weight:bold;padding:8px 16px',
@@ -671,9 +671,9 @@ function initApp() {
 }
 
 
-/* ─────────────────────────────────────────────────────────────
+/* -------------------------------------------------------------
    START
-───────────────────────────────────────────────────────────── */
+------------------------------------------------------------- */
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initApp);
 } else {

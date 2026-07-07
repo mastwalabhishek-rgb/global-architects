@@ -1,33 +1,33 @@
-/* ═══════════════════════════════════════════════════════════════
-   GLOBAL ARCHITECTS — theme.js
+/* ===============================================================
+   GLOBAL ARCHITECTS - theme.js
    Time-Aware Color Palette System
-   Industry First — No top architecture firm does this
-   ═══════════════════════════════════════════════════════════════
+   Industry First - No top architecture firm does this
+   ===============================================================
 
    HOW IT WORKS:
-   1. On load — reads current time via Date()
+   1. On load - reads current time via Date()
    2. Sets [data-theme] on <html> element
    3. CSS variables in style.css respond instantly
    4. Smooth 3s transition between palettes
    5. Manual toggle button always available
    6. User preference saved to localStorage
    7. Checks every 60 seconds for time changes
-   ═══════════════════════════════════════════════════════════════ */
+   =============================================================== */
 
 'use strict';
 
 const ThemeManager = (() => {
 
-  /* ── Constants ── */
+  /* -- Constants -- */
   const THEMES = {
-    dawn:      { label: 'Dawn',      icon: '🌅', hours: [5,  8]  },
-    morning:   { label: 'Morning',   icon: '☀️',  hours: [8,  12] },
-    afternoon: { label: 'Afternoon', icon: '🌤️',  hours: [12, 17] },
-    evening:   { label: 'Evening',   icon: '🌆', hours: [17, 20] },
-    night:     { label: 'Night',     icon: '🌙', hours: [20, 24] },
+    dawn:      { label: 'Dawn',      icon: 'Dawn', hours: [5,  8]  },
+    morning:   { label: 'Morning',   icon: 'Morning',  hours: [8,  12] },
+    afternoon: { label: 'Afternoon', icon: 'Afternoon',  hours: [12, 17] },
+    evening:   { label: 'Evening',   icon: 'Evening', hours: [17, 20] },
+    night:     { label: 'Night',     icon: 'Night', hours: [20, 24] },
   };
 
-  /* Hours 0–5 also map to night */
+  /* Hours 0-5 also map to night */
   const THEME_ORDER = ['dawn', 'morning', 'afternoon', 'evening', 'night'];
 
   const STORAGE_KEY   = 'ga_theme_override';
@@ -40,10 +40,10 @@ const ThemeManager = (() => {
   let checkInterval   = null;
 
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      GET THEME FROM TIME
      Returns theme name based on current hour
-  ───────────────────────────────────────────────────────────── */
+  ------------------------------------------------------------- */
   function getThemeFromTime() {
     const hour = new Date().getHours();
 
@@ -51,14 +51,14 @@ const ThemeManager = (() => {
     if (hour >= 8  && hour < 12) return 'morning';
     if (hour >= 12 && hour < 17) return 'afternoon';
     if (hour >= 17 && hour < 20) return 'evening';
-    return 'night'; /* 20–24 and 0–5 */
+    return 'night'; /* 20-24 and 0-5 */
   }
 
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      APPLY THEME
      Sets data-theme on <html>, updates button icon
-  ───────────────────────────────────────────────────────────── */
+  ------------------------------------------------------------- */
   function applyTheme(themeName, animate = true) {
     if (!THEMES[themeName]) return;
 
@@ -67,7 +67,7 @@ const ThemeManager = (() => {
 
     currentTheme = themeName;
 
-    /* Apply — CSS transitions handle the smooth change */
+    /* Apply - CSS transitions handle the smooth change */
     HTML_EL.setAttribute('data-theme', themeName);
 
     /* Update toggle button icon */
@@ -85,16 +85,16 @@ const ThemeManager = (() => {
   }
 
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      UPDATE TOGGLE BUTTON
-  ───────────────────────────────────────────────────────────── */
+  ------------------------------------------------------------- */
   function updateToggleButton(themeName) {
     if (!TOGGLE_BTN) return;
 
     const theme = THEMES[themeName];
     const isDark = themeName === 'evening' || themeName === 'night';
 
-    /* Swap icon — sun for light themes, moon for dark */
+    /* Swap icon - sun for light themes, moon for dark */
     TOGGLE_BTN.innerHTML = isDark
       ? `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="18" height="18">
            <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"
@@ -120,21 +120,21 @@ const ThemeManager = (() => {
 
     /* Add tooltip */
     TOGGLE_BTN.title = isManualOverride
-      ? `${theme.label} mode (manual) — click to cycle`
-      : `${theme.label} mode (auto) — click to cycle`;
+      ? `${theme.label} mode (manual) - click to cycle`
+      : `${theme.label} mode (auto) - click to cycle`;
   }
 
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      CYCLE THEMES (manual toggle)
-     Goes through: dawn → morning → afternoon → evening → night → auto
-  ───────────────────────────────────────────────────────────── */
+     Goes through: dawn -> morning -> afternoon -> evening -> night -> auto
+  ------------------------------------------------------------- */
   function cycleTheme() {
     const currentIdx = THEME_ORDER.indexOf(currentTheme);
     const nextIdx    = (currentIdx + 1) % THEME_ORDER.length;
     const nextTheme  = THEME_ORDER[nextIdx];
 
-    /* Check if we've cycled all 5 — go back to auto */
+    /* Check if we've cycled all 5 - go back to auto */
     if (nextIdx === 0 && isManualOverride) {
       enableAutoMode();
       return;
@@ -153,10 +153,10 @@ const ThemeManager = (() => {
   }
 
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      ENABLE AUTO MODE
      Resets to time-based automatic palette
-  ───────────────────────────────────────────────────────────── */
+  ------------------------------------------------------------- */
   function enableAutoMode() {
     isManualOverride = false;
 
@@ -170,10 +170,10 @@ const ThemeManager = (() => {
   }
 
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      THEME INDICATOR
      Small toast showing current theme name
-  ───────────────────────────────────────────────────────────── */
+  ------------------------------------------------------------- */
   function showThemeIndicator(themeName, isAuto = false) {
     /* Remove existing */
     const existing = document.getElementById('themeIndicator');
@@ -227,9 +227,9 @@ const ThemeManager = (() => {
   }
 
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      ANNOUNCE TO SCREEN READERS
-  ───────────────────────────────────────────────────────────── */
+  ------------------------------------------------------------- */
   function announceThemeChange(themeName) {
     const theme = THEMES[themeName];
 
@@ -256,10 +256,10 @@ const ThemeManager = (() => {
   }
 
 
-  /* ─────────────────────────────────────────────────────────────
-     AUTO CHECK — runs every 60 seconds
+  /* -------------------------------------------------------------
+     AUTO CHECK - runs every 60 seconds
      Detects when time crosses a threshold
-  ───────────────────────────────────────────────────────────── */
+  ------------------------------------------------------------- */
   function startAutoCheck() {
     if (checkInterval) clearInterval(checkInterval);
 
@@ -274,10 +274,10 @@ const ThemeManager = (() => {
   }
 
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      RESTORE PREFERENCE
      Check localStorage for manual override
-  ───────────────────────────────────────────────────────────── */
+  ------------------------------------------------------------- */
   function restorePreference() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -290,9 +290,9 @@ const ThemeManager = (() => {
   }
 
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      BIND EVENTS
-  ───────────────────────────────────────────────────────────── */
+  ------------------------------------------------------------- */
   function bindEvents() {
     /* Theme toggle button */
     if (TOGGLE_BTN) {
@@ -307,7 +307,7 @@ const ThemeManager = (() => {
       }
     });
 
-    /* Page visibility change — re-check time when tab becomes active */
+    /* Page visibility change - re-check time when tab becomes active */
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden && !isManualOverride) {
         const timeTheme = getThemeFromTime();
@@ -319,9 +319,9 @@ const ThemeManager = (() => {
   }
 
 
-  /* ─────────────────────────────────────────────────────────────
+  /* -------------------------------------------------------------
      INIT
-  ───────────────────────────────────────────────────────────── */
+  ------------------------------------------------------------- */
   function init() {
     /* 1. Check for saved manual override */
     const savedTheme = restorePreference();
@@ -346,7 +346,7 @@ const ThemeManager = (() => {
     if (window.location.hostname === 'localhost' ||
         window.location.hostname === '127.0.0.1') {
       console.log(
-        `%c Global Architects — Theme System %c\n` +
+        `%c Global Architects - Theme System %c\n` +
         `Current: ${initialTheme}\n` +
         `Auto mode: ${!isManualOverride}\n` +
         `Time: ${new Date().getHours()}:${String(new Date().getMinutes()).padStart(2,'0')}\n` +
@@ -358,7 +358,7 @@ const ThemeManager = (() => {
   }
 
 
-  /* ── Public API ── */
+  /* -- Public API -- */
   return {
     init,
     getTheme:     () => currentTheme,
@@ -371,9 +371,9 @@ const ThemeManager = (() => {
 })();
 
 
-/* ─────────────────────────────────────────────────────────────
+/* -------------------------------------------------------------
    INITIALIZE ON DOM READY
-───────────────────────────────────────────────────────────── */
+------------------------------------------------------------- */
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', ThemeManager.init);
 } else {

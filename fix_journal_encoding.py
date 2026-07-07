@@ -7,10 +7,12 @@ if not paths:
 for path in paths:
     with open(path, 'r', encoding='utf-8', errors='replace') as f:
         text = f.read()
-    count_dash = text.count('â€”')
-    count_arrow = text.count('â†’')
+    bad_dash = '\u00e2\u20ac\u201d'
+    bad_arrow = '\u00e2\u2020\u2019'
+    count_dash = text.count(bad_dash)
+    count_arrow = text.count(bad_arrow)
     if count_dash or count_arrow:
-        new_text = text.replace('â€”', '—').replace('â†’', '→')
+        new_text = text.replace(bad_dash, '-').replace(bad_arrow, '->')
         with open(path, 'w', encoding='utf-8') as f:
             f.write(new_text)
         print(f'Updated {path}: {count_dash} dashes, {count_arrow} arrows')

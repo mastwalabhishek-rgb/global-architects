@@ -1,8 +1,8 @@
-/* ═══════════════════════════════════════════════════════════════
-   GLOBAL ARCHITECTS — animations.js
+/* ===============================================================
+   GLOBAL ARCHITECTS - animations.js
    Master Animation Controller
-   Blueprint Entry → Hero → Scroll Reveals → GSAP
-   ═══════════════════════════════════════════════════════════════
+   Blueprint Entry -> Hero -> Scroll Reveals -> GSAP
+   ===============================================================
 
    SEQUENCE:
    1. Blueprint SVG draws itself (2.5s)
@@ -13,19 +13,19 @@
    6. GSAP ScrollTrigger handles complex scroll animations
    7. Stats counter runs when section enters viewport
    8. Philosophy words reveal one by one on scroll
-   ═══════════════════════════════════════════════════════════════ */
+   =============================================================== */
 
 'use strict';
 
 const AnimationManager = (() => {
 
-  /* ── Reduced motion check ── */
+  /* -- Reduced motion check -- */
   const prefersReduced = window.matchMedia(
     '(prefers-reduced-motion: reduce)'
   ).matches;
 
 
-  /* ── DOM refs ── */
+  /* -- DOM refs -- */
   const DOM = {
     blueprintOverlay: document.getElementById('blueprintOverlay'),
     blueprintSkip:    document.getElementById('blueprintSkip'),
@@ -54,13 +54,13 @@ const AnimationManager = (() => {
   };
 
 
-  /* ═══════════════════════════════════════════════════════════════
+  /* ===============================================================
      1. BLUEPRINT ENTRY ANIMATION
-  ═══════════════════════════════════════════════════════════════ */
+  =============================================================== */
 
   const Blueprint = {
 
-    TOTAL_DURATION: 2500, /* ms — total blueprint draw time */
+    TOTAL_DURATION: 2500, /* ms - total blueprint draw time */
     hasSkipped: false,
 
     init() {
@@ -69,13 +69,13 @@ const AnimationManager = (() => {
         return;
       }
 
-      /* If reduced motion — skip immediately */
+      /* If reduced motion - skip immediately */
       if (prefersReduced) {
         this.skip();
         return;
       }
 
-      /* Check if user has visited before — shorter animation */
+      /* Check if user has visited before - shorter animation */
       const hasVisited = sessionStorage.getItem('ga_visited');
       if (hasVisited) {
         this.TOTAL_DURATION = 1500;
@@ -90,7 +90,7 @@ const AnimationManager = (() => {
         DOM.blueprintSkip.addEventListener('click', () => this.skip());
       }
 
-      /* Keyboard skip — spacebar or Escape */
+      /* Keyboard skip - spacebar or Escape */
       const keySkip = (e) => {
         if (e.key === 'Escape' || e.key === ' ') {
           e.preventDefault();
@@ -154,9 +154,9 @@ const AnimationManager = (() => {
   };
 
 
-  /* ═══════════════════════════════════════════════════════════════
+  /* ===============================================================
      2. HERO ENTRY ANIMATION SEQUENCE
-  ═══════════════════════════════════════════════════════════════ */
+  =============================================================== */
 
   const Hero = {
 
@@ -176,7 +176,7 @@ const AnimationManager = (() => {
         { el: DOM.heroBadge,        delay: 850,  cls: 'is-visible' },
       ];
 
-      /* Heading lines — split animation */
+      /* Heading lines - split animation */
       DOM.heroHeadingLines.forEach((line, i) => {
         setTimeout(() => {
           /* Wrap content in span for slide-up */
@@ -194,7 +194,7 @@ const AnimationManager = (() => {
         setTimeout(() => el.classList.add(cls), delay);
       });
 
-      /* GSAP kinetic typography — if GSAP loaded */
+      /* GSAP kinetic typography - if GSAP loaded */
       setTimeout(() => {
         if (typeof gsap !== 'undefined') {
           KineticType.init();
@@ -221,9 +221,9 @@ const AnimationManager = (() => {
   };
 
 
-  /* ═══════════════════════════════════════════════════════════════
+  /* ===============================================================
      3. KINETIC TYPOGRAPHY (GSAP)
-  ═══════════════════════════════════════════════════════════════ */
+  =============================================================== */
 
   const KineticType = {
 
@@ -238,7 +238,7 @@ const AnimationManager = (() => {
 
       this.ctx = gsap.context(() => {
 
-        /* Tagline — character stagger */
+        /* Tagline - character stagger */
         const tagline = DOM.heroTagline;
         if (tagline && typeof SplitText !== 'undefined') {
           const split = new SplitText(tagline, { type: 'chars' });
@@ -316,9 +316,9 @@ const AnimationManager = (() => {
   };
 
 
-  /* ═══════════════════════════════════════════════════════════════
+  /* ===============================================================
      4. NAV SCROLL BEHAVIOR
-  ═══════════════════════════════════════════════════════════════ */
+  =============================================================== */
 
   const NavScroll = {
 
@@ -348,9 +348,9 @@ const AnimationManager = (() => {
   };
 
 
-  /* ═══════════════════════════════════════════════════════════════
-     5. INTERSECTION OBSERVER — Scroll Reveals
-  ═══════════════════════════════════════════════════════════════ */
+  /* ===============================================================
+     5. INTERSECTION OBSERVER - Scroll Reveals
+  =============================================================== */
 
   const ScrollReveal = {
 
@@ -427,7 +427,7 @@ const AnimationManager = (() => {
         el.classList.add('is-revealed');
       }
 
-      /* Unobserve after reveal — performance */
+      /* Unobserve after reveal - performance */
       if (this.observer) {
         this.observer.unobserve(el);
       }
@@ -435,9 +435,9 @@ const AnimationManager = (() => {
   };
 
 
-  /* ═══════════════════════════════════════════════════════════════
+  /* ===============================================================
      6. STATS COUNTER
-  ═══════════════════════════════════════════════════════════════ */
+  =============================================================== */
 
   const Counter = {
 
@@ -478,9 +478,9 @@ const AnimationManager = (() => {
   };
 
 
-  /* ═══════════════════════════════════════════════════════════════
+  /* ===============================================================
      7. WORD-BY-WORD PHILOSOPHY REVEAL
-  ═══════════════════════════════════════════════════════════════ */
+  =============================================================== */
 
   const WordReveal = {
 
@@ -517,10 +517,10 @@ const AnimationManager = (() => {
   };
 
 
-  /* ═══════════════════════════════════════════════════════════════
+  /* ===============================================================
      8. GSAP SCROLL TRIGGER ANIMATIONS
      Runs after GSAP loads
-  ═══════════════════════════════════════════════════════════════ */
+  =============================================================== */
 
   const GSAPAnimations = {
 
@@ -557,7 +557,7 @@ const AnimationManager = (() => {
       });
     },
 
-    /* Projects grid — stagger in */
+    /* Projects grid - stagger in */
     projectsGrid() {
       const cards = document.querySelectorAll('.project-card');
       if (!cards.length) return;
@@ -591,7 +591,7 @@ const AnimationManager = (() => {
       });
     },
 
-    /* About — image reveal + text */
+    /* About - image reveal + text */
     aboutSection() {
       const container = document.querySelector('.about-teaser__container');
       if (!container) return;
@@ -628,7 +628,7 @@ const AnimationManager = (() => {
       }
     },
 
-    /* Process — horizontal line reveal */
+    /* Process - horizontal line reveal */
     processSection() {
       const steps = document.querySelectorAll('.process__step');
       if (!steps.length) return;
@@ -647,7 +647,7 @@ const AnimationManager = (() => {
       });
     },
 
-    /* Stats — count up already handled by IntersectionObserver
+    /* Stats - count up already handled by IntersectionObserver
        GSAP adds the visual entrance */
     statsSection() {
       const grid = document.querySelector('.stats__grid');
@@ -665,7 +665,7 @@ const AnimationManager = (() => {
       });
     },
 
-    /* CTA — scale up from center */
+    /* CTA - scale up from center */
     ctaSection() {
       const cta = document.querySelector('.cta-section__heading');
       if (!cta) return;
@@ -688,9 +688,9 @@ const AnimationManager = (() => {
   };
 
 
-  /* ═══════════════════════════════════════════════════════════════
+  /* ===============================================================
      9. MOBILE MENU
-  ═══════════════════════════════════════════════════════════════ */
+  =============================================================== */
 
   const MobileMenu = {
 
@@ -755,9 +755,9 @@ const AnimationManager = (() => {
   };
 
 
-  /* ═══════════════════════════════════════════════════════════════
+  /* ===============================================================
      10. PAGE TRANSITIONS
-  ═══════════════════════════════════════════════════════════════ */
+  =============================================================== */
 
   const PageTransition = {
 
@@ -788,7 +788,7 @@ const AnimationManager = (() => {
         });
       });
 
-      /* On page load — exit animation */
+      /* On page load - exit animation */
       if (!prefersReduced) {
         this.overlay.classList.add('is-leaving');
         setTimeout(() => {
@@ -807,9 +807,9 @@ const AnimationManager = (() => {
   };
 
 
-  /* ═══════════════════════════════════════════════════════════════
+  /* ===============================================================
      11. LAZY IMAGE LOADING ENHANCEMENT
-  ═══════════════════════════════════════════════════════════════ */
+  =============================================================== */
 
   const LazyImages = {
 
@@ -842,10 +842,10 @@ const AnimationManager = (() => {
   };
 
 
-  /* ═══════════════════════════════════════════════════════════════
+  /* ===============================================================
      12. WAIT FOR GSAP
-     GSAP loads deferred — wait then init GSAP animations
-  ═══════════════════════════════════════════════════════════════ */
+     GSAP loads deferred - wait then init GSAP animations
+  =============================================================== */
 
   function waitForGSAP(callback, attempts = 0) {
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -856,19 +856,19 @@ const AnimationManager = (() => {
   }
 
 
-  /* ═══════════════════════════════════════════════════════════════
-     INIT — Master Initialization
-  ═══════════════════════════════════════════════════════════════ */
+  /* ===============================================================
+     INIT - Master Initialization
+  =============================================================== */
 
   function init() {
 
-    /* 1. Blueprint — runs first, triggers everything else */
+    /* 1. Blueprint - runs first, triggers everything else */
     Blueprint.init();
 
     /* 2. Nav scroll behavior */
     NavScroll.init();
 
-    /* 3. Scroll reveals — IntersectionObserver */
+    /* 3. Scroll reveals - IntersectionObserver */
     ScrollReveal.init();
 
     /* 4. Mobile menu */
@@ -880,7 +880,7 @@ const AnimationManager = (() => {
     /* 6. Lazy images */
     LazyImages.init();
 
-    /* 7. GSAP — wait for CDN load */
+    /* 7. GSAP - wait for CDN load */
     waitForGSAP(() => {
       GSAPAnimations.init();
     });
@@ -893,15 +893,15 @@ const AnimationManager = (() => {
   }
 
 
-  /* ── Public API ── */
+  /* -- Public API -- */
   return { init };
 
 })();
 
 
-/* ─────────────────────────────────────────────────────────────
+/* -------------------------------------------------------------
    INITIALIZE ON DOM READY
-───────────────────────────────────────────────────────────── */
+------------------------------------------------------------- */
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', AnimationManager.init);
 } else {
