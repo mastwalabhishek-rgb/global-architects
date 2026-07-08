@@ -1330,7 +1330,7 @@
   <script src="js/theme.js"      defer></script>
   <script src="js/cursor.js"     defer></script>
   <script src="js/animations.js" defer></script>
-  <script src="js/main.js"       defer></script>
+  <script src="js/main.js?v=20260708-1"       defer></script>
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -1455,7 +1455,7 @@
         `Message: ${formData.get('message') || ''}`
       ].join('\n');
 
-      window.GlobalArchitects?.ConversionTracking?.track('generate_lead', { label: 'Contact form submission' });
+      window.GlobalArchitects?.ConversionTracking?.track('generate_lead', { label: 'Contact form submission', transport_type: 'beacon' });
       window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
 
       form.style.display = 'none';

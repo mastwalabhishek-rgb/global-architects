@@ -588,6 +588,10 @@ const ConversionTracking = (() => {
       ...params,
     };
 
+    if (eventName === 'whatsapp_click' || eventName === 'phone_call_click') {
+      eventParams.transport_type = 'beacon';
+    }
+
     if (typeof window.gtag === 'function') {
       window.gtag('event', eventName, eventParams);
     }
