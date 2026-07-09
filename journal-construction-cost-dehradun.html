@@ -53,6 +53,173 @@
   <link rel="stylesheet" href="css/style.css?v=20260606" />
   <link rel="stylesheet" href="css/animations.css" />
   <link rel="stylesheet" href="css/responsive.css?v=20260529-2" />
+  <style>
+    .ga-budget-planner {
+      margin: var(--space-12) 0 var(--space-4);
+      padding: var(--space-10);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      background-color: var(--bg-elevated);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ga-budget-planner h2 {
+      margin-top: 0;
+    }
+
+    .ga-budget-planner__subtext {
+      margin-top: var(--space-3);
+      color: var(--text-secondary);
+    }
+
+    .ga-budget-planner__field {
+      display: grid;
+      gap: var(--space-3);
+      margin-top: var(--space-8);
+    }
+
+    .ga-budget-planner__field label {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .ga-budget-planner__input {
+      width: 100%;
+      min-height: 58px;
+      padding: var(--space-4) var(--space-5);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font: 500 var(--text-body) / var(--lh-normal) var(--font-body);
+      transition:
+        border-color var(--duration-base) var(--ease-out),
+        box-shadow var(--duration-base) var(--ease-out);
+    }
+
+    .ga-budget-planner__input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+    }
+
+    .ga-budget-planner__options {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-3);
+    }
+
+    .ga-budget-planner__contracts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ga-budget-planner__option {
+      min-height: 72px;
+      padding: var(--space-4);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      line-height: var(--lh-snug);
+      text-align: left;
+      cursor: pointer;
+      transition:
+        background-color var(--duration-base) var(--ease-out),
+        color var(--duration-base) var(--ease-out),
+        border-color var(--duration-base) var(--ease-out),
+        transform var(--duration-base) var(--ease-out);
+    }
+
+    .ga-budget-planner__option span {
+      display: block;
+      margin-top: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    .ga-budget-planner__option:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .ga-budget-planner__option.ga-active {
+      border-color: var(--accent-primary);
+      background-color: var(--accent-primary);
+      color: var(--bg-primary);
+    }
+
+    .ga-budget-planner__option.ga-active span {
+      color: var(--bg-primary);
+    }
+
+    .ga-budget-planner__result {
+      margin-top: var(--space-8);
+      padding: var(--space-8);
+      border-left: 2px solid var(--accent-primary);
+      background-color: var(--bg-primary);
+    }
+
+    .ga-budget-planner__result-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-widest);
+      text-transform: uppercase;
+      color: var(--accent-primary);
+    }
+
+    .ga-budget-planner__result-range {
+      margin-top: var(--space-3);
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: var(--lh-tight);
+      color: var(--text-primary);
+    }
+
+    .ga-budget-planner__result-rate {
+      margin-top: var(--space-3);
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+    }
+
+    .ga-budget-planner__disclaimer {
+      margin-top: var(--space-5);
+      font-size: var(--text-sm);
+      line-height: var(--lh-relaxed);
+      color: var(--text-secondary);
+    }
+
+    .ga-budget-planner__cta {
+      margin-top: var(--space-6);
+    }
+
+    @media screen and (max-width: 767px) {
+      .ga-budget-planner {
+        padding: var(--space-6);
+      }
+
+      .ga-budget-planner__options,
+      .ga-budget-planner__contracts {
+        grid-template-columns: 1fr;
+      }
+
+      .ga-budget-planner__option {
+        min-height: 64px;
+      }
+
+      .ga-budget-planner__cta {
+        width: 100%;
+      }
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -177,6 +344,105 @@
             <h3>Luxury Construction &mdash; &#8377;3,000 and above per sq ft</h3>
             <p>Imported stone, bespoke joinery, smart home systems, luxury villa finishes. Projects where material selection and design quality are the primary consideration, not cost.</p>
 
+
+            <section id="budget-planner" class="ga-budget-planner">
+
+              <p class="cta-section__question">Plan Ahead</p>
+              <h2>Plan Your Construction Budget</h2>
+              <p class="ga-budget-planner__subtext">A starting point for your conversation with us.</p>
+
+              <div class="ga-budget-planner__field">
+                <label for="ga-area">Built-up Area (sq ft)</label>
+                <input id="ga-area" class="ga-budget-planner__input" type="number" min="200" step="50" placeholder="e.g. 1500">
+              </div>
+
+              <div class="ga-budget-planner__field">
+                <label>Construction Grade</label>
+                <div id="ga-grade" class="ga-budget-planner__options">
+                  <button type="button" data-min="1610" data-max="1955" class="ga-budget-planner__option ga-grade-btn">Budget<br><span>&#8377;1,610&ndash;1,955/sqft</span></button>
+                  <button type="button" data-min="1955" data-max="2645" class="ga-budget-planner__option ga-grade-btn ga-active">Standard<br><span>&#8377;1,955&ndash;2,645/sqft</span></button>
+                  <button type="button" data-min="2645" data-max="3450" class="ga-budget-planner__option ga-grade-btn">Premium<br><span>&#8377;2,645&ndash;3,450/sqft</span></button>
+                  <button type="button" data-min="3450" data-max="4370" class="ga-budget-planner__option ga-grade-btn">Luxury<br><span>&#8377;3,450&ndash;4,370/sqft</span></button>
+                </div>
+              </div>
+
+              <div id="ga-result" class="ga-budget-planner__result" style="display:none;">
+                <p class="ga-budget-planner__result-label">Estimated Cost</p>
+                <p id="ga-result-range" class="ga-budget-planner__result-range"></p>
+                <p id="ga-result-rate" class="ga-budget-planner__result-rate"></p>
+                <p class="ga-budget-planner__disclaimer">
+                  This estimate covers standard civil construction only &mdash; it excludes 
+                  MDDA fees, interiors, and boundary/external development. Talk to us 
+                  for a detailed, plot-specific quote.
+                </p>
+                <p class="ga-budget-planner__disclaimer">
+                  All Global Architects projects are fully managed &mdash; material 
+                  sourcing, labour, and execution &mdash; under one roof.
+                </p>
+                <a id="ga-whatsapp-btn" href="#" target="_blank" rel="noopener" class="btn btn--primary ga-budget-planner__cta">
+                  Discuss This With Our Architects <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+
+            </section>
+
+            <script>
+            (function () {
+              const areaInput = document.getElementById('ga-area');
+              const gradeBtns = document.querySelectorAll('.ga-grade-btn');
+              const resultBox = document.getElementById('ga-result');
+              const resultRange = document.getElementById('ga-result-range');
+              const resultRate = document.getElementById('ga-result-rate');
+              const waBtn = document.getElementById('ga-whatsapp-btn');
+
+              let selectedGrade = { min: 1955, max: 2645, label: 'Standard' };
+
+              function selectButton(group, btn, storeFn) {
+                group.forEach(b => b.classList.remove('ga-active'));
+                btn.classList.add('ga-active');
+                storeFn(btn);
+                calculate();
+              }
+
+              gradeBtns.forEach(btn => {
+                btn.addEventListener('click', () => selectButton(gradeBtns, btn, b => {
+                  selectedGrade = {
+                    min: parseFloat(b.dataset.min),
+                    max: parseFloat(b.dataset.max),
+                    label: b.childNodes[0].textContent.trim()
+                  };
+                }));
+              });
+
+              areaInput.addEventListener('input', calculate);
+
+              function formatLakhs(v) { return (v / 100000).toFixed(1); }
+
+              function calculate() {
+                const area = parseFloat(areaInput.value);
+                if (!area || area <= 0) { resultBox.style.display = 'none'; return; }
+
+                const minRate = selectedGrade.min;
+                const maxRate = selectedGrade.max;
+                const minCost = minRate * area;
+                const maxCost = maxRate * area;
+
+                resultRange.textContent = `\u20b9${formatLakhs(minCost)}L \u2013 \u20b9${formatLakhs(maxCost)}L`;
+                resultRate.textContent = `${selectedGrade.label} \u00b7 \u20b9${Math.round(minRate).toLocaleString('en-IN')}\u2013${Math.round(maxRate).toLocaleString('en-IN')}/sqft \u00b7 ${area} sqft`;
+                resultBox.style.display = 'block';
+
+                const msg = `Hello, I used the budget planning tool on your website. My estimate: ${area} sqft, ${selectedGrade.label} grade \u2014 approx \u20b9${formatLakhs(minCost)}L to \u20b9${formatLakhs(maxCost)}L. I'd like a detailed quote for my plot.`;
+                waBtn.href = `https://wa.me/917275075065?text=${encodeURIComponent(msg)}`;
+              }
+
+              waBtn.addEventListener('click', function (event) {
+                if (window.GlobalArchitects?.ConversionTracking?.track) {
+                  event.stopPropagation();
+                  window.GlobalArchitects.ConversionTracking.track('whatsapp_click', { label: 'Discuss This With Our Architects' });
+                }
+              });
+            })();
+            </script>
             <h2>What Drives Construction Costs in Dehradun Higher Than Other Cities</h2>
             <p>Dehradun is not a flat city. Building here comes with specific cost pressures that do not exist in Delhi, Lucknow, or other plains cities. Understanding these factors before you budget is essential.</p>
 
