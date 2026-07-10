@@ -60,7 +60,7 @@ const AnimationManager = (() => {
 
   const Blueprint = {
 
-    TOTAL_DURATION: 2500, /* ms - total blueprint draw time */
+    TOTAL_DURATION: 1000, /* ms - total blueprint draw time */
     hasSkipped: false,
 
     init() {
@@ -115,7 +115,7 @@ const AnimationManager = (() => {
         DOM.blueprintOverlay.style.display = 'none';
         DOM.blueprintOverlay.setAttribute('aria-hidden', 'true');
         this.onComplete();
-      }, 900);
+      }, 400);
     },
 
     skip() {
