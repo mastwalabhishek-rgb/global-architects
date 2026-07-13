@@ -768,6 +768,7 @@ const AnimationManager = (() => {
       this.overlay = document.createElement('div');
       this.overlay.className = 'page-transition';
       document.body.appendChild(this.overlay);
+      this.bindBFCacheReset();
 
       /* Intercept internal link clicks */
       document.querySelectorAll('a[href]').forEach(link => {
@@ -798,11 +799,63 @@ const AnimationManager = (() => {
     },
 
     navigate(href) {
+      this.prepareOverlayForTransition();
       this.overlay.classList.add('is-entering');
 
       setTimeout(() => {
         window.location.href = href;
       }, 450);
+    },
+
+    prepareOverlayForTransition() {
+      const overlay = this.overlay || document.querySelector('.page-transition');
+      if (!overlay) return;
+
+      if (typeof gsap !== 'undefined') {
+        gsap.killTweensOf(overlay);
+        gsap.set(overlay, { clearProps: 'opacity,visibility,pointerEvents,transform' });
+      } else {
+        overlay.style.opacity = '';
+        overlay.style.visibility = '';
+        overlay.style.pointerEvents = '';
+        overlay.style.transform = '';
+      }
+    },
+
+    bindBFCacheReset() {
+      window.addEventListener('pageshow', (event) => {
+        if (event.persisted) {
+          this.resetOverlayState();
+        }
+      });
+
+      window.addEventListener('pagehide', () => {
+        this.resetOverlayState();
+      });
+    },
+
+    resetOverlayState() {
+      const overlay = this.overlay || document.querySelector('.page-transition');
+      if (!overlay) return;
+
+      if (typeof gsap !== 'undefined') {
+        gsap.killTweensOf(overlay);
+        gsap.set(overlay, {
+          autoAlpha: 0,
+          opacity: 0,
+          pointerEvents: 'none',
+          y: '100%',
+        });
+      } else {
+        overlay.style.opacity = '0';
+        overlay.style.visibility = 'hidden';
+        overlay.style.pointerEvents = 'none';
+        overlay.style.transform = 'translateY(100%)';
+      }
+
+      overlay.classList.remove('is-entering', 'is-leaving');
+      document.documentElement.classList.remove('is-transitioning', 'is-loading', 'is-animating');
+      document.body.classList.remove('is-transitioning', 'is-loading', 'is-animating');
     },
   };
 
