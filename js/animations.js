@@ -229,6 +229,25 @@ const AnimationManager = (() => {
 
     ctx: null,
 
+    splitTaglineChars(el) {
+      if (!el) return null;
+
+      const nodes = [];
+      const content = el.textContent || '';
+      el.innerHTML = '';
+
+      [...content].forEach((char) => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.style.opacity = '0';
+        el.appendChild(span);
+        nodes.push(span);
+      });
+
+      return { chars: nodes };
+    },
+
     init() {
       if (typeof gsap === 'undefined') return;
       if (prefersReduced) return;
@@ -240,9 +259,11 @@ const AnimationManager = (() => {
 
         /* Tagline - character stagger */
         const tagline = DOM.heroTagline;
-        if (tagline && typeof SplitText !== 'undefined') {
-          const split = new SplitText(tagline, { type: 'chars' });
+        const split = tagline && typeof SplitText !== 'undefined'
+          ? new SplitText(tagline, { type: 'chars' })
+          : this.splitTaglineChars(tagline);
 
+        if (split?.chars?.length) {
           gsap.to(split.chars, {
             opacity: 1,
             duration: 0.04,
