@@ -489,6 +489,73 @@
     }
     .build-scroll-hint__arrow { animation: bounceX 1.4s ease-in-out infinite; }
 
+    /* -- Chapter 4A: Design to Reality -- */
+    .chapter-comparison {
+      background: var(--bg-secondary);
+      padding: var(--section-pad) 0;
+      min-height: auto;
+    }
+    .chapter-comparison__container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+    .chapter-comparison__heading {
+      font-size: var(--text-h2);
+      margin: var(--space-4) 0 var(--space-4);
+    }
+    .chapter-comparison__intro {
+      color: var(--text-secondary);
+      line-height: var(--lh-relaxed);
+      max-width: 720px;
+      margin-bottom: var(--space-8);
+    }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-6);
+    }
+    .comparison-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-secondary);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+    }
+    .comparison-card__badge {
+      position: absolute;
+      top: var(--space-4);
+      left: var(--space-4);
+      z-index: 2;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      background: rgba(10,10,10,0.75);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      letter-spacing: var(--ls-wider);
+      text-transform: uppercase;
+    }
+    .comparison-card__media {
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      background: var(--bg-elevated);
+    }
+    .comparison-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .comparison-card__caption {
+      padding: var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: var(--ls-wider);
+      font-family: var(--font-mono);
+    }
+
     /* -- Chapter 5: THE SPACE - Curtain Wipe -- */
     .chapter-space {
       background-color: var(--bg-inverse);
@@ -1265,6 +1332,74 @@
       </div>
     </section>
 
+    <!-- ----------------------------------
+         CHAPTER 4A - DESIGN TO REALITY
+    ---------------------------------- -->
+    <section class="chapter-comparison" id="comparisonSection" aria-labelledby="comparisonHeading" hidden>
+      <div class="chapter-comparison__container">
+        <p class="chapter-label reveal reveal--up">
+          <span class="chapter-label__line"></span>
+          Chapter 04A
+        </p>
+        <h2 class="chapter-comparison__heading reveal reveal--up reveal--delay-1" id="comparisonHeading">
+          Design to Reality
+        </h2>
+        <p class="chapter-comparison__intro reveal reveal--up reveal--delay-2" id="comparisonIntro">
+          A comparison of the concept vision and the built outcome for this residential project.
+        </p>
+
+        <div class="comparison-grid">
+          <article class="comparison-card" id="comparisonCard1" hidden>
+            <span class="comparison-card__badge">Concept</span>
+            <div class="comparison-card__media">
+              <img id="comparisonImage1" src="" alt="" loading="lazy" decoding="async" />
+            </div>
+            <p class="comparison-card__caption" id="comparisonCaption1"></p>
+          </article>
+
+          <article class="comparison-card" id="comparisonCard2" hidden>
+            <span class="comparison-card__badge">Completed</span>
+            <div class="comparison-card__media">
+              <img id="comparisonImage2" src="" alt="" loading="lazy" decoding="async" />
+            </div>
+            <p class="comparison-card__caption" id="comparisonCaption2"></p>
+          </article>
+
+          <article class="comparison-card" id="comparisonCard3" hidden>
+            <span class="comparison-card__badge">Concept</span>
+            <div class="comparison-card__media">
+              <img id="comparisonImage3" src="" alt="" loading="lazy" decoding="async" />
+            </div>
+            <p class="comparison-card__caption" id="comparisonCaption3"></p>
+          </article>
+
+          <article class="comparison-card" id="comparisonCard4" hidden>
+            <span class="comparison-card__badge">Completed</span>
+            <div class="comparison-card__media">
+              <img id="comparisonImage4" src="" alt="" loading="lazy" decoding="async" />
+            </div>
+            <p class="comparison-card__caption" id="comparisonCaption4"></p>
+          </article>
+
+          <article class="comparison-card" id="comparisonCard5" hidden>
+            <span class="comparison-card__badge">Concept</span>
+            <div class="comparison-card__media">
+              <img id="comparisonImage5" src="" alt="" loading="lazy" decoding="async" />
+            </div>
+            <p class="comparison-card__caption" id="comparisonCaption5"></p>
+          </article>
+
+          <article class="comparison-card" id="comparisonCard6" hidden>
+            <span class="comparison-card__badge">Completed</span>
+            <div class="comparison-card__media">
+              <img id="comparisonImage6" src="" alt="" loading="lazy" decoding="async" />
+            </div>
+            <p class="comparison-card__caption" id="comparisonCaption6"></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
 
     <!-- ----------------------------------
          CHAPTER 5 - THE SPACE
@@ -1988,6 +2123,50 @@
           { color: '#B5C8CF', texture: 'linear-gradient(90deg, rgba(35,45,52,.42) 1px, transparent 1px), linear-gradient(0deg, rgba(255,255,255,.52) 1px, transparent 1px), repeating-linear-gradient(90deg, rgba(25,25,25,.34) 0 2px, transparent 2px 18px)', name: 'Glass + MS Pipe Railings', desc: 'Glass balcony panels and slim MS pipe railings keep the stacked terraces visually light, giving the compact Rishikesh residence a crisp modern edge.', origin: 'Use: balconies, terrace edges and railing details' }
         ],
         designReading: 'The project is defined by vertical discipline. A 1150 sq.ft plot becomes a 2425 sq.ft family residence by stacking the plan across multiple levels, so the architecture depends on height, light and balcony relief rather than horizontal spread. Tile and stone surfaces give the facade durability and texture, while glass and MS pipe railings keep the upper floors visually open. The result is a compact Rishikesh urban home that feels tall, lean and breathable within its residential lane.'
+      },
+      'the-sajwan-residence': {
+        title: 'The Sajwan Residence',
+        type: 'Residential',
+        location: 'Dehradun, India',
+        year: '2025',
+        image: 'assets/images/project11.1.jpeg',
+        imageAlt: 'The Sajwan Residence - completed residence real construction photo showing layered terraces, stone facade planes, glass balcony edges and contemporary family living.',
+        tagline: 'A new Dehradun residential project shaped through layered terraces, crisp stone planes, glazed upper balconies and a calm contemporary expression rooted in everyday family living.',
+        specLabels: ['Project Type', 'Location', 'Plot Area', 'Covered Area', 'Year', 'Palette', 'Status', 'Principal'],
+        specs: ['Private Residence', 'Dehradun, India', '1800 Sq.Ft', '3840 Sq.Ft', '2025', 'Italian Stone / Louvers / Rustic Paint / Glass', 'Completed', 'Ar. Shailesh Kumar'],
+        briefTitle: 'A Layered Family Home<br />For Dehradun',
+        brief: [
+          'The Sajwan Residence is composed as a clean, terrace-led family home where a gentle stacking of volumes creates a balanced facade with privacy, frontage and soft outdoor living.',
+          'From the street, the home reads as a strongly horizontal composition: a grey stone base grounds the house, while the upper levels open up with glass balcony edges, warm timber soffits and planted terraces that keep the architecture light.',
+          'The project is intentionally calm in material language, using stone, timber and glass to create a contemporary Dehradun residence that feels approachable, durable and suited to everyday family use.'
+        ],
+        quote: 'The house is designed to feel ordered and open at the same time - planted terraces, wide overhangs and glazed edges make the residence calm without losing its presence.',
+        sketchTitle: 'From Grounded Base<br />to Layered Terrace Residence',
+        sketchIntro: 'The concept begins with a disciplined stone base, then layers in balcony terraces, glass edges and planting to turn the facade into a calm everyday family home.',
+        spaceTitle: 'Design Reading',
+        buildTitle: 'Three Views of the Residence',
+        buildIntro: 'The gallery captures the project as a layered, contemporary family residence - from the street frontage to the upper terrace expression and the final built mood.',
+        gallery: [
+          { image: 'assets/images/project11.1.jpeg', alt: 'Completed residence real construction photo of The Sajwan Residence showing the front elevation, layered terraces and contemporary family facade', caption: 'Completed' },
+          { image: 'assets/images/project11.2.jpeg', alt: 'Completed residence real construction photo of The Sajwan Residence showing the side terrace, glass balcony edge and built street-facing composition', caption: 'Completed' },
+          { image: 'assets/images/project11.6.jpeg', alt: 'Completed residence real construction photo of The Sajwan Residence showing the built upper terrace and exterior finish from the completed site', caption: 'Completed' }
+        ],
+        materialsDetail: [
+          { color: '#9E9B92', texture: 'linear-gradient(135deg, rgba(255,255,255,.2), rgba(0,0,0,.12)), radial-gradient(circle at 24% 26%, rgba(255,255,255,.4) 0 1px, transparent 2px)', name: 'Italian Stone', desc: 'Italian stone planes establish the grounded base and strong visual character of the residential frontage.', origin: 'Use: main facade and lower volumes' },
+          { color: '#B7C9D3', texture: 'linear-gradient(90deg, rgba(20,30,40,.34) 1px, transparent 1px), linear-gradient(0deg, rgba(255,255,255,.48) 1px, transparent 1px)', name: 'Glass', desc: 'Clear glass balcony planes keep the upper levels light, open and visually connected to the landscape.', origin: 'Use: balcony glazing and terrace edges' },
+          { color: '#7B5736', texture: 'repeating-linear-gradient(0deg, rgba(60,30,14,.38) 0 3px, rgba(170,105,55,.35) 3px 8px, rgba(255,220,165,.18) 8px 11px)', name: 'Louvers / Rustic Paint', desc: 'Louvered screens and a rustic painted finish add privacy, texture and warmth to the facade while softening the stone mass.', origin: 'Use: terrace detailing and facade surface finish' }
+        ],
+        compareTitle: 'Design to Reality',
+        compareIntro: 'The project entry compares the concept visualization with the final built residence so visitors can see how the design intent translated into the completed home.',
+        compareGallery: [
+          { image: 'assets/images/project11.3.jpeg', alt: '3D concept render of The Sajwan Residence showing the front elevation and terrace composition', caption: 'Concept' },
+          { image: 'assets/images/project11.1.jpeg', alt: 'Completed residence real construction photo of The Sajwan Residence showing the corresponding front elevation and built terrace composition', caption: 'Completed' },
+          { image: 'assets/images/project11.4.jpeg', alt: '3D concept render of The Sajwan Residence showing the side terrace and facade character from the concept visualization', caption: 'Concept' },
+          { image: 'assets/images/project11.2.jpeg', alt: 'Completed residence real construction photo of The Sajwan Residence showing the corresponding side terrace and built facade', caption: 'Completed' },
+          { image: 'assets/images/project11.5.jpeg', alt: '3D concept render of The Sajwan Residence showing the upper terrace and roof expression in design visualization', caption: 'Concept' },
+          { image: 'assets/images/project11.6.jpeg', alt: 'Completed residence real construction photo of The Sajwan Residence showing the corresponding upper terrace and completed exterior view', caption: 'Completed' }
+        ],
+        designReading: 'The residence succeeds by keeping its language simple: a solid base, layered terrace movement and soft transitions between built mass and planted edges. The result is a confident Dehradun home that feels modern, but still grounded and livable for a family.'
       }
     });
 
@@ -2178,6 +2357,26 @@
     });
     const buildSection = document.querySelector('.chapter-build');
     if (buildSection && activeProject.hideBuild) buildSection.hidden = true;
+
+    const comparisonSection = document.getElementById('comparisonSection');
+    const comparisonIntro = document.getElementById('comparisonIntro');
+    const comparisonHeading = document.getElementById('comparisonHeading');
+    if (comparisonSection && activeProject.compareGallery?.length) {
+      comparisonSection.hidden = false;
+      if (comparisonHeading) comparisonHeading.textContent = activeProject.compareTitle || 'Design to Reality';
+      if (comparisonIntro) comparisonIntro.textContent = activeProject.compareIntro || 'A comparison of the concept vision and the built outcome for this residential project.';
+
+      activeProject.compareGallery.forEach((item, index) => {
+        const card = document.getElementById(`comparisonCard${index + 1}`);
+        const image = document.getElementById(`comparisonImage${index + 1}`);
+        const caption = document.getElementById(`comparisonCaption${index + 1}`);
+        if (!card || !image || !caption) return;
+        card.hidden = false;
+        image.src = item.image;
+        image.alt = item.alt;
+        caption.textContent = item.caption;
+      });
+    }
 
     const spaceHeading = document.getElementById('spaceHeading');
     if (spaceHeading) spaceHeading.textContent = activeProject.spaceTitle;
