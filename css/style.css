@@ -2927,3 +2927,118 @@ small {
   margin-right: 0.5rem;
   fill: currentColor;
 }
+
+/* Expertise section */
+.expertise {
+  padding: var(--section-pad) 0;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-secondary);
+}
+
+.expertise__container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.expertise__header {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 5vw, 6rem);
+  align-items: end;
+  margin-bottom: var(--space-12);
+}
+
+.expertise__heading {
+  font-size: var(--text-h2);
+  line-height: var(--lh-tight);
+}
+
+.expertise__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+  gap: clamp(3rem, 6vw, 8rem);
+  align-items: start;
+}
+
+.expertise__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.expertise__copy p {
+  font-size: var(--text-body);
+  line-height: var(--lh-loose);
+  color: var(--text-secondary);
+}
+
+.expertise__copy a {
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--accent-primary);
+  transition:
+    color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+
+.expertise__copy a:hover {
+  color: var(--accent-primary);
+  border-color: currentColor;
+}
+
+.expertise__facts {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border-secondary);
+}
+
+.expertise__fact {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.expertise__fact dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.expertise__fact dd {
+  max-width: 190px;
+  text-align: right;
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  color: var(--text-primary);
+}
+
+@media screen and (max-width: 900px) {
+  .expertise__header,
+  .expertise__content {
+    grid-template-columns: 1fr;
+  }
+
+  .expertise__header {
+    align-items: start;
+    margin-bottom: var(--space-10);
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .expertise__fact {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .expertise__fact dd {
+    max-width: none;
+    text-align: left;
+  }
+}
