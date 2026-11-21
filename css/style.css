@@ -748,6 +748,18 @@ small {
   height: auto;
 }
 
+/* The PNG wordmark is a square artwork; constrain both dimensions so the
+   browser does not expand it to its intrinsic 320px height. */
+.nav__logo-img {
+  display: block;
+  width: auto;
+  height: 52px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.nav.is-scrolled .nav__logo-img { height: 48px; }
+
 /* Desktop links */
 .nav__links {
   display: flex;
@@ -788,6 +800,41 @@ small {
 
 .nav__item--active .nav__link {
   color: var(--text-primary);
+}
+
+[data-theme="evening"] .nav__link:hover,
+[data-theme="evening"] .nav__item--active .nav__link,
+[data-theme="night"] .nav__link:hover,
+[data-theme="night"] .nav__item--active .nav__link {
+  color: #F5F4F0;
+}
+
+[data-theme="evening"] .nav__badge,
+[data-theme="night"] .nav__badge {
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+.nav__link--verified-homes {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.nav__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 18px;
+  padding: 0 0.35rem;
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-full);
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 /* Nav actions */
@@ -2804,6 +2851,32 @@ small {
   .nav__actions {
     gap: var(--space-3);
   }
+}
+
+/* Eight links fit comfortably from 1100px with the compact desktop mode. */
+@media screen and (min-width: 1100px) and (max-width: 1439px) {
+  .nav__inner { gap: var(--space-4); }
+  .nav__links { gap: 0.75rem; }
+  .nav__link { font-size: 14px; letter-spacing: 0.04em; }
+  .nav__actions { gap: 0.5rem; }
+  .nav__cta { padding: 0.65rem 0.75rem; }
+  .nav__logo-img { height: 66px; }
+  .nav.is-scrolled .nav__logo-img { height: 56px; }
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1199px) {
+  .nav__links { gap: 0.55rem; }
+  .nav__link { font-size: 13px; letter-spacing: 0.025em; }
+  .nav__cta { padding: 0.6rem 0.65rem; }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1099px) {
+  .nav__logo-img { height: 60px; }
+}
+
+@media screen and (min-width: 1440px) {
+  .nav__logo-img { height: 76px; }
+  .nav.is-scrolled .nav__logo-img { height: 56px; }
 }
 
 @media screen and (max-width: 767px) {

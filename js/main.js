@@ -616,6 +616,12 @@ const ConversionTracking = (() => {
     const href = link?.getAttribute('href') || '';
     const label = (link || button)?.textContent?.replace(/\s+/g, ' ').trim() || '';
 
+    const customEvent = link?.dataset.trackEvent;
+    if (customEvent) {
+      track(customEvent, { label: label || customEvent });
+      return;
+    }
+
     if (href.includes('wa.me') || href.includes('api.whatsapp.com')) {
       track('whatsapp_click', { label: label || href });
       return;
@@ -638,6 +644,7 @@ const ConversionTracking = (() => {
   return { init, track };
 
 })();
+
 
 /* ===============================================================
    MASTER INIT

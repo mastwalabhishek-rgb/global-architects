@@ -48,9 +48,9 @@
   <link rel="manifest" href="site.webmanifest" />
   <meta name="apple-mobile-web-app-title" content="Global Architects" />
   <meta name="theme-color" content="#111111" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=20261105-4" />
   <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/responsive.css?v=20261105-4" />
 
   <style>
     /* ==========================================
@@ -811,17 +811,11 @@
   <!-- Navigation -->
   <header class="nav is-visible is-scrolled" id="mainNav" role="banner">
     <nav class="nav__inner" aria-label="Main navigation">
-      <a href="/" class="nav__logo" aria-label="Global Architects - Home">
-        <svg class="nav__logo-svg" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M8 16 A8 8 0 1 1 16 8 L16 16 L10 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <text x="24" y="21" font-family="'DM Sans Variable', sans-serif" font-size="13" font-weight="500" fill="currentColor" letter-spacing="0.05em">GLOBAL</text>
-          <text x="24" y="30" font-family="'DM Mono', monospace" font-size="7" font-weight="300" fill="currentColor" letter-spacing="0.15em" opacity="0.7">ARCHITECTS</text>
-        </svg>
-      </a>
+      <a href="/" class="nav__logo" aria-label="Global Architects - Home"><img src="assets/images/logo-nav-cropped.png" alt="Global Architects" class="nav__logo-img" width="113" height="76" /></a>
       <ul class="nav__links" role="list">
         <li class="nav__item"><a href="/"    class="nav__link">Home</a></li>
         <li class="nav__item"><a href="projects.html" class="nav__link">Projects</a></li>
-        <li class="nav__item"><a href="/#services" class="nav__link">Services</a></li>
+        <li class="nav__item"><a href="/#services" class="nav__link">Services</a></li><li class="nav__item"><a href="verified-homes.html" class="nav__link nav__link--verified-homes" data-track-event="nav_click_verified_homes">Verified Homes <span class="nav__badge">New</span></a></li>
         <li class="nav__item"><a href="journal.html" class="nav__link">Journal</a></li>
         <li class="nav__item"><a href="about.html"    class="nav__link">About</a></li>
         <li class="nav__item"><a href="client-stories.html" class="nav__link">Client Stories</a></li>
@@ -858,11 +852,11 @@
       <ul class="mobile-menu__links" role="list">
         <li class="mobile-menu__item"><a href="/"    class="mobile-menu__link"><span class="mobile-menu__num">01</span>Home</a></li>
         <li class="mobile-menu__item"><a href="projects.html" class="mobile-menu__link"><span class="mobile-menu__num">02</span>Projects</a></li>
-        <li class="mobile-menu__item"><a href="/#services" class="mobile-menu__link"><span class="mobile-menu__num">03</span>Services</a></li>
-        <li class="mobile-menu__item"><a href="journal.html" class="mobile-menu__link"><span class="mobile-menu__num">04</span>Journal</a></li>
-        <li class="mobile-menu__item"><a href="about.html" class="mobile-menu__link"><span class="mobile-menu__num">05</span>About</a></li>
-        <li class="mobile-menu__item"><a href="client-stories.html" class="mobile-menu__link"><span class="mobile-menu__num">06</span>Client Stories</a></li>
-        <li class="mobile-menu__item"><a href="contact.html" class="mobile-menu__link" aria-current="page"><span class="mobile-menu__num">07</span>Contact</a></li>
+        <li class="mobile-menu__item"><a href="/#services" class="mobile-menu__link"><span class="mobile-menu__num">03</span>Services</a></li><li class="mobile-menu__item"><a href="verified-homes.html" class="mobile-menu__link nav__link--verified-homes" data-track-event="nav_click_verified_homes"><span class="mobile-menu__num">04</span>Verified Homes <span class="nav__badge">New</span></a></li>
+        <li class="mobile-menu__item"><a href="journal.html" class="mobile-menu__link"><span class="mobile-menu__num">05</span>Journal</a></li>
+        <li class="mobile-menu__item"><a href="about.html" class="mobile-menu__link"><span class="mobile-menu__num">06</span>About</a></li>
+        <li class="mobile-menu__item"><a href="client-stories.html" class="mobile-menu__link"><span class="mobile-menu__num">07</span>Client Stories</a></li>
+        <li class="mobile-menu__item"><a href="contact.html" class="mobile-menu__link" aria-current="page"><span class="mobile-menu__num">08</span>Contact</a></li>
       </ul>
     </nav>
     <div class="mobile-menu__footer">
@@ -1324,7 +1318,7 @@
         <p class="footer__copy"><small>&copy; <span id="currentYear"></span> Global Architects. All rights reserved.</small></p>
       </div>
     </div>
-  </footer>
+  <a href="verified-homes.html" class="footer__verified-homes">Verified Homes</a></footer>
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -1332,7 +1326,7 @@
   <script src="js/theme.js"      defer></script>
   <script src="js/cursor.js"     defer></script>
   <script src="js/animations.js" defer></script>
-  <script src="js/main.js?v=20260708-1"       defer></script>
+  <script src="js/main.js?v=20261105-2"       defer></script>
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
