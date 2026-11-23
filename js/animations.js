@@ -783,49 +783,64 @@ const AnimationManager = (() => {
   const PageTransition = {
 
     overlay: null,
+    navigating: false,
 
     init() {
-      /* Create overlay element */
-      this.overlay = document.createElement('div');
-      this.overlay.className = 'page-transition';
-      document.body.appendChild(this.overlay);
-      this.bindBFCacheReset();
+      if (prefersReduced) {
+        document.body.classList.remove('js-loading');
+        return;
+      }
 
-      /* Intercept internal link clicks */
+      try {
+        this.overlay = document.createElement('div');
+        this.overlay.className = 'page-transition';
+        document.body.appendChild(this.overlay);
+        this.bindBFCacheReset();
+        this.bindLinks();
+        this.revealDestination();
+        setTimeout(() => this.revealDestination(), 800);
+      } catch (error) {
+        this.revealDestination();
+      }
+    },
+
+    bindLinks() {
       document.querySelectorAll('a[href]').forEach(link => {
-        const href = link.getAttribute('href');
-
-        /* Only internal links, not anchors, not external */
-        if (!href ||
-            href.startsWith('#') ||
-            href.startsWith('http') ||
-            href.startsWith('mailto') ||
-            href.startsWith('tel') ||
-            link.target === '_blank' ||
-            prefersReduced) return;
-
         link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+
+          if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey ||
+              e.shiftKey || e.altKey || !this.isInternalNavigation(link, href)) return;
+
           e.preventDefault();
           this.navigate(href);
         });
       });
+    },
 
-      /* On page load - exit animation */
-      if (!prefersReduced) {
-        this.overlay.classList.add('is-leaving');
-        setTimeout(() => {
-          this.overlay.classList.remove('is-leaving');
-        }, 500);
+    isInternalNavigation(link, href) {
+      if (!href || href.startsWith('#') || link.hasAttribute('download') ||
+          (link.target && link.target !== '_self')) return false;
+
+      try {
+        const url = new URL(href, window.location.href);
+        return url.protocol === window.location.protocol &&
+               url.origin === window.location.origin;
+      } catch (error) {
+        return false;
       }
     },
 
     navigate(href) {
+      if (this.navigating) return;
+      this.navigating = true;
       this.prepareOverlayForTransition();
       this.overlay.classList.add('is-entering');
 
+      setTimeout(() => this.resetOverlayState(), 800);
       setTimeout(() => {
-        window.location.href = href;
-      }, 450);
+        window.location.assign(href);
+      }, 180);
     },
 
     prepareOverlayForTransition() {
@@ -845,9 +860,7 @@ const AnimationManager = (() => {
 
     bindBFCacheReset() {
       window.addEventListener('pageshow', (event) => {
-        if (event.persisted) {
-          this.resetOverlayState();
-        }
+        if (event.persisted) this.revealDestination();
       });
 
       window.addEventListener('pagehide', () => {
@@ -855,9 +868,34 @@ const AnimationManager = (() => {
       });
     },
 
+    revealDestination() {
+      document.body.classList.remove('js-loading');
+      const overlay = this.overlay || document.querySelector('.page-transition');
+      if (!overlay) return;
+
+      try {
+        if (typeof gsap !== 'undefined') {
+          gsap.killTweensOf(overlay);
+          gsap.set(overlay, {
+            autoAlpha: 0,
+            pointerEvents: 'none',
+            y: '100%',
+          });
+          overlay.classList.remove('is-entering', 'is-leaving', 'is-fading-out');
+        } else {
+          overlay.classList.add('is-fading-out');
+          setTimeout(() => this.resetOverlayState(), 250);
+        }
+      } catch (error) {
+        this.resetOverlayState();
+      }
+    },
+
     resetOverlayState() {
       const overlay = this.overlay || document.querySelector('.page-transition');
       if (!overlay) return;
+
+      this.navigating = false;
 
       if (typeof gsap !== 'undefined') {
         gsap.killTweensOf(overlay);
@@ -874,9 +912,9 @@ const AnimationManager = (() => {
         overlay.style.transform = 'translateY(100%)';
       }
 
-      overlay.classList.remove('is-entering', 'is-leaving');
+      overlay.classList.remove('is-entering', 'is-leaving', 'is-fading-out');
       document.documentElement.classList.remove('is-transitioning', 'is-loading', 'is-animating');
-      document.body.classList.remove('is-transitioning', 'is-loading', 'is-animating');
+      document.body.classList.remove('js-loading', 'is-transitioning', 'is-loading', 'is-animating');
     },
   };
 

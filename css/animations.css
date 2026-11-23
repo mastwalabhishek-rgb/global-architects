@@ -489,23 +489,31 @@
   z-index: calc(var(--z-blueprint) - 1);
   background-color: var(--bg-inverse);
   pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
   transform: translateY(100%);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .page-transition.is-entering {
-    animation: pageTransEnter 0.5s var(--ease-out) forwards;
+    visibility: visible;
+    opacity: 1;
+    animation: pageTransEnter 0.18s var(--ease-out) forwards,
+               pageTransFailSafe 0.01s linear 1.2s forwards;
   }
-  .page-transition.is-leaving {
-    animation: pageTransLeave 0.5s var(--ease-in) forwards;
+  .page-transition.is-fading-out {
+    visibility: visible;
+    animation: pageTransFadeOut 0.25s var(--ease-out) forwards;
   }
   @keyframes pageTransEnter {
     from { transform: translateY(100%); }
     to   { transform: translateY(0%); }
   }
-  @keyframes pageTransLeave {
-    from { transform: translateY(0%); }
-    to   { transform: translateY(-100%); }
+  @keyframes pageTransFadeOut {
+    to { opacity: 0; visibility: hidden; transform: translateY(-100%); }
+  }
+  @keyframes pageTransFailSafe {
+    to { opacity: 0; visibility: hidden; transform: translateY(-100%); }
   }
 }
 
